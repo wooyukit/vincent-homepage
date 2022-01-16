@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
 export const ExpSection = styled(Box)`
-margin-top: 1em;
+margin-top: 1.2em;
 `
 
 export const ExpYear = styled.span`
@@ -16,5 +16,6 @@ font-family: M PLUS Rounded 1c;
 `
 
 export const ExpDuty = styled.ul`
-margin-left: 8em;
+margin-top: 0.4em;
+margin-left: 2em;
 `
