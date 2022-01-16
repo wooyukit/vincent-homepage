@@ -57,11 +57,9 @@ const Navbar = props => {
 					<LinkItem href="/works" path={path}>
 						Works
 					</LinkItem>
-
-					<LinkItem href="/posts" path={path}>
-						Posts
+					<LinkItem href="/portfolio" path={path}>
+						Portfolio
 					</LinkItem>
-
 				</Stack>
 				<Box flex={1} align="right">
 					<ThemeToggleButton />
@@ -75,8 +73,8 @@ const Navbar = props => {
 								<NextLink href="/works" passHref>
 									<MenuItem as={Link}>Works</MenuItem>
 								</NextLink>
-								<NextLink href="/posts" passHref>
-									<MenuItem as={Link}>Posts</MenuItem>
+								<NextLink href="/portfolio" passHref>
+									<MenuItem as={Link}>Portfolio</MenuItem>
 								</NextLink>
 								<MenuItem as={Link} href="https://github.com/wooyukit/vincent-homepage">View Source</MenuItem>
 							</MenuList>
