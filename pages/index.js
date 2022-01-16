@@ -18,7 +18,7 @@ const Page = () => {
 				</Box>
 				<Box flexShrink={0} mt={{ base: 4, md: 0 }} ml={{ md: 6 }} align="center">
 					<Image
-						borderColor="whiteAlpha.800"
+						borderColor={useColorModeValue('blackAlpha.400', 'whiteAlpha.800')}
 						borderWidth={2}
 						borderStyle="solid"
 						maxWidth="100px"
@@ -52,6 +52,13 @@ const Page = () => {
 					Completed the Bachelor of Electronic and Information Engineering in <br />
 					The Hong Kong Polytechnic University. <br />
 					with Second Class Honors, Division 1 and Awarded GPA: 3.2
+				</BioSection>
+				<BioSection>
+					<BioYear>2017</BioYear>
+					Completed the Master of Science in Information system Management<br />
+					Major in Information System Management <br />
+					The City University of Hong Kong.<br />
+					with Pass Classification and Awarded GPA: 2.97
 				</BioSection>
 				<BioSection>
 					<BioYear>2017</BioYear>
