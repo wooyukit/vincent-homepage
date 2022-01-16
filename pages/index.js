@@ -4,6 +4,7 @@ import Section from '../components/section'
 import Paragraph from '../components/paragraph'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { BioSection, BioYear } from '../components/bio'
+import { ExpSection, ExpYear, ExpPosition, ExpDuty } from '../components/experience'
 
 const Page = () => {
 	return (
@@ -60,13 +61,41 @@ const Page = () => {
 					The City University of Hong Kong.<br />
 					with Pass Classification and Awarded GPA: 2.97
 				</BioSection>
-				<BioSection>
-					<BioYear>2017</BioYear>
-					Completed the Master of Science in Information system Management<br />
-					Major in Information System Management <br />
-					The City University of Hong Kong.<br />
-					with Pass Classification and Awarded GPA: 2.97
-				</BioSection>
+			</Section>
+			<Section delay={0.3}>
+				<Heading as="h3" variant="section-title">
+					Experiences
+				</Heading>
+				<ExpSection>
+					<ExpYear>2018 to now</ExpYear>
+					<ExpPosition>
+						Lead Mobile Engineer in South China Morning Post
+					</ExpPosition>
+					<ExpDuty>
+						<ul>
+							<li>Manage and allocate tasks to the application developers to produce new features and maintain mobile applications.</li>
+							<li>Conduct CI/CD for QA and distribute the application.</li>
+							<li>Communicate with parties and implement technical solution to fulfill business requirements and needs.</li>
+							<li>Develop Newspaper and Magazine Universal Mobile Application for both iOS and Android Platform from scratch.</li>
+							<li>Using Reactive Functional Programming (Kotlin, Swift, RxSwift, RxJava) to implement MVVM Architecture to decouple the dependencies.</li>
+							<li>Implement GraphQL for data query</li>
+						</ul>
+					</ExpDuty>
+				</ExpSection>
+				<ExpSection>
+					<ExpYear>2017 to 2018</ExpYear>
+					<ExpPosition>
+						Senior System Analyst in Hang Seng Bank
+					</ExpPosition>
+					<ExpDuty>
+						<ul>
+							<li>Develop Mobile apps for both iOS and Android for the Corporate Clients from scratch.</li>
+							<li>Manage the offshoring team in Mainland China to support agile development process</li>
+							<li>Enhance the current Mobile apps to fulfill business user’s requirements</li>
+							<li>Integrate the Machine Learning System with current website and mobile applications</li>
+						</ul>
+					</ExpDuty>
+				</ExpSection>
 			</Section>
 		</Container>
 	)
