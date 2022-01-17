@@ -60,6 +60,9 @@ const Navbar = props => {
 					<LinkItem href="/portfolio" path={path}>
 						Portfolio
 					</LinkItem>
+					<LinkItem href="https://github.com/wooyukit/vincent-homepage" path={path}>
+						View Source
+					</LinkItem>
 				</Stack>
 				<Box flex={1} align="right">
 					<ThemeToggleButton />
