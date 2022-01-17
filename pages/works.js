@@ -27,10 +27,19 @@ const Works = () => {
 					Experience
 				</Heading>
 				<ExpSection>
-					<ExpYear>2018 to now</ExpYear>
-					<ExpPosition>
-						Lead Mobile Engineer in South China Morning Post
-					</ExpPosition>
+					<Box display='flex'>
+						<Image maxHeight="80px"
+							borderRadius="full"
+							src='/images/portfolio/scmp-logo.png'
+							alt='South China Morning Post' />
+						<Box flexGrow={1}
+							alignSelf="center">
+							<ExpPosition>
+								Lead Mobile Engineer in South China Morning Post
+							</ExpPosition>
+							<ExpYear>2018 to now</ExpYear>
+						</Box>
+					</Box>
 					<ExpDuty>
 						<ul>
 							<li>Manage and allocate tasks to the application developers to produce new features and maintain mobile applications.</li>
@@ -43,10 +52,18 @@ const Works = () => {
 					</ExpDuty>
 				</ExpSection>
 				<ExpSection>
-					<ExpYear>2017 to 2018</ExpYear>
-					<ExpPosition>
-						Senior System Analyst in Hang Seng Bank
-					</ExpPosition>
+					<Box display='flex'>
+						<Image maxHeight="80px"
+							src='/images/portfolio/hang-seng-logo.png'
+							alt='Hang Seng Bank' />
+						<Box flexGrow={1}
+							alignSelf="center">
+							<ExpPosition>
+								Senior System Analyst in Hang Seng Bank
+							</ExpPosition>
+							<ExpYear>2017 to 2018</ExpYear>
+						</Box>
+					</Box>
 					<ExpDuty>
 						<ul>
 							<li>Develop Mobile apps for both iOS and Android for the Corporate Clients from scratch.</li>
@@ -57,16 +74,34 @@ const Works = () => {
 					</ExpDuty>
 				</ExpSection>
 				<ExpSection>
-					<ExpYear>2016 to 2017</ExpYear>
-					<ExpPosition>
-						Senior Mobile Developer in South China Morning Post
-					</ExpPosition>
+					<Box display='flex'>
+						<Image maxHeight="80px"
+							borderRadius="full"
+							src='/images/portfolio/scmp-logo.png'
+							alt='South China Morning Post' />
+						<Box flexGrow={1}
+							alignSelf="center">
+							<ExpPosition>
+								Senior Mobile Developer in South China Morning Post
+							</ExpPosition>
+							<ExpYear>2016 to 2017</ExpYear>
+						</Box>
+					</Box>
 				</ExpSection>
 				<ExpSection>
-					<ExpYear>2014 to 2016</ExpYear>
-					<ExpPosition>
-						Senior Mobile Application Developer in Guru Online Ltd
-					</ExpPosition>
+					<Box display='flex'>
+						<Image maxHeight="80px"
+							borderRadius="full"
+							src='/images/portfolio/guru-online-logo.png'
+							alt='Guru Online' />
+						<Box flexGrow={1}
+							alignSelf="center">
+							<ExpPosition>
+								Senior Mobile Application Developer in Guru Online Ltd
+							</ExpPosition>
+							<ExpYear>2014 to 2016</ExpYear>
+						</Box>
+					</Box>
 					<ExpDuty>
 						<ul>
 							<li>Research and development the new mobile application technology such as iBeacon, AR with 3D models, payment gateway integration with mobile application, apple watch and Swift</li>
@@ -81,10 +116,19 @@ const Works = () => {
 					</ExpDuty>
 				</ExpSection>
 				<ExpSection>
-					<ExpYear>2012 to 2014</ExpYear>
-					<ExpPosition>
-						Consultant in Pactera Limited
-					</ExpPosition>
+					<Box display='flex'>
+						<Image maxHeight="80px"
+							borderRadius="full"
+							src='/images/portfolio/pactera-logo.jpeg'
+							alt='Pactera Limited' />
+						<Box flexGrow={1}
+							alignSelf="center">
+							<ExpPosition>
+								Consultant in Pactera Limited
+							</ExpPosition>
+							<ExpYear>2012 to 2014</ExpYear>
+						</Box>
+					</Box>
 					<ExpDuty>
 						<ul>
 							<li>Serve as a consultant to provide the software development system design and feasibility for client.</li>
@@ -103,10 +147,18 @@ const Works = () => {
 					</ExpDuty>
 				</ExpSection>
 				<ExpSection>
-					<ExpYear>2011 to 2012</ExpYear>
-					<ExpPosition>
-						Mobile Applications Developer in China Mobile Hong Kong Limited
-					</ExpPosition>
+					<Box display='flex'>
+						<Image maxHeight="80px"
+							src='/images/portfolio/china-mobile-logo.png'
+							alt='Chine Mobile Hong Kong Limited' />
+						<Box flexGrow={1}
+							alignSelf="center">
+							<ExpPosition>
+								Mobile Applications Developer in China Mobile Limited
+							</ExpPosition>
+							<ExpYear>2011 to 2012</ExpYear>
+						</Box>
+					</Box>
 					<ExpDuty>
 						<ul>
 							<li>Developed the iPhone Apps, android Apps for internal and external users.</li>
@@ -115,10 +167,18 @@ const Works = () => {
 					</ExpDuty>
 				</ExpSection>
 				<ExpSection>
-					<ExpYear>2010 to 2011</ExpYear>
-					<ExpPosition>
-						Analyst Programmer in iMusicTech Limited
-					</ExpPosition>
+					<Box display='flex'>
+						<Image maxHeight="80px"
+							src='/images/portfolio/iMusicTech-logo.png'
+							alt='iMusicTect Limited' />
+						<Box flexGrow={1}
+							alignSelf="center">
+							<ExpPosition>
+								Analyst Programmer in iMusicTech Limited
+							</ExpPosition>
+							<ExpYear>2010 to 2011</ExpYear>
+						</Box>
+					</Box>
 					<ExpDuty>
 						<ul>
 							<li>Focused on the web application as well as iPhone, Android mobile applications development.</li>
@@ -128,10 +188,19 @@ const Works = () => {
 					</ExpDuty>
 				</ExpSection>
 				<ExpSection>
-					<ExpYear>2009 to 2010</ExpYear>
-					<ExpPosition>
-						Programmer in California Red Limited
-					</ExpPosition>
+					<Box display='flex'>
+						<Image maxHeight="80px"
+							borderRadius="full"
+							src='/images/portfolio/california-red-logo.jpeg'
+							alt='California Red Limited' />
+						<Box flexGrow={1}
+							alignSelf="center">
+							<ExpPosition>
+								Programmer in California Red Limited
+							</ExpPosition>
+							<ExpYear>2009 to 2010</ExpYear>
+						</Box>
+					</Box>
 					<ExpDuty>
 						<ul>
 							<li>Worked as a programmer of Information Technology Department</li>
