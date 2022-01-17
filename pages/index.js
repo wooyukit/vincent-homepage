@@ -1,4 +1,4 @@
-import { Container, Box, Heading, Image, useColorModeValue, Link, Button } from '@chakra-ui/react'
+import { Container, Box, Heading, Image, useColorModeValue, Button } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Section from '../components/section'
 import Paragraph from '../components/paragraph'
@@ -10,7 +10,7 @@ const Page = () => {
 	return (
 		<Container>
 			<Box borderRadius='lg' bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')} p={3} mb={6} align="center">
-				Hello, I'm a Mobile Application Developer based in Hong Kong!
+				Hello, I am a Mobile Application Developer based in Hong Kong!
 			</Box>
 			<Box display={{ md: 'flex' }} >
 				<Box flexGrow={1}>
@@ -37,9 +37,16 @@ const Page = () => {
 					12 years of Mobile Applications Development experience in iOS, Android and Web platforms. Skilled in Kotlin, Swift, Flutter, Java, JavaScript, PHP, ReactJS and .Net Framework. Supportive and enthusiastic team player dedicated to streamlining processes and efficiently resolving project issues.
 				</Paragraph>
 				<Box align="center" my={4}>
+					<NextLink href="/works">
+						<Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
+							Work Experience
+						</Button>
+					</NextLink>
+				</Box>
+				<Box align="center" my={4}>
 					<NextLink href="/portfolio">
 						<Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-							My portfolio
+							My Portfolio
 						</Button>
 					</NextLink>
 				</Box>
@@ -70,7 +77,7 @@ const Page = () => {
 					with Pass Classification and Awarded GPA: 2.97
 				</BioSection>
 			</Section>
-			
+
 		</Container>
 	)
 }
