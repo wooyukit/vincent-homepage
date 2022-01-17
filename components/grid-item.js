@@ -21,14 +21,14 @@ export const GridItem = ({ children, href, title, thumbnail }) => (
 
 export const PortfolioGridItem = ({ children, id, title, thumbnail }) => (
 	<Box w="100%" align="center">
-		<NextLink href={`/works/${id}`}>
+		<NextLink href={`/portfolio/${id}`}>
 			<LinkBox cursor="pointer">
 				<Image src={thumbnail}
 					alt={title}
 					className="grid-item-thumbnail"
 					placeholder='blur'
 				/>
-				<LinkOverlay href={`/works/${id}`}>
+				<LinkOverlay href={`/portfolio/${id}`}>
 					<Text mt={2} fontSize={20} >
 						{title}
 					</Text>

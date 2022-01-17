@@ -30,7 +30,7 @@ const Works = () => {
 					<Box display='flex'>
 						<Image maxHeight="80px"
 							borderRadius="full"
-							src='/images/portfolio/scmp-logo.png'
+							src='/images/works/scmp-logo.png'
 							alt='South China Morning Post' />
 						<Box flexGrow={1}
 							alignSelf="center">
@@ -54,7 +54,7 @@ const Works = () => {
 				<ExpSection>
 					<Box display='flex'>
 						<Image maxHeight="80px"
-							src='/images/portfolio/hang-seng-logo.png'
+							src='/images/works/hang-seng-logo.png'
 							alt='Hang Seng Bank' />
 						<Box flexGrow={1}
 							alignSelf="center">
@@ -77,7 +77,7 @@ const Works = () => {
 					<Box display='flex'>
 						<Image maxHeight="80px"
 							borderRadius="full"
-							src='/images/portfolio/scmp-logo.png'
+							src='/images/works/scmp-logo.png'
 							alt='South China Morning Post' />
 						<Box flexGrow={1}
 							alignSelf="center">
@@ -92,7 +92,7 @@ const Works = () => {
 					<Box display='flex'>
 						<Image maxHeight="80px"
 							borderRadius="full"
-							src='/images/portfolio/guru-online-logo.png'
+							src='/images/works/guru-online-logo.png'
 							alt='Guru Online' />
 						<Box flexGrow={1}
 							alignSelf="center">
@@ -119,7 +119,7 @@ const Works = () => {
 					<Box display='flex'>
 						<Image maxHeight="80px"
 							borderRadius="full"
-							src='/images/portfolio/pactera-logo.jpeg'
+							src='/images/works/pactera-logo.jpeg'
 							alt='Pactera Limited' />
 						<Box flexGrow={1}
 							alignSelf="center">
@@ -149,7 +149,7 @@ const Works = () => {
 				<ExpSection>
 					<Box display='flex'>
 						<Image maxHeight="80px"
-							src='/images/portfolio/china-mobile-logo.png'
+							src='/images/works/china-mobile-logo.png'
 							alt='Chine Mobile Hong Kong Limited' />
 						<Box flexGrow={1}
 							alignSelf="center">
@@ -169,7 +169,7 @@ const Works = () => {
 				<ExpSection>
 					<Box display='flex'>
 						<Image maxHeight="80px"
-							src='/images/portfolio/iMusicTech-logo.png'
+							src='/images/works/iMusicTech-logo.png'
 							alt='iMusicTect Limited' />
 						<Box flexGrow={1}
 							alignSelf="center">
@@ -191,7 +191,7 @@ const Works = () => {
 					<Box display='flex'>
 						<Image maxHeight="80px"
 							borderRadius="full"	
-							src='/images/portfolio/california-red-logo.jpeg'
+							src='/images/works/california-red-logo.jpeg'
 							alt='California Red Limited' />
 						<Box flexGrow={1}
 							alignSelf="center">
