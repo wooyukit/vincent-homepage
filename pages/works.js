@@ -8,7 +8,7 @@ const Works = () => {
 			<Box display={{ md: 'flex' }} >
 				<Box flexGrow={1}>
 					<Heading as="h2" variant="page-title"> WOO Yu Kit Vincent</Heading>
-					<p>Team Lead Engineer, Mobile Appliction and Web Developer</p>
+					<p>Team Lead Engineer, Senior Mobile Appliction and Web Developer</p>
 				</Box>
 				<Box flexShrink={0} mt={{ base: 4, md: 0 }} ml={{ md: 6 }} align="center">
 					<Image
@@ -190,7 +190,7 @@ const Works = () => {
 				<ExpSection>
 					<Box display='flex'>
 						<Image maxHeight="80px"
-							borderRadius="full"
+							borderRadius="full"	
 							src='/images/portfolio/california-red-logo.jpeg'
 							alt='California Red Limited' />
 						<Box flexGrow={1}

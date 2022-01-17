@@ -1,6 +1,6 @@
 import { Container, Heading, SimpleGrid } from "@chakra-ui/react"
 import Section from "../components/section"
-import { WorkGridItem } from "../components/grid-item"
+import { PortfolioGridItem } from "../components/grid-item"
 import thumbInkdrop from "../public/images/works/inkdrop_eyecatch.png"
 
 const Portfolio = () => {
@@ -11,9 +11,9 @@ const Portfolio = () => {
 			</Heading>
 			<SimpleGrid columns={[1, 1, 2]} gap={6}>
 				<Section>
-					<WorkGridItem id="inkdrop" title="inkdrop" thumbnail={thumbInkdrop}>
+					<PortfolioGridItem id="inkdrop" title="inkdrop" thumbnail={thumbInkdrop}>
 						A markdown
-					</WorkGridItem>
+					</PortfolioGridItem>
 				</Section>
 			</SimpleGrid>
 		</Container>
