@@ -43,7 +43,7 @@ const Navbar = props => {
 			as="nav"
 			w="100%"
 			bg={useColorModeValue('#ffffff40', '#20202380')}
-			style={{ backdropFilter: 'blur(10px)' }}
+			style={{ backdropFilter: 'blur(10px)', WebkitBackdropFilter:'blur(10px)' }}
 			zIndex={1}
 			{...props}
 		>
