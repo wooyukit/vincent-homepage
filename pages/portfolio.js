@@ -37,6 +37,43 @@ import thumbInkstone from "../public/images/portfolio/inkstone-eyecatch.jpeg"
 import thumbHangSeng from "../public/images/portfolio/hangseng-app-eyecatch.jpeg"
 import thumbScmpv5 from "../public/images/portfolio/scmpv5-eyecatch.png"
 
+const portfolioItems = [
+	{ id: "scmpv5", title: "SCMPv5 App", src: thumbScmpv5 },
+	{ id: "hangseng", title: "Hang Seng Business App", src: thumbHangSeng },
+	{ id: "inkstone", title: "SCMP Inkstone App", src: thumbInkstone },
+	{ id: "scmpv4", title: "SCMPv4 App", src: thumbScmpv4 },
+	{ id: "takealook", title: "Take a Look Website", src: thumbTakealook },
+	{ id: "twinpeak", title: "TwinPeak Property App", src: thumbTwinPeak },
+	{ id: "guzen", title: "Christmas Guzen App", src: thumbGuzen },
+	{ id: "bauhaus", title: "Bauhaus App", src: thumbBauhaus },
+	{ id: "marathon", title: "Marathon App", src: thumbMarathon },
+	{ id: "sie", title: "Government SIE App", src: thumbSie },
+	{ id: "sinoclub", title: "Sino Club Mall App", src: thumbSinoClub },
+	{ id: "ar", title: "AR Research", src: thumbAR },
+	{ id: "t1t", title: "T1T Appointment App", src: thumbT1T },
+	{ id: "swire-reader", title: "Swire Property Reader App", src: thumbSwireReader },
+	{ id: "swire-irp", title: "Swire Incident Control App", src: thumbSwireIrp },
+	{ id: "swire-drp", title: "Swire Disaster Control App", src: thumbSwireDrp },
+	{ id: "letwork", title: "Letwork Card App", src: thumbLetwork },
+	{ id: "apas", title: "APAS Music App", src: thumbApas },
+	{ id: "china-mobile-intranet", title: "China Mobile Intranet App", src: thumbChinaMobileIntranet },
+	{ id: "china-mobile", title: "China Mobile Customer App", src: thumbChinaMobile },
+	{ id: "25-master", title: "25 Master Game App", src: thumb25Master },
+	{ id: "bid", title: "Bid Trending App", src: thumbBid },
+	{ id: "gary", title: "Gary Singer App", src: thumbGary },
+	{ id: "endy", title: "Endy Singer App", src: thumbEndyChow },
+	{ id: "gin", title: "Gin Singer App", src: thumbGin },
+	{ id: "wenghang", title: "Weng Hang Bank App", src: thumbWengHang },
+	{ id: "soundclip", title: "Sound Modify App", src: thumbSoundClip },
+	{ id: "megashow", title: "Mega Show Booth App", src: thumbMegaShow },
+	{ id: "solomonsc-web", title: "Solomon SC Website", src: thumbSolomonsc },
+	{ id: "hkexa-web", title: "HKEXA Website", src: thumbHKEXA },
+	{ id: "musicnext-web", title: "MusicNext Website", src: thumbMusicNext },
+	{ id: "imusic-web", title: "iMusic Website", src: thumbiMusic },
+	{ id: "cali-banner", title: "Flash Banners", src: thumbCaliBanner },
+	{ id: "cali-party-member", title: "Party Book & Member Songs", src: thumbCaliPartyMember },
+]
+
 const Portfolio = () => {
 	return (
 		<Layout>
@@ -45,108 +82,11 @@ const Portfolio = () => {
 					Portfolio
 				</Heading>
 				<SimpleGrid columns={[1, 1, 3]} gap={6}>
-					<Section delay={0.1}>
-						<PortfolioGridItem id="scmpv5" title="SCMPv5 App" thumbnail={thumbScmpv5} />
-					</Section>
-					<Section delay={0.2}>
-						<PortfolioGridItem id="hangseng" title="Hang Seng Business App" thumbnail={thumbHangSeng} />
-					</Section>
-					<Section delay={0.3}>
-						<PortfolioGridItem id="inkstone" title="SCMP Inkstone App" thumbnail={thumbInkstone} />
-					</Section>
-					<Section delay={0.4}>
-						<PortfolioGridItem id="scmpv4" title="SCMPv4 App" thumbnail={thumbScmpv4} />
-					</Section>
-					<Section delay={0.5}>
-						<PortfolioGridItem id="takealook" title="Take a Look Website" thumbnail={thumbTakealook} />
-					</Section>
-					<Section delay={0.6}>
-						<PortfolioGridItem id="twinpeak" title="TwinPeak Property App" thumbnail={thumbTwinPeak} />
-					</Section>
-					<Section delay={0.7}>
-						<PortfolioGridItem id="guzen" title="Christmas Guzen App" thumbnail={thumbGuzen} />
-					</Section>
-					<Section delay={0.8}>
-						<PortfolioGridItem id="bauhaus" title="Bauhaus App" thumbnail={thumbBauhaus} />
-					</Section>
-					<Section delay={0.9}>
-						<PortfolioGridItem id="marathon" title="Marathon App" thumbnail={thumbMarathon} />
-					</Section>
-					<Section delay={1.0}>
-						<PortfolioGridItem id="sie" title="Government SIEFund App" thumbnail={thumbSie} />
-					</Section>
-					<Section delay={1.1}>
-						<PortfolioGridItem id="sinoclub" title="Sino Club App" thumbnail={thumbSinoClub} />
-					</Section>
-					<Section delay={1.2}>
-						<PortfolioGridItem id="ar" title="AR Research" thumbnail={thumbAR} />
-					</Section>
-					<Section delay={1.3}>
-						<PortfolioGridItem id="t1t" title="T1T Appointment App" thumbnail={thumbT1T} />
-					</Section>
-					<Section delay={1.4}>
-						<PortfolioGridItem id="swire-reader" title="Swire Property Reader App" thumbnail={thumbSwireReader} />
-					</Section>
-					<Section delay={1.5}>
-						<PortfolioGridItem id="swire-irp" title="Swire Incident Control App" thumbnail={thumbSwireIrp} />
-					</Section>
-					<Section delay={1.6}>
-						<PortfolioGridItem id="swire-drp" title="Swire disaster control App" thumbnail={thumbSwireDrp} />
-					</Section>
-					<Section delay={1.7}>
-						<PortfolioGridItem id="letwork" title="Letwork Card App" thumbnail={thumbLetwork} />
-					</Section>
-					<Section delay={1.8}>
-						<PortfolioGridItem id="apas" title="APAS Music Website" thumbnail={thumbApas} />
-					</Section>
-					<Section delay={1.9}>
-						<PortfolioGridItem id="china-mobile-intranet" title="China Mobile Intranet App" thumbnail={thumbChinaMobileIntranet} />
-					</Section>
-					<Section delay={2.0}>
-						<PortfolioGridItem id="china-mobile" title="China Mobile Customer App" thumbnail={thumbChinaMobile} />
-					</Section>
-					<Section delay={2.1}>
-						<PortfolioGridItem id="25-master" title="25 Master Game App" thumbnail={thumb25Master} />
-					</Section>
-					<Section delay={2.2}>
-						<PortfolioGridItem id="bid" title="Bid Trending App" thumbnail={thumbBid} />
-					</Section>
-					<Section delay={2.3}>
-						<PortfolioGridItem id="gary" title="Gary Singer App" thumbnail={thumbGary} />
-					</Section>
-					<Section delay={2.4}>
-						<PortfolioGridItem id="endy" title="Endy Singer App" thumbnail={thumbEndyChow} />
-					</Section>
-					<Section delay={2.5}>
-						<PortfolioGridItem id="gin" title="Gin Singer App" thumbnail={thumbGin} />
-					</Section>
-					<Section delay={2.6}>
-						<PortfolioGridItem id="wenghang" title="Weng Hang Bank App" thumbnail={thumbWengHang} />
-					</Section>
-					<Section delay={2.7}>
-						<PortfolioGridItem id="soundclip" title="Sound Modified App" thumbnail={thumbSoundClip} />
-					</Section>
-					<Section delay={2.8}>
-						<PortfolioGridItem id="megashow" title="Mega Show Booth App" thumbnail={thumbMegaShow} />
-					</Section>
-					<Section delay={2.9}>
-						<PortfolioGridItem id="solomonsc-web" title="Solomon SC Website" thumbnail={thumbSolomonsc} />
-					</Section>
-					<Section delay={3.0}>
-						<PortfolioGridItem id="hkexa-web" title="HKEXA Website" thumbnail={thumbHKEXA} />
-					</Section>
-					<Section delay={3.1}>
-						<PortfolioGridItem id="musicnext-web" title="MusicNext Website" thumbnail={thumbMusicNext} />
-					</Section>
-					<Section delay={3.2}>
-						<PortfolioGridItem id="imusic-web" title="iMusic Website" thumbnail={thumbiMusic} />
-					</Section>
-					<Section delay={3.3}>
-						<PortfolioGridItem id="cali-banner" title="Flash Banners" thumbnail={thumbCaliBanner} />
-					</Section>
-					<Section delay={3.4}>
-						<PortfolioGridItem id="cali-party-member" title="Party Book & Member Songs" thumbnail={thumbCaliPartyMember} />
-					</Section>
+					{portfolioItems.map((item, index) => (
+						<Section key={item.id} delay={(index + 1) * 0.1}>
+							<PortfolioGridItem id={item.id} title={item.title} thumbnail={item.src} />
+						</Section>
+					))}
 				</SimpleGrid>
 			</Container>
 		</Layout>

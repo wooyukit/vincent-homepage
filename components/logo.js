@@ -31,8 +31,7 @@ const Logo = () => {
 						color={useColorModeValue('gray.800', 'whiteAlpha.900')}
 						fontFamily="M PLUS Rounded 1c, sans-serif"
 						fontWeight="bold"
-						ml={3}
-					>
+						ml={3}>
 						WOO Yu Kit Vincent
 					</Text>
 				</LogoBox>
