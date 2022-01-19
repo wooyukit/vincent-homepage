@@ -83,7 +83,7 @@ const Portfolio = () => {
 				</Heading>
 				<SimpleGrid columns={[1, 1, 3]} gap={6}>
 					{portfolioItems.map((item, index) => (
-						<Section key={item.id} delay={(index + 1) * 0.1}>
+						<Section key={item.id} delay={(Math.min(index, 4) + 1) * 0.1}>
 							<PortfolioGridItem id={item.id} title={item.title} thumbnail={item.src} />
 						</Section>
 					))}
