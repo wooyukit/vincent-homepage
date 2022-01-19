@@ -20,17 +20,13 @@ export const Title = ({ children }) => (
 )
 
 export const WorkImage = ({ src, alt }) => (
-	<Box className='grid-item-linkbox' cursor="pointer">
-		<Box className='grid-item-thumbnail'>
-			<Image src={src} 
-			alt={alt} 
-			placeholder='blur' />
-		</Box>
+	<Box cursor="pointer" className='grid-item-thumbnail'>
+		<Image src={src} alt={alt} placeholder='blur' />
 	</Box>
 )
 
 export const Meta = ({ children }) => (
-	<Badge colorScheme="green" mr={2}>
+	<Badge colorScheme="teal" mr={2}>
 		{children}
 	</Badge>
 )

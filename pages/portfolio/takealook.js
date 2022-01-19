@@ -1,4 +1,4 @@
-import { Container, Badge, Link, List, ListItem, Box } from "@chakra-ui/react";
+import { Container, Badge, Link, List, ListItem, Box, Divider } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
@@ -11,14 +11,12 @@ import src4 from "../../public/images/portfolio/takealook-4.png"
 import src5 from "../../public/images/portfolio/takealook-5.png"
 import src6 from "../../public/images/portfolio/takealook-6.png"
 
-const srcs = [
-	src1, src2, src3, src4, src5, src6
-]
+const srcs = [src1, src2, src3, src4, src5, src6]
 
 const Work = () => {
 	return (
 		<Layout title="Take A Look">
-			<Container maxW="container.lg">
+			<Container maxW="container.md">
 				<Title>
 					Take A Look <Badge>2016</Badge>
 				</Title>
@@ -34,14 +32,15 @@ const Work = () => {
 					</ListItem>
 					<ListItem>
 						<Meta>Stack</Meta>
-						<span>Laravel, PHP, ReactJS, Javascript, MariaDB, Redis, AWS, CentOS</span>
+						<span>Laravel, PHP, ReactJS, Javascript, MariaDB, Redis, AWS, CentOS, Docker</span>
 					</ListItem>
 					<ListItem>
 						<Meta>Features</Meta>
 						<span>Comprehensive CMS, Live Chat, Shopping Cart, Online Payment with AsiaPay, Over 11 Countries Activity for booking</span>
 					</ListItem>
 				</List>
-				<Box pt={6} sx={{ columnCount: [1, 1, 2, 3], columnGap: "12px" }}>
+				<Divider my={4} />
+				<Box pt={6} sx={{ columnCount: [1, 1, 2, 2], columnGap: "12px" }}>
 					{srcs.map((src) => (
 						<WorkImage key={src} src={src} alt="TakeALook" />
 					))}

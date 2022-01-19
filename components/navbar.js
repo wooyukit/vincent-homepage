@@ -25,7 +25,7 @@ const LinkItem = ({ href, path, _target, children, ...props }) => {
 		<NextLink href={href} passHref>
 			<Link
 				p={2}
-				bg={active ? 'glassTeal' : undefined}
+				bg={active ? 'cyan' : undefined}
 				color={active ? '#202023' : inactiveColor}
 				_target={_target}
 				{...props}>
@@ -43,7 +43,7 @@ const Navbar = props => {
 			as="nav"
 			w="100%"
 			bg={useColorModeValue('#ffffff40', '#20202380')}
-			style={{ backdropFilter: 'blur(10px)', WebkitBackdropFilter:'blur(10px)' }}
+			style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter:'blur(12px)' }}
 			zIndex={1}
 			{...props}
 		>
