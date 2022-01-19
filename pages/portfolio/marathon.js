@@ -1,5 +1,4 @@
-import { Container, Badge, Link, List, ListItem, Box, SimpleGrid, Image, Divider, UnorderedList } from "@chakra-ui/react";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { Container, Badge,  List, ListItem, SimpleGrid, Divider, UnorderedList } from "@chakra-ui/react";
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
@@ -18,11 +17,11 @@ const Work = () => {
 		<Layout title="Marathon App">
 			<Container maxW="container.md">
 				<Title>
-				Marathon App <Badge>2014</Badge>
+					Marathon App <Badge>2014</Badge>
 				</Title>
 				<WorkImage mb={6} src={eyecatch} alt="Marathon App" />
 				<P>
-				Marathon sport day app is for people to upload and share their mixed image and share to social network on sport campaign day. This app is using apple enterprise cert to distribute to the public without going to any store.
+					Marathon sport day app is for people to upload and share their mixed image and share to social network on sport campaign day. This app is using apple enterprise cert to distribute to the public without going to any store.
 				</P>
 				<List mx={4} my={4} spacing={4}>
 					<ListItem>
