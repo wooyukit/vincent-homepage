@@ -24,7 +24,7 @@ const Work = () => {
 				</Title>
 				<WorkImage mb={6} src={eyecatch} alt="TakeALook" />
 				<P>
-					Take A Look website is the platform for customers to buy the tickets and join local tour. There are shopping cart with payment gateway to provide seamless experience when booking activities.
+					Take A Look website is the platform for customers to buy the tickets and join local tour. There are shopping cart with payment gateway, live chat, activity search functions to provide seamless experience when booking activities. Moreover, we provided our business partners with content management system to organize activities for selling.
 				</P>
 				<List ml={4} my={4} spacing={4}>
 					<ListItem>
