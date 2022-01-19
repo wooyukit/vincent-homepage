@@ -1,11 +1,11 @@
-import { Container, Box, Heading, Image, useColorModeValue, Button } from '@chakra-ui/react'
+import { Container, Box, Heading, Image, useColorModeValue, Button, List, ListItem, Icon, Link } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Section from '../components/section'
 import Paragraph from '../components/paragraph'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { BioSection, BioYear } from '../components/bio'
 import Layout from '../components/layouts/article'
-
+import { IoLogoGithub, IoPhonePortraitSharp, IoMail, IoLogoLinkedin } from 'react-icons/io5'
 
 const Page = () => {
 	return (
@@ -33,7 +33,45 @@ const Page = () => {
 				</Box>
 				<Section delay={0.1}>
 					<Heading as="h3" variant="section-title">
-						Work
+						Contact
+					</Heading>
+					<List>
+						<ListItem>
+							<Link href="tel:+85263485516">
+								<Button variant="ghost" colorScheme="teal" leftIcon={<Icon as={IoPhonePortraitSharp} />} />
+								+(852) 6348 5516
+							</Link>
+						</ListItem>
+						<ListItem>
+							<Link href="mailto:wooyukit@gmail.com">
+								<Button variant="ghost" colorScheme="teal" leftIcon={<Icon as={IoMail} />} />
+								wooyukit@gamil.com
+							</Link>
+						</ListItem>
+						<ListItem>
+							<Link href="https://github.com/wooyukit" target="_blank">
+								<Button variant="ghost" colorScheme="teal" leftIcon={<Icon as={IoLogoGithub} />} />
+								@wooyukit
+							</Link>
+						</ListItem>
+						<ListItem>
+							<Link href="https://www.linkedin.com/in/yu-kit-vincent-woo-63400332/" target="_blank">
+								<Button variant="ghost" colorScheme="teal" leftIcon={<Icon as={IoLogoLinkedin} />} />
+								@wooyukit
+							</Link>
+						</ListItem>
+					</List>
+					<Box align="center" my={4}>
+						<NextLink href="/portfolio">
+							<Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
+								My Portfolio
+							</Button>
+						</NextLink>
+					</Box>
+				</Section>
+				<Section delay={0.2}>
+					<Heading as="h3" variant="section-title">
+						Background
 					</Heading>
 					<Paragraph>
 						12 years of Mobile Applications Development experience in iOS, Android and Web platforms. Skilled in Kotlin, Swift, Flutter, Java, JavaScript, PHP, ReactJS and .Net Framework. Supportive and enthusiastic team player dedicated to streamlining processes and efficiently resolving project issues.
@@ -45,15 +83,8 @@ const Page = () => {
 							</Button>
 						</NextLink>
 					</Box>
-					<Box align="center" my={4}>
-						<NextLink href="/portfolio">
-							<Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
-								My Portfolio
-							</Button>
-						</NextLink>
-					</Box>
 				</Section>
-				<Section delay={0.2}>
+				<Section delay={0.3}>
 					<Heading as="h3" variant="section-title">
 						I ❤️
 					</Heading>
@@ -61,7 +92,7 @@ const Page = () => {
 						Music🎵, Playing Guitar🎸, Table Tennis🏓, Basketball🏀, Chinese Chess, GYM🏋🏻‍♀️, Computer Games🕹, New Technologies🧑🏻‍💻, Machine Learning💻.
 					</Paragraph>
 				</Section>
-				<Section delay={0.3}>
+				<Section delay={0.4}>
 					<Heading as="h3" variant="section-title">
 						Education
 					</Heading>

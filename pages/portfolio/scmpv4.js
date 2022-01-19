@@ -4,6 +4,7 @@ import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
 
+import eyecatch from "../../public/images/portfolio/scmpv4-eyecatch.png"
 import src1 from "../../public/images/portfolio/scmpv4-1.jpg"
 import src2 from "../../public/images/portfolio/scmpv4-2.png"
 import src3 from "../../public/images/portfolio/scmpv4-3.png"
@@ -19,11 +20,12 @@ const srcs = [src1, src2, src3, src4, src5, src6, src7, src8, src9]
 
 const Work = () => {
 	return (
-		<Layout title="SCMP App V5">
+		<Layout title="SCMP App V4">
 			<Container maxW="container.md">
 				<Title>
 					South China Morning Post Mobile App V4 <Badge>2016</Badge>
 				</Title>
+				<WorkImage mb={6} src={eyecatch} alt="SCMP v4 App" />
 				<P>
 					South China Morning Post app can receive instant access to the SCMP award-winning journalism including coverage of the latest breaking news, both regionally and globally, including: Coronavirus, US-China trade war and tech war, Biden vs Xi Jinping, the Hong Kong National Security law, Hong Kong protests and electoral changes, China military, South China Sea news, China relations with the EU, India and Australia, health and wellness, fashion and lifestyle updates, climate change and much much more.
 				</P>
@@ -39,7 +41,7 @@ const Work = () => {
 					</ListItem>
 					<ListItem>
 						<Meta>Stack</Meta>
-						<span>Swift, Kotlin, RESTFul, Firebase, Tracking, AppsFlyer, RxSwift, RxJava, </span>
+						<span>Swift, Kotlin, RESTFul, Firebase, Tracking, AppsFlyer, RxSwift, RxJava, Digger2</span>
 					</ListItem>
 					<ListItem>
 						<Meta>Features</Meta>
@@ -65,10 +67,10 @@ const Work = () => {
 						</Box>
 					</ListItem>
 				</List>
-				<Divider my={4} colorScheme="green" />
+				<Divider my={4} />
 				<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={4} alignItems="center">
 					{srcs.map((src) => (
-						<WorkImage key={src} src={src} alt="Scmp v4 App" mb={2} />
+						<WorkImage key={src} src={src} alt="SCMP v4 App" mb={2} />
 					))}
 				</SimpleGrid>
 			</Container>

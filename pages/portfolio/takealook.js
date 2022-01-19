@@ -4,6 +4,8 @@ import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
 
+import eyecatch from "../../public/images/portfolio/takealook-eyecatch.png"
+
 import src1 from "../../public/images/portfolio/takealook-1.png"
 import src2 from "../../public/images/portfolio/takealook-2.png"
 import src3 from "../../public/images/portfolio/takealook-3.png"
@@ -20,8 +22,9 @@ const Work = () => {
 				<Title>
 					Take A Look <Badge>2016</Badge>
 				</Title>
+				<WorkImage mb={6} src={eyecatch} alt="TakeALook" />
 				<P>
-					Take A Look website is the platform for users to buy the tickets or make appointment with travel tour.
+					Take A Look website is the platform for customers to buy the tickets and join local tour. There are shopping cart with payment gateway to provide seamless experience when booking activities.
 				</P>
 				<List ml={4} my={4} spacing={4}>
 					<ListItem>

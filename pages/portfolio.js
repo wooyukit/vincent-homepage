@@ -34,7 +34,7 @@ import thumbTwinPeak from "../public/images/portfolio/twinpeak-eyecatch.png"
 import thumbTakealook from "../public/images/portfolio/takealook-eyecatch.png"
 import thumbScmpv4 from "../public/images/portfolio/scmpv4-eyecatch.png"
 import thumbInkstone from "../public/images/portfolio/inkstone-eyecatch.jpeg"
-import thumbHangSeng from "../public/images/portfolio/hangseng-app-eyecatch.jpeg"
+import thumbHangSeng from "../public/images/portfolio/hangseng-eyecatch.jpeg"
 import thumbScmpv5 from "../public/images/portfolio/scmpv5-eyecatch.png"
 
 const portfolioItems = [
@@ -78,7 +78,7 @@ const Portfolio = () => {
 	return (
 		<Layout>
 			<Container maxW="container.lg">
-				<Heading as="h3" fontSize={20} mb={4}>
+				<Heading as="h3" fontSize={20} mb={4} variant="section-title">
 					Portfolio
 				</Heading>
 				<SimpleGrid columns={[1, 1, 3]} gap={6}>

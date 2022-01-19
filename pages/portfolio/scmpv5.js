@@ -4,6 +4,8 @@ import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
 
+import eyecatch from "../../public/images/portfolio/scmpv5-eyecatch.png"
+
 import src1 from "../../public/images/portfolio/scmpv5-1.webp"
 import src2 from "../../public/images/portfolio/scmpv5-2.webp"
 import src3 from "../../public/images/portfolio/scmpv5-3.webp"
@@ -38,6 +40,7 @@ const Work = () => {
 				<Title>
 					South China Morning Post Mobile App V5 <Badge>2020</Badge>
 				</Title>
+				<WorkImage mb={6} src={eyecatch} alt="SCMP v5 App" />
 				<P>
 					South China Morning Post app can receive instant access to the SCMP award-winning journalism including coverage of the latest breaking news, both regionally and globally, including: Coronavirus, US-China trade war and tech war, Biden vs Xi Jinping, the Hong Kong National Security law, Hong Kong protests and electoral changes, China military, South China Sea news, China relations with the EU, India and Australia, health and wellness, fashion and lifestyle updates, climate change and much much more.
 				</P>
@@ -56,7 +59,7 @@ const Work = () => {
 					</ListItem>
 					<ListItem>
 						<Meta>Stack</Meta>
-						<span>Swift, Kotlin, RESTFul, GraphQL, Firebase, Tracking, AppsFlyer, Litho, RxSwift, RxJava, InApp Purchase, Piano, WidgetKit</span>
+						<span>Swift, Kotlin, RESTFul, GraphQL, Firebase, Tracking, AppsFlyer, Litho, RxSwift, RxJava, InApp Purchase, Piano, WidgetKit, IGListKit</span>
 					</ListItem>
 					<ListItem>
 						<Meta>Features</Meta>
