@@ -11,8 +11,25 @@ import src4 from "../../public/images/portfolio/scmpv5-4.webp"
 import src5 from "../../public/images/portfolio/scmpv5-5.webp"
 import src6 from "../../public/images/portfolio/scmpv5-6.webp"
 
+import srcS1 from "../../public/images/portfolio/scmpv5-1.png"
+import srcS2 from "../../public/images/portfolio/scmpv5-2.png"
+import srcS3 from "../../public/images/portfolio/scmpv5-3.png"
+import srcS4 from "../../public/images/portfolio/scmpv5-4.png"
+import srcS5 from "../../public/images/portfolio/scmpv5-5.png"
+import srcS6 from "../../public/images/portfolio/scmpv5-6.png"
+import srcS7 from "../../public/images/portfolio/scmpv5-7.png"
+import srcS8 from "../../public/images/portfolio/scmpv5-8.png"
+import srcS9 from "../../public/images/portfolio/scmpv5-9.png"
+import srcS10 from "../../public/images/portfolio/scmpv5-10.png"
+import srcS11 from "../../public/images/portfolio/scmpv5-11.png"
+import srcS12 from "../../public/images/portfolio/scmpv5-12.png"
+import srcS13 from "../../public/images/portfolio/scmpv5-13.png"
+import srcS14 from "../../public/images/portfolio/scmpv5-14.png"
+import srcS15 from "../../public/images/portfolio/scmpv5-15.png"
+import srcS16 from "../../public/images/portfolio/scmpv5-16.png"
 
 const srcs = [src1, src2, src3, src4, src5, src6]
+const srcSs = [srcS1, srcS2, srcS3, srcS4, srcS5, srcS6, srcS7, srcS8, srcS9, srcS10, srcS11, srcS12, srcS13, srcS14, srcS15, srcS16]
 
 const Work = () => {
 	return (
@@ -68,9 +85,15 @@ const Work = () => {
 						</Box>
 					</ListItem>
 				</List>
-				<Divider my={4} colorScheme="green" />
+				<Divider my={4} />
 				<SimpleGrid mt={6} columns={[1, 2, 2, 3]} columnGap={2}>
 					{srcs.map((src) => (
+						<WorkImage key={src} src={src} alt="Scmp v5 App" mb={2} />
+					))}
+				</SimpleGrid>
+				<Divider my={4} />
+				<SimpleGrid mt={6} columns={[2, 3, 4, 5]} columnGap={2}>
+					{srcSs.map((src) => (
 						<WorkImage key={src} src={src} alt="Scmp v5 App" mb={2} />
 					))}
 				</SimpleGrid>
