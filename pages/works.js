@@ -89,6 +89,17 @@ const Works = () => {
 								<ExpYear>2016 to 2017</ExpYear>
 							</Box>
 						</Box>
+						<ExpDuty>
+							<ul>
+								<li>Develop Newspaper and Magazine Universal Mobile Application for both iOS and Android Platform form scratch.</li>
+								<li>Using Reactive Functional Programming (Kotlin, Swift, RxSwift, RxJava) to implement MVVM Architecture to decouple the dependencies.</li>
+								<li>Fine tune the performance to keep the User Experience smooth.</li>
+								<li>Implemented automation test and CI for deployment to ensure the application quality.</li>
+								<li>Code review and Unit test before merging branches.</li>
+								<li>Follow scrum agile software development process.</li>
+								<li>Communicate with product owners and UI / UX designers for developing the software layouts and architecture.</li>
+							</ul>
+						</ExpDuty>
 					</ExpSection>
 					<ExpSection>
 						<Box display='flex'>
