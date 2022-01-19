@@ -1,4 +1,4 @@
-import { Container, Badge, Link, List, ListItem, Box, SimpleGrid, Image, Divider, UnorderedList } from "@chakra-ui/react";
+import { Container, Badge, Link, List, ListItem, Box, SimpleGrid, Image, Divider } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
@@ -29,7 +29,7 @@ const Work = () => {
 				</Title>
 				<WorkImage mb={6} src={eyecatch} alt="SCMP Inkstone App" />
 				<P>
-					Inkstone is a daily look at what's happening in China. It's the accessible yet authoritative go-to source for readers who want to know more about a rising potential superpower. From elite politics to business and technology and what's buzzing in social media, plus all the human stories that get under the skin of a country changing faster than any other in history.
+					Inkstone is a daily look at what is happening in China. It is the accessible yet authoritative go-to source for readers who want to know more about a rising potential superpower. From elite politics to business and technology and what is buzzing in social media, plus all the human stories that get under the skin of a country changing faster than any other in history.
 				</P>
 				<List mx={4} my={4} spacing={4}>
 					<ListItem>
