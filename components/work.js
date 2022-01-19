@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { Heading, Box, Link, Badge } from '@chakra-ui/react'
+import { Heading, Box, Link, Badge, Center } from '@chakra-ui/react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import Image from 'next/image'
 
@@ -19,10 +19,10 @@ export const Title = ({ children }) => (
 	</Box>
 )
 
-export const WorkImage = ({ src, alt }) => (
-	<Box cursor="pointer" className='grid-item-thumbnail'>
+export const WorkImage = ({ src, alt, ...props }) => (
+	<Center cursor="pointer" className='grid-item-thumbnail' {...props}>
 		<Image src={src} alt={alt} placeholder='blur' />
-	</Box>
+	</Center>
 )
 
 export const Meta = ({ children }) => (

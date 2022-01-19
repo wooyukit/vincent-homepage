@@ -42,7 +42,7 @@ const Work = () => {
 				<Divider my={4} />
 				<Box pt={6} sx={{ columnCount: [1, 1, 2, 2], columnGap: "12px" }}>
 					{srcs.map((src) => (
-						<WorkImage key={src} src={src} alt="TakeALook" />
+						<WorkImage key={src} src={src} alt="TakeALook" mb={2} />
 					))}
 				</Box>
 			</Container>
