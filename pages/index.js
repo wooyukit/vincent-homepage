@@ -1,4 +1,4 @@
-import { Container, Box, Heading, Image, useColorModeValue, Button, List, ListItem, Icon, Link } from '@chakra-ui/react'
+import { Container, Box, Heading, Image, useColorModeValue, Button, List, ListItem, Icon, Link, Tag, Wrap, WrapItem } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Section from '../components/section'
 import Paragraph from '../components/paragraph'
@@ -6,6 +6,19 @@ import { ChevronRightIcon } from '@chakra-ui/icons'
 import { BioSection, BioYear } from '../components/bio'
 import Layout from '../components/layouts/article'
 import { IoLogoGithub, IoPhonePortraitSharp, IoMail, IoLogoLinkedin } from 'react-icons/io5'
+
+const loves = [
+	"Music 🎵",
+	"Playing Guitar 🎸",
+	"Table Tennis 🏓",
+	"Basketball 🏀",
+	"Chinese Chess 🎲",
+	"GYM 🏋🏻‍♀️",
+	"Movies 🎬",
+	"Computer Games 🕹",
+	"Technologies 🧑🏻‍💻",
+	"Machine Learning 💻"
+]
 
 const Page = () => {
 	return (
@@ -88,26 +101,28 @@ const Page = () => {
 					<Heading as="h3" variant="section-title">
 						I ❤️
 					</Heading>
-					<Paragraph>
-						Music🎵, Playing Guitar🎸, Table Tennis🏓, Basketball🏀, Chinese Chess, GYM🏋🏻‍♀️, Computer Games🕹, New Technologies🧑🏻‍💻, Machine Learning💻.
-					</Paragraph>
+					<Wrap spacing={3}>
+						{loves.map((love) => (
+							<WrapItem key={love}><Tag borderRadius="full" variant="outline" size="lg" colorScheme='teal'>{love}</Tag></WrapItem>
+						))}
+					</Wrap>
 				</Section>
 				<Section delay={0.4}>
 					<Heading as="h3" variant="section-title">
 						Education
 					</Heading>
 					<BioSection>
-						<BioYear>2009</BioYear>
-						Completed the Bachelor of Electronic and Information Engineering in <br />
-						The Hong Kong Polytechnic University. <br />
-						with Second Class Honors, Division 1 and Awarded GPA: 3.2
-					</BioSection>
-					<BioSection>
 						<BioYear>2017</BioYear>
 						Completed the Master of Science in Information system Management<br />
 						Major in Information System Management <br />
 						The City University of Hong Kong.<br />
 						with Pass Classification and Awarded GPA: 2.97
+					</BioSection>
+					<BioSection>
+						<BioYear>2009</BioYear>
+						Completed the Bachelor of Electronic and Information Engineering in <br />
+						The Hong Kong Polytechnic University. <br />
+						with Second Class Honors, Division 1 and Awarded GPA: 3.2
 					</BioSection>
 				</Section>
 			</Container>

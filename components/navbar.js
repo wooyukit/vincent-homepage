@@ -17,6 +17,7 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons'
 import ThemeToggleButton from './theme-toggle-button'
 import { IoLogoGithub } from 'react-icons/io5'
+import { DiApple, DiAndroid, DiReact } from "react-icons/di";
 
 const LinkItem = ({ href, path, _target, children, ...props }) => {
 	const active = path === href
@@ -43,7 +44,7 @@ const Navbar = props => {
 			as="nav"
 			w="100%"
 			bg={useColorModeValue('#ffffff40', '#20202380')}
-			style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter:'blur(12px)' }}
+			style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
 			zIndex={1}
 			{...props}
 		>
@@ -57,15 +58,32 @@ const Navbar = props => {
 					display={{ base: 'none', md: 'flex' }}
 					width={{ base: 'full', md: 'auto' }}
 					flexGrow={1}
-					mt={{ base: 4, nmd: 0 }}
-				>
-					<LinkItem href="/" path={path}>
+					mt={{ base: 4, nmd: 0 }}>
+					<LinkItem href="/"
+						path={path}
+						display='inline-flex'
+						alignItems="center"
+						style={{ gap: 4 }}
+						pl={2}>
+						<DiApple />
 						Profile
 					</LinkItem>
-					<LinkItem href="/works" path={path}>
+					<LinkItem href="/works"
+						path={path}
+						display='inline-flex'
+						alignItems="center"
+						style={{ gap: 4 }}
+						pl={2}>
+						<DiAndroid />
 						Works
 					</LinkItem>
-					<LinkItem href="/portfolio" path={path}>
+					<LinkItem href="/portfolio"
+						path={path}
+						display='inline-flex'
+						alignItems="center"
+						style={{ gap: 4 }}
+						pl={2}>
+						<DiReact />
 						Portfolio
 					</LinkItem>
 					<LinkItem
@@ -87,15 +105,15 @@ const Navbar = props => {
 							<MenuButton as={IconButton} icon={<HamburgerIcon />} variant="outline" aria-label='Options' />
 							<MenuList>
 								<NextLink href="/" passHref>
-									<MenuItem as={Link}>Profile</MenuItem>
+									<MenuItem as={Link} style={{ gap: 4 }}><DiApple />Profile</MenuItem>
 								</NextLink>
 								<NextLink href="/works" passHref>
-									<MenuItem as={Link}>Works</MenuItem>
+									<MenuItem as={Link} style={{ gap: 4 }}><DiAndroid />Works</MenuItem>
 								</NextLink>
 								<NextLink href="/portfolio" passHref>
-									<MenuItem as={Link}>Portfolio</MenuItem>
+									<MenuItem as={Link} style={{ gap: 4 }}><DiReact />Portfolio</MenuItem>
 								</NextLink>
-								<MenuItem as={Link} href="https://github.com/wooyukit/vincent-homepage">View Source</MenuItem>
+								<MenuItem as={Link} href="https://github.com/wooyukit/vincent-homepage" style={{ gap: 4 }}><IoLogoGithub />View Source</MenuItem>
 							</MenuList>
 						</Menu>
 					</Box>
