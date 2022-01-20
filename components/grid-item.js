@@ -30,7 +30,7 @@ export const PortfolioGridItem = ({ children, id, title, thumbnail }) => (
 					/>
 				</Box>
 				<LinkOverlay href={`/portfolio/${id}`}>
-					<Text mt={3} fontSize={18} fontWeight="bold" fontFamily="M PLUS Rounded 1c">
+					<Text mt={2} fontSize={18} fontWeight="bold" fontFamily="M PLUS Rounded 1c">
 						{title}
 					</Text>
 				</LinkOverlay>
