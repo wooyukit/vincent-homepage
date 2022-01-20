@@ -4,9 +4,9 @@ import { ChevronLeftIcon } from '@chakra-ui/icons'
 import Image from 'next/image'
 
 export const Title = ({ children }) => (
-	<Box mt={2}>
+	<Box>
 		<NextLink href="/portfolio">
-			<Link><Tag colorScheme="teal" variant="outline" size="lg"><ChevronLeftIcon fontSize={24} />Portfolio</Tag></Link>
+			<Link><Tag colorScheme="teal" variant="outline" size="lg"><ChevronLeftIcon fontSize={30} ml={-3} />Portfolio</Tag></Link>
 		</NextLink>
 		<Box>
 			<Heading display="inline-block" as="h3" fontSize={24} my={4}>
