@@ -1,22 +1,20 @@
 import NextLink from 'next/link'
-import { Heading, Box, Link, Badge, Center } from '@chakra-ui/react'
+import { Heading, HStack, Link, Badge, Center } from '@chakra-ui/react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import Image from 'next/image'
 
 export const Title = ({ children }) => (
-	<Box>
+	<HStack mb={4} alignItems="center">
 		<NextLink href="/portfolio">
-			<Link>Portfolio</Link>
+			<Link fontSize={20}>Portfolio</Link>
 		</NextLink>
 		<span>
-			&nbsp;
 			<ChevronRightIcon />
-			&nbsp;
 		</span>
 		<Heading display="inline-block" as="h3" fontSize={20} mb={4}>
 			{children}
 		</Heading>
-	</Box>
+	</HStack>
 )
 
 export const WorkImage = ({ src, alt, ...props }) => (
