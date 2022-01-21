@@ -18,7 +18,7 @@ const Work = () => {
 				<Title>
 					Bauhaus Mobile App <Badge>2014</Badge>
 				</Title>
-				<WorkImage mb={6} src={eyecatch} alt="GBauhauszen App" />
+				<WorkImage mb={6} src={eyecatch} alt="Bauhaus App" />
 				<P>
 					Bauhaus mobile app provide great user experience for users to browse and buy the products.
 				</P>

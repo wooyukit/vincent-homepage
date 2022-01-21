@@ -22,7 +22,7 @@ const Work = () => {
 				<Title>
 					AR Research <Badge>2014</Badge>
 				</Title>
-				<WorkImage mb={6} src={eyecatch} alt="SIE Fund App" />
+				<WorkImage mb={6} src={eyecatch} alt="AR Research" />
 				<P>
 					AR Research for Qualcomm AR Framework and Unity Game integration.
 				</P>

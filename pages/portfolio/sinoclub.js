@@ -21,7 +21,7 @@ const Work = () => {
 				<Title>
 					Sino Club Mall App <Badge>2014</Badge>
 				</Title>
-				<WorkImage mb={6} src={eyecatch} alt="SIE Fund App" />
+				<WorkImage mb={6} src={eyecatch} alt="Sino Club App" />
 				<P>
 					Sino Club Mall App is designed for shopping mall with iBeacon micro location service to identify customer location to get the mall points to redeem the price.
 				</P>
