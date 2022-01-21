@@ -26,7 +26,7 @@ const Work = () => {
 				</Title>
 				<WorkImage mb={6} src={eyecatch} alt="KWah Twin Peak App" />
 				<P>
-					KWah Twin Peak mobile app is to promote Twin Peak property when selling period. The app has a great variety of functions such as property agent coffee redemption, property latest news, AR 3D preview by scanning floor plan on the leaflet and news alert. With the great gallery presentation and design of the app, it was able to assist property agent when selling their customers.
+					KWah Twin Peak mobile app is to promote Twin Peak property when selling period. The app has a great variety of functions such as property agent to redeem coffee , property latest news, AR 3D preview by scanning floor plan on the leaflet and news alert. With the great gallery presentation and design of the app, it was able to assist property agent when selling their customers.
 				</P>
 				<List mx={4} my={4} spacing={4}>
 					<ListItem>
@@ -45,7 +45,7 @@ const Work = () => {
 						<UnorderedList>
 							<ListItem>AR 3D decoration by scanning floor plan on the leaflet</ListItem>
 							<ListItem>Property agent EAA card scanning and recognition</ListItem>
-							<ListItem>Coffee redemption function by generated QR Code</ListItem>
+							<ListItem>Redeem Coffee function by generated QR Code</ListItem>
 							<ListItem>Building floor plan preview</ListItem>
 						</UnorderedList>
 					</ListItem>
