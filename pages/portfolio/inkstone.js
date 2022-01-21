@@ -66,13 +66,13 @@ const Work = () => {
 					</ListItem>
 				</List>
 				<Divider my={4} />
-				<SimpleGrid mt={6} columns={[1, 2, 2, 3]} columnGap={4} alignItems="center">
+				<SimpleGrid mt={6} columns={[1, 2, 2, 3]} columnGap={2} alignItems="center">
 					{srcs.map((src) => (
 						<WorkImage key={src} src={src} alt="SCMP Inkstone App" mb={2} />
 					))}
 				</SimpleGrid>
 				<Divider my={4} />
-				<SimpleGrid columns={[2, 3, 4, 4]} columnGap={4} alignItems="center">
+				<SimpleGrid columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
 					{srcSs.map((src) => (
 						<WorkImage key={src} src={src} alt="SCMP Inkstone App" mb={2} />
 					))}

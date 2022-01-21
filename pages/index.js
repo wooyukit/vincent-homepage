@@ -16,6 +16,7 @@ const loves = [
 	"GYM 🏋🏻‍♀️",
 	"Movies 🎬",
 	"Computer Games 🕹",
+	"3D Animation 🎏",
 	"Technologies 🧑🏻‍💻",
 	"Machine Learning 💻"
 ]

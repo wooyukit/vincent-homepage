@@ -79,7 +79,7 @@ const Portfolio = () => {
 		<Layout>
 			<Container maxW="container.lg">
 				<Heading as="h3" fontSize={20} mb={6} variant="section-title">
-					Portfolio
+					My Portfolio 🏞
 				</Heading>
 				<SimpleGrid columns={[1, 1, 3]} gap={5}>
 					{portfolioItems.map((item, index) => (
