@@ -5,7 +5,7 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/ar-eyecatch.png" }
+const eyecatch = { "path": "/images/portfolio/ar-eyecatch.png", "w": "1280", "h": "720" }
 const srcs = [
 	{ "path": "/images/portfolio/ar-1.png", "w": "2760", "h": "2640" },
 	{ "path": "/images/portfolio/ar-2.png", "w": "3480", "h": "2620" },

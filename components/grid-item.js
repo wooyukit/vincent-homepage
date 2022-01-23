@@ -25,8 +25,11 @@ export const PortfolioGridItem = ({ children, id, title, thumbnail }) => (
 			<LinkBox className='grid-item-linkbox' cursor="pointer">
 				<Box className='grid-item-thumbnail'>
 					<Image src={thumbnail}
+						blurDataURL={thumbnail}
 						alt={title}
 						placeholder='blur'
+						width={1280}
+						height={720}
 					/>
 				</Box>
 				<LinkOverlay href={`/portfolio/${id}`}>

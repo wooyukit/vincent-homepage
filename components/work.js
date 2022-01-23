@@ -1,6 +1,7 @@
 import NextLink from 'next/link'
-import { Heading, Box, Link, Badge, Center, Tag, Image } from '@chakra-ui/react'
+import { Heading, Box, Link, Badge, Center, Tag } from '@chakra-ui/react'
 import { ChevronLeftIcon } from '@chakra-ui/icons'
+import Image from 'next/image'
 import { Item } from 'react-photoswipe-gallery'
 
 export const Title = ({ children }) => (
@@ -17,17 +18,17 @@ export const Title = ({ children }) => (
 )
 
 export const WorkImage = ({ src, alt, ...props }) => (
-	<Center cursor="pointer" className='grid-item-thumbnail' {...props}>
-		<Item
-			original={src.path}
-			thumbnail={src.path}
-			width={src.w}
-			height={src.h}>
-			{({ ref, open }) => (
-				<Image ref={ref} onClick={open} src={src.path} alt={alt} />
-			)}
-		</Item>
-	</Center>
+	<Item
+		original={src.path}
+		thumbnail={src.path}
+		width={src.w}
+		height={src.h}>
+		{({ ref, open }) => (
+			<Center ref={ref} onClick={open} cursor="pointer" className='grid-item-thumbnail' {...props}>
+				<Image width={src.w} height={src.h} src={src.path} blurDataURL={src.path} alt={alt} placeholder="blur" />
+			</Center>
+		)}
+	</Item>
 )
 
 export const Meta = ({ children }) => (
