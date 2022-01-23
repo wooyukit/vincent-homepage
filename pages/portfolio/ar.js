@@ -2,18 +2,19 @@ import { Container, Badge, List, ListItem, SimpleGrid, Divider, UnorderedList } 
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
+import 'photoswipe/dist/photoswipe.css'
+import { Gallery } from 'react-photoswipe-gallery'
 
-import eyecatch from "../../public/images/portfolio/ar-eyecatch.png"
-import src1 from "../../public/images/portfolio/ar-1.png"
-import src2 from "../../public/images/portfolio/ar-2.png"
-import src3 from "../../public/images/portfolio/ar-3.png"
-import src4 from "../../public/images/portfolio/ar-4.png"
-import src5 from "../../public/images/portfolio/ar-5.png"
-import src6 from "../../public/images/portfolio/ar-6.png"
-import src7 from "../../public/images/portfolio/ar-7.png"
-
-
-const srcs = [src1, src2, src3, src4, src5, src6, src7]
+const eyecatch = { "path": "/images/portfolio/ar-eyecatch.png" }
+const srcs = [
+	{ "path": "/images/portfolio/ar-1.png", "w": "2760", "h": "2640" },
+	{ "path": "/images/portfolio/ar-2.png", "w": "3480", "h": "2620" },
+	{ "path": "/images/portfolio/ar-3.png", "w": "2720", "h": "2040" },
+	{ "path": "/images/portfolio/ar-4.png", "w": "2760", "h": "2080" },
+	{ "path": "/images/portfolio/ar-5.png", "w": "2260", "h": "3000" },
+	{ "path": "/images/portfolio/ar-6.png", "w": "2580", "h": "3440" },
+	{ "path": "/images/portfolio/ar-7.png", "w": "2660", "h": "2000" },
+]
 
 const Work = () => {
 	return (
@@ -36,7 +37,7 @@ const Work = () => {
 					</ListItem>
 					<ListItem>
 						<Meta>Stack</Meta>
-						<span>Objective-C, Java, Qualcomm AR Framework, Unity Game Framework, Blender</span> 
+						<span>Objective-C, Java, Qualcomm AR Framework, Unity Game Framework, Blender</span>
 					</ListItem>
 					<ListItem>
 						<Meta>Features</Meta>
@@ -48,11 +49,13 @@ const Work = () => {
 					</ListItem>
 				</List>
 				<Divider my={4} />
-				<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
-					{srcs.map((src) => (
-						<WorkImage key={src} src={src} alt="AR Research" mb={2} />
-					))}
-				</SimpleGrid>
+				<Gallery>
+					<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
+						{srcs.map((src) => (
+							<WorkImage key={src.path} src={src} alt="AR Research" mb={2} />
+						))}
+					</SimpleGrid>
+				</Gallery>
 			</Container>
 		</Layout>
 	)

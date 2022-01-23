@@ -3,19 +3,20 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
+import 'photoswipe/dist/photoswipe.css'
+import { Gallery } from "react-photoswipe-gallery";
 
-import eyecatch from "../../public/images/portfolio/hangseng-eyecatch.jpeg"
-
-import src1 from "../../public/images/portfolio/hangseng-1.webp"
-import src2 from "../../public/images/portfolio/hangseng-2.webp"
-import src3 from "../../public/images/portfolio/hangseng-3.webp"
-import src4 from "../../public/images/portfolio/hangseng-4.webp"
-import src5 from "../../public/images/portfolio/hangseng-5.webp"
-import src6 from "../../public/images/portfolio/hangseng-6.webp"
-import src7 from "../../public/images/portfolio/hangseng-7.webp"
-import src8 from "../../public/images/portfolio/hangseng-8.webp"
-
-const srcs = [src1, src2, src3, src4, src5, src6, src7, src8]
+const eyecatch = { "path": "/images/portfolio/hangseng-eyecatch.jpeg" }
+const srcs = [
+	{ "path": "/images/portfolio/hangseng-1.webp", "w": "1242", "h": "2208" },
+	{ "path": "/images/portfolio/hangseng-2.webp", "w": "1242", "h": "2208" },
+	{ "path": "/images/portfolio/hangseng-3.webp", "w": "1242", "h": "2208" },
+	{ "path": "/images/portfolio/hangseng-4.webp", "w": "1242", "h": "2208" },
+	{ "path": "/images/portfolio/hangseng-5.webp", "w": "1242", "h": "2208" },
+	{ "path": "/images/portfolio/hangseng-6.webp", "w": "1242", "h": "2208" },
+	{ "path": "/images/portfolio/hangseng-7.webp", "w": "1242", "h": "2208" },
+	{ "path": "/images/portfolio/hangseng-8.webp", "w": "1242", "h": "2208" },
+]
 
 const Work = () => {
 	return (
@@ -70,11 +71,13 @@ const Work = () => {
 					</ListItem>
 				</List>
 				<Divider my={4} />
-				<SimpleGrid mt={6} columns={[1, 2, 2, 3]} columnGap={2}>
-					{srcs.map((src) => (
-						<WorkImage key={src} src={src} alt="Hang Seng Business App" mb={2} />
-					))}
-				</SimpleGrid>
+				<Gallery>
+					<SimpleGrid mt={6} columns={[1, 2, 2, 3]} columnGap={2}>
+						{srcs.map((src) => (
+							<WorkImage key={src.path} src={src} alt="Hang Seng Business App" mb={2} />
+						))}
+					</SimpleGrid>
+				</Gallery>
 			</Container>
 		</Layout>
 	)

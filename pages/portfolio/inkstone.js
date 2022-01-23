@@ -3,22 +3,24 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
+import 'photoswipe/dist/photoswipe.css'
+import { Gallery } from 'react-photoswipe-gallery'
 
-import eyecatch from "../../public/images/portfolio/inkstone-eyecatch.jpeg"
-import src1 from "../../public/images/portfolio/inkstone-1.webp"
-import src2 from "../../public/images/portfolio/inkstone-2.webp"
-import src3 from "../../public/images/portfolio/inkstone-3.webp"
-import src4 from "../../public/images/portfolio/inkstone-4.webp"
-import src5 from "../../public/images/portfolio/inkstone-5.webp"
-
-import srcS1 from "../../public/images/portfolio/inkstone-1.png"
-import srcS2 from "../../public/images/portfolio/inkstone-2.png"
-import srcS3 from "../../public/images/portfolio/inkstone-3.png"
-import srcS4 from "../../public/images/portfolio/inkstone-4.png"
-import srcS5 from "../../public/images/portfolio/inkstone-5.png"
-
-const srcs = [src1, src2, src3, src4, src5]
-const srcSs = [srcS1, srcS2, srcS3, srcS4, srcS5]
+const eyecatch = { "path": "/images/portfolio/inkstone-eyecatch.jpeg" }
+const srcs = [
+	{ "path": "/images/portfolio/inkstone-1.webp", "w": "1240", "h": "2208" },
+	{ "path": "/images/portfolio/inkstone-2.webp", "w": "1240", "h": "2208" },
+	{ "path": "/images/portfolio/inkstone-3.webp", "w": "1240", "h": "2208" },
+	{ "path": "/images/portfolio/inkstone-4.webp", "w": "1240", "h": "2208" },
+	{ "path": "/images/portfolio/inkstone-5.webp", "w": "1240", "h": "2208" },
+]
+const srcSs = [
+	{ "path": "/images/portfolio/inkstone-1.png", "w": "1500", "h": "3000" },
+	{ "path": "/images/portfolio/inkstone-2.png", "w": "1500", "h": "3000" },
+	{ "path": "/images/portfolio/inkstone-3.png", "w": "1500", "h": "3000" },
+	{ "path": "/images/portfolio/inkstone-4.png", "w": "1500", "h": "3000" },
+	{ "path": "/images/portfolio/inkstone-5.png", "w": "1500", "h": "3000" },
+]
 
 const Work = () => {
 	return (
@@ -66,17 +68,19 @@ const Work = () => {
 					</ListItem>
 				</List>
 				<Divider my={4} />
-				<SimpleGrid mt={6} columns={[1, 2, 2, 3]} columnGap={2} alignItems="center">
-					{srcs.map((src) => (
-						<WorkImage key={src} src={src} alt="SCMP Inkstone App" mb={2} />
-					))}
-				</SimpleGrid>
-				<Divider my={4} />
-				<SimpleGrid columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
-					{srcSs.map((src) => (
-						<WorkImage key={src} src={src} alt="SCMP Inkstone App" mb={2} />
-					))}
-				</SimpleGrid>
+				<Gallery>
+					<SimpleGrid mt={6} columns={[1, 2, 2, 3]} columnGap={2} alignItems="center">
+						{srcs.map((src) => (
+							<WorkImage key={src.path} src={src} alt="SCMP Inkstone App" mb={2} />
+						))}
+					</SimpleGrid>
+					<Divider my={4} />
+					<SimpleGrid columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
+						{srcSs.map((src) => (
+							<WorkImage key={src.path} src={src} alt="SCMP Inkstone App" mb={2} />
+						))}
+					</SimpleGrid>
+				</Gallery>
 			</Container>
 		</Layout>
 	)

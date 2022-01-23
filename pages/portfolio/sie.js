@@ -2,17 +2,18 @@ import { Container, Badge, List, ListItem, SimpleGrid, Divider, UnorderedList } 
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
+import 'photoswipe/dist/photoswipe.css'
+import { Gallery } from 'react-photoswipe-gallery'
 
-import eyecatch from "../../public/images/portfolio/sie-eyecatch.png"
-import src1 from "../../public/images/portfolio/sie-1.png"
-import src2 from "../../public/images/portfolio/sie-2.png"
-import src3 from "../../public/images/portfolio/sie-3.png"
-import src4 from "../../public/images/portfolio/sie-4.png"
-import src5 from "../../public/images/portfolio/sie-5.png"
-import src6 from "../../public/images/portfolio/sie-6.png"
-
-
-const srcs = [src1, src2, src3, src4, src5, src6]
+const eyecatch = { "path": "/images/portfolio/sie-eyecatch.png" }
+const srcs = [
+	{ "path": "/images/portfolio/sie-1.png", "w": "1920", "h": "3420" },
+	{ "path": "/images/portfolio/sie-2.png", "w": "1920", "h": "3420" },
+	{ "path": "/images/portfolio/sie-3.png", "w": "1440", "h": "2560" },
+	{ "path": "/images/portfolio/sie-4.png", "w": "1920", "h": "3420" },
+	{ "path": "/images/portfolio/sie-5.png", "w": "1920", "h": "3420" },
+	{ "path": "/images/portfolio/sie-6.png", "w": "1920", "h": "3420" },
+]
 
 const Work = () => {
 	return (
@@ -47,11 +48,13 @@ const Work = () => {
 					</ListItem>
 				</List>
 				<Divider my={4} />
-				<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
-					{srcs.map((src) => (
-						<WorkImage key={src} src={src} alt="SIE Fund App" mb={2} />
-					))}
-				</SimpleGrid>
+				<Gallery>
+					<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
+						{srcs.map((src) => (
+							<WorkImage key={src.path} src={src} alt="SIE Fund App" mb={2} />
+						))}
+					</SimpleGrid>
+				</Gallery>
 			</Container>
 		</Layout>
 	)

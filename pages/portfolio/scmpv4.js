@@ -3,20 +3,21 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
+import 'photoswipe/dist/photoswipe.css'
+import { Gallery } from "react-photoswipe-gallery";
 
-import eyecatch from "../../public/images/portfolio/scmpv4-eyecatch.png"
-import src1 from "../../public/images/portfolio/scmpv4-1.jpg"
-import src2 from "../../public/images/portfolio/scmpv4-2.png"
-import src3 from "../../public/images/portfolio/scmpv4-3.png"
-import src4 from "../../public/images/portfolio/scmpv4-4.png"
-import src5 from "../../public/images/portfolio/scmpv4-5.png"
-import src6 from "../../public/images/portfolio/scmpv4-6.png"
-import src7 from "../../public/images/portfolio/scmpv4-7.png"
-import src8 from "../../public/images/portfolio/scmpv4-8.png"
-import src9 from "../../public/images/portfolio/scmpv4-9.png"
-
-
-const srcs = [src1, src2, src3, src4, src5, src6, src7, src8, src9]
+const eyecatch = { "path" : "/images/portfolio/scmpv4-eyecatch.png"}
+const srcs = [
+	{ "path": "/images/portfolio/scmpv4-1.jpg", "w": "1660", "h": "2970" },
+	{ "path": "/images/portfolio/scmpv4-2.png", "w": "1680", "h": "2970" },
+	{ "path": "/images/portfolio/scmpv4-3.png", "w": "1680", "h": "2970" },
+	{ "path": "/images/portfolio/scmpv4-4.png", "w": "1680", "h": "2970" },
+	{ "path": "/images/portfolio/scmpv4-5.png", "w": "3240", "h": "4620" },
+	{ "path": "/images/portfolio/scmpv4-6.png", "w": "2250", "h": "3210" },
+	{ "path": "/images/portfolio/scmpv4-7.png", "w": "2250", "h": "3200" },
+	{ "path": "/images/portfolio/scmpv4-8.png", "w": "2250", "h": "3200" },
+	{ "path": "/images/portfolio/scmpv4-9.png", "w": "2250", "h": "3200" },
+]
 
 const Work = () => {
 	return (
@@ -68,11 +69,13 @@ const Work = () => {
 					</ListItem>
 				</List>
 				<Divider my={4} />
-				<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
-					{srcs.map((src) => (
-						<WorkImage key={src} src={src} alt="SCMP v4 App" mb={2} />
-					))}
-				</SimpleGrid>
+				<Gallery>
+					<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
+						{srcs.map((src) => (
+							<WorkImage key={src.path} src={src} alt="SCMP v4 App" mb={2} />
+						))}
+					</SimpleGrid>
+				</Gallery>
 			</Container>
 		</Layout>
 	)

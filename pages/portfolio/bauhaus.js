@@ -2,14 +2,15 @@ import { Container, Badge, List, ListItem, SimpleGrid, Divider, UnorderedList } 
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
+import 'photoswipe/dist/photoswipe.css'
+import { Gallery } from 'react-photoswipe-gallery'
 
-import eyecatch from "../../public/images/portfolio/bauhaus-eyecatch.png"
-import src1 from "../../public/images/portfolio/bauhaus-1.png"
-import src2 from "../../public/images/portfolio/bauhaus-2.png"
-import src3 from "../../public/images/portfolio/bauhaus-3.png"
-
-
-const srcs = [src1, src2, src3]
+const eyecatch = { "path": "/images/portfolio/bauhaus-eyecatch.png" }
+const srcs = [
+	{ "path": "/images/portfolio/bauhaus-1.png", "w": "1470", "h": "2610" },
+	{ "path": "/images/portfolio/bauhaus-2.png", "w": "1960", "h": "3480" },
+	{ "path": "/images/portfolio/bauhaus-3.png", "w": "1920", "h": "3400" },
+]
 
 const Work = () => {
 	return (
@@ -44,11 +45,13 @@ const Work = () => {
 					</ListItem>
 				</List>
 				<Divider my={4} />
-				<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
-					{srcs.map((src) => (
-						<WorkImage key={src} src={src} alt="Bauhaus App" mb={2} />
-					))}
-				</SimpleGrid>
+				<Gallery>
+					<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
+						{srcs.map((src) => (
+							<WorkImage key={src.path} src={src} alt="Bauhaus App" mb={2} />
+						))}
+					</SimpleGrid>
+				</Gallery>
 			</Container>
 		</Layout>
 	)

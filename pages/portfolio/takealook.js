@@ -3,17 +3,18 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Title, WorkImage, Meta } from "../../components/work";
 import P from '../../components/paragraph'
 import Layout from "../../components/layouts/article";
+import 'photoswipe/dist/photoswipe.css'
+import { Gallery } from 'react-photoswipe-gallery'
 
-import eyecatch from "../../public/images/portfolio/takealook-eyecatch.png"
-
-import src1 from "../../public/images/portfolio/takealook-1.png"
-import src2 from "../../public/images/portfolio/takealook-2.png"
-import src3 from "../../public/images/portfolio/takealook-3.png"
-import src4 from "../../public/images/portfolio/takealook-4.png"
-import src5 from "../../public/images/portfolio/takealook-5.png"
-import src6 from "../../public/images/portfolio/takealook-6.png"
-
-const srcs = [src1, src2, src3, src4, src5, src6]
+const eyecatch = { "path": "/images/portfolio/takealook-eyecatch.png" }
+const srcs = [
+	{ "path": "/images/portfolio/takealook-1.png", "w": "1352", "h": "4003" },
+	{ "path": "/images/portfolio/takealook-2.png", "w": "1352", "h": "6146" },
+	{ "path": "/images/portfolio/takealook-3.png", "w": "1352", "h": "2719" },
+	{ "path": "/images/portfolio/takealook-4.png", "w": "1247", "h": "1006" },
+	{ "path": "/images/portfolio/takealook-5.png", "w": "1247", "h": "1566" },
+	{ "path": "/images/portfolio/takealook-6.png", "w": "1352", "h": "3971" },
+]
 
 const Work = () => {
 	return (
@@ -43,11 +44,13 @@ const Work = () => {
 					</ListItem>
 				</List>
 				<Divider my={4} />
-				<Box pt={6} sx={{ columnCount: [1, 1, 2, 2], columnGap: "12px" }}>
-					{srcs.map((src) => (
-						<WorkImage key={src} src={src} alt="TakeALook" mb={2} />
-					))}
-				</Box>
+				<Gallery>
+					<Box pt={6} sx={{ columnCount: [1, 1, 2, 2], columnGap: "12px" }}>
+						{srcs.map((src) => (
+							<WorkImage key={src.path} src={src} alt="TakeALook" mb={2} />
+						))}
+					</Box>
+				</Gallery>
 			</Container>
 		</Layout>
 	)
