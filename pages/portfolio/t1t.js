@@ -11,7 +11,7 @@ const srcs = [
 	{ "path": "/images/portfolio/t1t-2.png", "w": "2160", "h": "3840" },
 	{ "path": "/images/portfolio/t1t-3.png", "w": "2160", "h": "3840" },
 	{ "path": "/images/portfolio/t1t-4.png", "w": "2160", "h": "3840" },
-	{ "path": "/images/portfolio/t1t-5.png", "w": "2160", "h": "3840" },
+	{ "path": "/images/portfolio/t1t-5.jpg", "w": "2160", "h": "3840" },
 ]
 
 const Work = () => {
