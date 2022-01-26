@@ -21,7 +21,7 @@ const portfolioItems = [
 	{ id: "swire-irp", title: "Swire Incident Control App", src: "/images/portfolio/swire-irp-eyecatch.png" },
 	{ id: "swire-drp", title: "Swire Disaster Control App", src: "/images/portfolio/swire-drp-eyecatch.png" },
 	{ id: "letwork", title: "Letwork Card App", src: "/images/portfolio/letwork-eyecatch.png" },
-	{ id: "apas", title: "APAS Music App", src: "/images/portfolio/apas-web-eyecatch.png" },
+	{ id: "apas", title: "APAS Music Website", src: "/images/portfolio/apas-web-eyecatch.png" },
 	{ id: "china-mobile-intranet", title: "China Mobile Intranet App", src: "/images/portfolio/china-mobile-intranet-app-eyecatch.png" },
 	{ id: "china-mobile", title: "China Mobile Customer App", src: "/images/portfolio/china-mobile-eyecatch.png" },
 	{ id: "25-master", title: "25 Master Game App", src: "/images/portfolio/25-master-eyecatch.png" },
