@@ -74,6 +74,7 @@ const Planet = () => {
 			controls.autoRotateSpeed = 0.6
       controls.target = target
 			controls.enableZoom = false
+			controls.enableRotate = false
       setControls(controls)
 
       loadGLTFModel(scene, '/planet.glb', {
