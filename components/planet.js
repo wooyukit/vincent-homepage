@@ -53,7 +53,7 @@ const Planet = () => {
 
       // 640 -> 240
       // 8   -> 6
-      const scale = scH * 0.002
+      const scale = scH * 0.0035
       const camera = new THREE.OrthographicCamera(
         -scale,
         scale,
@@ -73,11 +73,12 @@ const Planet = () => {
       controls.autoRotate = true
 			controls.autoRotateSpeed = 0.6
       controls.target = target
+      controls.enableZoom = false
       setControls(controls)
 
       loadGLTFModel(scene, '/planet.glb', {
-        receiveShadow: true,
-        castShadow: true
+        receiveShadow: false,
+        castShadow: false
       }).then(() => {
         animate()
         setLoading(false)
@@ -126,6 +127,8 @@ const Planet = () => {
       ref={refContainer}
       className="planet"
       m="auto"
+      mt={[-150, -200, -300]}
+      mb={2}
       w={[380, 480, 680]}
       h={[380, 480, 680]}
       position="relative"
