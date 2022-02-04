@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Box, Spinner } from '@chakra-ui/react'
+import { AspectRatio, Box, Spinner } from '@chakra-ui/react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { loadGLTFModel } from '../lib/model'
@@ -53,7 +53,7 @@ const Planet = () => {
 
       // 640 -> 240
       // 8   -> 6
-      const scale = scH * 0.0035
+      const scale = scH * 0.003
       const camera = new THREE.OrthographicCamera(
         -scale,
         scale,
@@ -66,12 +66,12 @@ const Planet = () => {
       camera.lookAt(target)
       setCamera(camera)
 
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.3)
+      const ambientLight = new THREE.AmbientLight(0xcccccc, 0.2)
       scene.add(ambientLight)
 
       const controls = new OrbitControls(camera, renderer.domElement)
       controls.autoRotate = true
-			controls.autoRotateSpeed = 0.6
+      controls.autoRotateSpeed = 0.6
       controls.target = target
       controls.enableZoom = false
       setControls(controls)
@@ -123,27 +123,29 @@ const Planet = () => {
   }, [renderer, handleWindowResize])
 
   return (
-    <Box
+    <AspectRatio
+      width={['100%', '100%', 680]}
+      marginTop={['-50%', '-50%', -300]}
+      marginBottom={2}
+      marginLeft="auto"
+      marginRight="auto"
       ref={refContainer}
       className="planet"
-      m="auto"
-      mt={[-150, -200, -300]}
-      mb={2}
-      w={[380, 480, 680]}
-      h={[380, 480, 680]}
       position="relative"
-    >
-      {loading && (
-        <Spinner
-          size="xl"
-          position="absolute"
-          left="50%"
-          top="50%"
-          ml="calc(0px - var(--spinner-size) / 2)"
-          mt="calc(0px - var(--spinner-size))"
-        />
-      )}
-    </Box>
+      ratio={1}>
+      <Box>
+        {loading && (
+          <Spinner
+            size="xl"
+            position="absolute"
+            left="50%"
+            top="50%"
+            ml="calc(0px - var(--spinner-size) / 2)"
+            mt="calc(0px - var(--spinner-size))"
+          />
+        )}
+      </Box>
+    </AspectRatio>
   )
 }
 
