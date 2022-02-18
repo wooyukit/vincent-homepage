@@ -125,8 +125,7 @@ const Planet = () => {
   return (
     <AspectRatio
       width={['100%', '100%', 680]}
-      marginTop={['-50%', '-50%', -300]}
-      marginBottom={2}
+      marginTop={['-20%', '-20%', -200]}
       marginLeft="auto"
       marginRight="auto"
       ref={refContainer}
