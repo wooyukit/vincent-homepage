@@ -131,6 +131,7 @@ const Planet = () => {
       ref={refContainer}
       className="planet"
       position="relative"
+      zIndex={-1}
       ratio={1}>
       <Box>
         {loading && (
