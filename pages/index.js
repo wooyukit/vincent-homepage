@@ -15,6 +15,7 @@ const loves = [
 	"Chinese Chess 🎲",
 	"GYM 🏋🏻‍♀️",
 	"Movies 🎬",
+	"BlockChain 📑",
 	"Computer Games 🕹",
 	"3D Animation 🎏",
 	"Technologies 🧑🏻‍💻",
