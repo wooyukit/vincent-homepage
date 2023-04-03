@@ -32,7 +32,7 @@ const Works = () => {
 						<Box display='flex'>
 							<Image maxHeight="80px"
 								borderRadius="full"
-								src='/images/works/okx-logo.png'
+								src='/images/works/okx-logo.jpeg'
 								alt='OKX' />
 							<Box flexGrow={1}
 								alignSelf="center">
