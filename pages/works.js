@@ -32,6 +32,28 @@ const Works = () => {
 						<Box display='flex'>
 							<Image maxHeight="80px"
 								borderRadius="full"
+								src='/images/works/okx-logo.png'
+								alt='OKX' />
+							<Box flexGrow={1}
+								alignSelf="center">
+								<ExpPosition>
+									Senior Software Engineer at OKX
+								</ExpPosition>
+								<ExpYear>2022 to now</ExpYear>
+							</Box>
+						</Box>
+						<ExpDuty>
+							<ul>
+								<li>Develop Mobile apps for iOS.</li>
+								<li>Manage the iOS team to support agile development process.</li>
+								<li>Enhance the current Mobile apps to fulfill business users requirements.</li>
+							</ul>
+						</ExpDuty>
+					</ExpSection>
+					<ExpSection>
+						<Box display='flex'>
+							<Image maxHeight="80px"
+								borderRadius="full"
 								src='/images/works/scmp-logo.png'
 								alt='South China Morning Post' />
 							<Box flexGrow={1}
@@ -39,7 +61,7 @@ const Works = () => {
 								<ExpPosition>
 									Lead Mobile Engineer in South China Morning Post
 								</ExpPosition>
-								<ExpYear>2018 to now</ExpYear>
+								<ExpYear>2018 to 2022</ExpYear>
 							</Box>
 						</Box>
 						<ExpDuty>
