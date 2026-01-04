@@ -52,12 +52,12 @@ const Work = () => {
 							<Link
 								href="https://apps.apple.com/hk/app/mylink-smart-life/id483513425?l=en"
 								target="_blank">
-								<Image maxW={200} src="/images/appstore.webp" alt="Download on App Store" />
+								<Image maxW={200} src="/images/appstore.png" alt="Download on App Store" />
 							</Link>
 							<Link
 								href="https://play.google.com/store/apps/details?id=com.ChinaMobile"
 								target="_blank">
-								<Image maxW={200} src="/images/googleplay.webp" alt="Download on Google Play" />
+								<Image maxW={200} src="/images/googleplay.png" alt="Download on Google Play" />
 							</Link>
 						</Box>
 					</ListItem>

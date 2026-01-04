@@ -56,6 +56,13 @@ export const GridItemStyle = () => (
 	.grid-item-thumbnail img {
 		border-radius: 12px;
 	}
+	.project-card-image:hover .project-thumbnail {
+		transform: scale(1.05);
+	}
+	.project-thumbnail {
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
 	`}
 	/>
 )

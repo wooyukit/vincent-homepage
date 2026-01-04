@@ -1,204 +1,298 @@
-import { Container, Box, Heading, Image, useColorModeValue } from '@chakra-ui/react'
+import { Container, Box, Heading, Image, useColorModeValue, Text, Flex, Link, Button, Badge, keyframes } from '@chakra-ui/react'
 import Section from '../components/section'
-import { ExpSection, ExpYear, ExpPosition, ExpDuty } from '../components/experience'
 import Layout from '../components/layouts/article'
+import { IoLogoGithub, IoGlobeOutline } from 'react-icons/io5'
+
+const pulse = keyframes`
+	0% { box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7); }
+	70% { box-shadow: 0 0 0 10px rgba(72, 187, 120, 0); }
+	100% { box-shadow: 0 0 0 0 rgba(72, 187, 120, 0); }
+`
 
 const experiences = [
 	{
 		company: 'OKX',
 		logo: '/images/works/okx-logo.jpeg',
 		alt: 'OKX',
-		position: 'Senior Software Engineer at OKX',
-		year: '2022 to now',
+		position: 'Lead Engineer',
+		location: 'Hong Kong',
+		year: '2022 - Present',
 		rounded: true,
-		duties: [
-			'Develop Mobile apps for iOS.',
-			'Manage the iOS team to support agile development process.',
-			'Enhance the current Mobile apps to fulfill business users requirements.'
+		current: true,
+		description: 'Leading iOS development team for one of the world\'s largest cryptocurrency exchanges. Managing mobile architecture, CI/CD pipelines, and cross-functional collaboration to deliver secure trading experiences to millions of users.',
+		links: [
+			{ label: 'Website', url: 'https://www.okx.com', icon: IoGlobeOutline }
 		]
 	},
 	{
-		company: 'SCMP',
+		company: 'South China Morning Post',
 		logo: '/images/works/scmp-logo.png',
 		alt: 'South China Morning Post',
-		position: 'Lead Mobile Engineer in South China Morning Post',
-		year: '2018 to 2022',
+		position: 'Lead Mobile Engineer',
+		location: 'Hong Kong',
+		year: '2018 - 2022',
 		rounded: true,
-		duties: [
-			'Manage and allocate tasks to the application developers to produce new features and maintain mobile applications.',
-			'Conduct CI/CD for QA and distribute the application.',
-			'Communicate with parties and implement technical solution to fulfill business requirements and needs.',
-			'Develop Newspaper and Magazine Universal Mobile Application for both iOS and Android Platform from scratch.',
-			'Using Reactive Functional Programming (Kotlin, Swift, RxSwift, RxJava) to implement MVVM Architecture to decouple the dependencies.',
-			'Implement GraphQL for data query'
+		description: 'Led mobile engineering team to rebuild the flagship news app from scratch. Implemented reactive programming with RxSwift/RxJava, GraphQL integration, and established CI/CD pipelines serving millions of daily readers.',
+		links: [
+			{ label: 'Website', url: 'https://www.scmp.com', icon: IoGlobeOutline }
 		]
 	},
 	{
 		company: 'Hang Seng Bank',
 		logo: '/images/works/hang-seng-logo.png',
 		alt: 'Hang Seng Bank',
-		position: 'Senior System Analyst in Hang Seng Bank',
-		year: '2017 to 2018',
+		position: 'Senior System Analyst',
+		location: 'Hong Kong',
+		year: '2017 - 2018',
 		rounded: false,
-		duties: [
-			'Develop Mobile apps for both iOS and Android for the Corporate Clients from scratch.',
-			'Manage the offshoring team in Mainland China to support agile development process',
-			'Enhance the current Mobile apps to fulfill business user\'s requirements',
-			'Integrate the Machine Learning System with current website and mobile applications'
+		description: 'Developed enterprise mobile banking applications for corporate clients. Managed offshore development team and integrated ML-powered chatbot features with secure banking infrastructure.',
+		links: [
+			{ label: 'Website', url: 'https://www.hangseng.com', icon: IoGlobeOutline }
 		]
 	},
 	{
-		company: 'SCMP (Senior)',
+		company: 'South China Morning Post',
 		logo: '/images/works/scmp-logo.png',
 		alt: 'South China Morning Post',
-		position: 'Senior Mobile Developer in South China Morning Post',
-		year: '2016 to 2017',
+		position: 'Senior Mobile Developer',
+		location: 'Hong Kong',
+		year: '2016 - 2017',
 		rounded: true,
-		duties: [
-			'Develop Newspaper and Magazine Universal Mobile Application for both iOS and Android Platform form scratch.',
-			'Using Reactive Functional Programming (Kotlin, Swift, RxSwift, RxJava) to implement MVVM Architecture to decouple the dependencies.',
-			'Fine tune the performance to keep the User Experience smooth.',
-			'Implemented automation test and CI for deployment to ensure the application quality.',
-			'Code review and Unit test before merging branches.',
-			'Follow scrum agile software development process.',
-			'Communicate with product owners and UI / UX designers for developing the software layouts and architecture.'
-		]
+		description: 'Developed universal mobile applications for iOS and Android platforms. Implemented MVVM architecture with reactive programming patterns and established code review practices.',
+		links: []
 	},
 	{
 		company: 'Guru Online',
 		logo: '/images/works/guru-online-logo.png',
 		alt: 'Guru Online',
-		position: 'Senior Mobile Application Developer in Guru Online Ltd',
-		year: '2014 to 2016',
+		position: 'Senior Mobile Application Developer',
+		location: 'Hong Kong',
+		year: '2014 - 2016',
 		rounded: true,
-		duties: [
-			'Research and development the new mobile application technology such as iBeacon, AR with 3D models, payment gateway integration with mobile application, apple watch and Swift',
-			'Develop the client projects for iOS, Android and web platform',
-			'Manage the project schedule and allocate the job for colleagues',
-			'System Design and prepare the documents for the new project development and pitching.',
-			'At Guru Online Limited, Senior Mobile Application Developer',
-			'Created a start up project. https://www.takealook.com',
-			'Including responsive website development',
-			'Mobile Application Development'
-		]
+		description: 'R&D for emerging mobile technologies including iBeacon, Augmented Reality, and Apple Watch. Created startup project takealook.com and managed project schedules for multiple clients.',
+		links: []
 	},
 	{
 		company: 'Pactera',
 		logo: '/images/works/pactera-logo.jpeg',
 		alt: 'Pactera Limited',
-		position: 'Consultant in Pactera Limited',
-		year: '2012 to 2014',
+		position: 'Consultant',
+		location: 'Hong Kong',
+		year: '2012 - 2014',
 		rounded: true,
-		duties: [
-			'Serve as a consultant to provide the software development system design and feasibility for client.',
-			'Provided T and M service for Swire Property Limited and Philips limits, which enhanced their existing .NET programs such as Leasing system and their SharePoint internal portal and iPhone Mobile project for incident handling',
-			'Maintain and fixing issues of company existing SharePoint 2007 and 2010 projects',
-			'Enhancement project for Prudential Company to improve their current SharePoint portal.',
-			'Developed a SharePoint portal for Philips to consolidate their company department information and document-sharing center.',
-			'Developed a new SharePoint Portal for MTR Human Resource and administration department. The system is built on Microsoft SharePoint 2010 and is to consolidate the department services information, learning materials or share documents.',
-			'Customizing the Microsoft SharePoint 2010 including layouts and system structure to fit the user\'s requirements.',
-			'Create custom Web Parts to enhance the user experience.',
-			'Document Search and Advance Search Function',
-			'System Permission control for different users',
-			'Customized Blog and discussion forum',
-			'Create a site template for user to create custom sub site for portal'
-		]
+		description: 'Provided software consulting services for enterprise clients including MTR, Philips, and Prudential. Developed SharePoint portals with custom Web Parts and permission control systems.',
+		links: []
 	},
 	{
 		company: 'China Mobile',
 		logo: '/images/works/china-mobile-logo.png',
-		alt: 'China Mobile Hong Kong Limited',
-		position: 'Mobile Applications Developer in China Mobile Limited',
-		year: '2011 to 2012',
+		alt: 'China Mobile Hong Kong',
+		position: 'Mobile Applications Developer',
+		location: 'Hong Kong',
+		year: '2011 - 2012',
 		rounded: false,
-		duties: [
-			'Developed the iPhone Apps, android Apps for internal and external users.',
-			'Responsible for designing native mobile application and server interface such as customer service application for customers to check the billing information and promotions.'
-		]
+		description: 'Developed iOS and Android applications for one of the largest telecommunications companies. Designed native mobile interfaces and server integration architecture.',
+		links: []
 	},
 	{
 		company: 'iMusicTech',
 		logo: '/images/works/iMusicTech-logo.png',
 		alt: 'iMusicTech Limited',
-		position: 'Analyst Programmer in iMusicTech Limited',
-		year: '2010 to 2011',
+		position: 'Analyst Programmer',
+		location: 'Hong Kong',
+		year: '2010 - 2011',
 		rounded: false,
-		duties: [
-			'Focused on the web application as well as iPhone, Android mobile applications development.',
-			'Keep trying the newest technology. For example, iPhone game development.',
-			'Developed the company website, iPhone Apps, Flash stuff and the web application for company clients.'
-		]
+		description: 'Full-stack development for web and mobile applications in the music technology space. Explored iPhone game development and multimedia applications.',
+		links: []
 	},
 	{
 		company: 'California Red',
 		logo: '/images/works/california-red-logo.jpeg',
 		alt: 'California Red Limited',
-		position: 'Programmer in California Red Limited',
-		year: '2009 to 2010',
+		position: 'Programmer',
+		location: 'Hong Kong',
+		year: '2009 - 2010',
 		rounded: true,
-		duties: [
-			'Worked as a programmer of Information Technology Department',
-			'Responsible for handling program coding, system analysis and design works for the company',
-			'Cooperated with different department and participated in varies projects.',
-			'Developed the member party booking system to provide a web platform for customers to purchase party stuff and give an online payment gateway, reconstruction of the company intranet, Songs transferring system, flash advertisements, web maintenance system and member transferring system to transfer member data and scores to other company.'
-		]
+		description: 'Developed member party booking systems and company intranet platforms for the entertainment industry. First professional role in software development.',
+		links: []
 	}
 ]
 
-const ExperienceCard = ({ logo, alt, position, year, duties, rounded }) => (
-	<ExpSection>
-		<Box display='flex'>
-			<Image
-				maxHeight="80px"
-				borderRadius={rounded ? 'full' : undefined}
-				src={logo}
-				alt={alt}
-			/>
-			<Box flexGrow={1} alignSelf="center">
-				<ExpPosition>{position}</ExpPosition>
-				<ExpYear>{year}</ExpYear>
-			</Box>
-		</Box>
-		<ExpDuty>
-			<ul>
-				{duties.map((duty, index) => (
-					<li key={index}>{duty}</li>
-				))}
-			</ul>
-		</ExpDuty>
-	</ExpSection>
-)
-
-const Works = () => {
-	const borderColor = useColorModeValue('blackAlpha.400', 'whiteAlpha.800')
+const ExperienceCard = ({ logo, alt, position, year, description, rounded, current, company, location, links, isLast }) => {
+	const dateColor = useColorModeValue('gray.500', 'gray.400')
+	const titleColor = useColorModeValue('gray.800', 'white')
+	const locationColor = useColorModeValue('gray.500', 'gray.400')
+	const descColor = useColorModeValue('gray.600', 'gray.300')
+	const borderColor = useColorModeValue('gray.200', 'gray.700')
+	const buttonBg = useColorModeValue('gray.100', 'whiteAlpha.100')
+	const buttonBorder = useColorModeValue('gray.300', 'whiteAlpha.300')
+	const timelineBg = useColorModeValue('gray.200', 'gray.700')
+	const dotBg = useColorModeValue('gray.400', 'gray.500')
 
 	return (
-		<Layout>
-			<Container>
-				<Box display={{ md: 'flex' }} >
-					<Box flexGrow={1}>
-						<Heading as="h2" variant="page-title"> WOO Yu Kit Vincent</Heading>
-						<p>Team Lead Engineer, Senior Mobile Appliction and Web Developer</p>
-					</Box>
-					<Box flexShrink={0} mt={{ base: 4, md: 0 }} ml={{ md: 6 }} align="center">
+		<Flex position="relative">
+			{/* Timeline */}
+			<Box
+				position="relative"
+				mr={{ base: 4, md: 6 }}
+				w="24px"
+				flexShrink={0}
+			>
+				{/* Timeline Line - dashed, extends to connect with next dot */}
+				{!isLast && (
+					<Box
+						position="absolute"
+						left="50%"
+						top={{ base: '25px', md: '30px' }}
+						bottom={{ base: '-25px', md: '-30px' }}
+						w="0"
+						borderLeft="2px dashed"
+						borderColor={timelineBg}
+						transform="translateX(-50%)"
+					/>
+				)}
+				{/* Timeline Dot - centered with logo (logo is 50-60px, so center at ~30px) */}
+				<Box
+					position="absolute"
+					left="50%"
+					top={{ base: '25px', md: '30px' }}
+					transform="translate(-50%, -50%)"
+					w={current ? '20px' : '16px'}
+					h={current ? '20px' : '16px'}
+					borderRadius="full"
+					bg={current ? 'green.400' : dotBg}
+					zIndex={1}
+					animation={current ? `${pulse} 2s infinite` : 'none'}
+					border={current ? '3px solid' : 'none'}
+					borderColor={useColorModeValue('green.100', 'green.900')}
+				/>
+			</Box>
+
+			{/* Content */}
+			<Box flex={1} pb={8}>
+				<Flex mb={4}>
+					{/* Logo */}
+					<Box
+						w={{ base: '50px', md: '60px' }}
+						h={{ base: '50px', md: '60px' }}
+						borderRadius={rounded ? 'full' : 'lg'}
+						overflow="hidden"
+						mr={{ base: 4, md: 5 }}
+						flexShrink={0}
+						position="relative"
+					>
 						<Image
-							borderColor={borderColor}
-							borderWidth={2}
-							borderStyle="solid"
-							maxWidth="100px"
-							display="inline-block"
-							borderRadius="full"
-							src="/images/kit-logo.jpg"
-							alt="Profile Image" />
+							src={logo}
+							alt={alt}
+							w="100%"
+							h="100%"
+							objectFit="cover"
+						/>
 					</Box>
-				</Box>
+
+					{/* Info */}
+					<Box flex={1}>
+						{/* Date with Current Badge */}
+						<Flex align="center" gap={2} mb={1}>
+							<Text fontSize="sm" color={dateColor}>
+								{year}
+							</Text>
+							{current && (
+								<Badge
+									colorScheme="green"
+									borderRadius="full"
+									px={2}
+									py={0.5}
+									fontSize="xs"
+								>
+									Current
+								</Badge>
+							)}
+						</Flex>
+
+						{/* Title */}
+						<Heading as="h3" fontSize={{ base: 'lg', md: 'xl' }} color={titleColor} fontWeight="bold" mb={1}>
+							{position}
+						</Heading>
+
+						{/* Company & Location */}
+						<Text fontSize="sm" color={locationColor}>
+							{company} · {location}
+						</Text>
+					</Box>
+				</Flex>
+
+				{/* Description */}
+				<Text fontSize="sm" color={descColor} lineHeight="1.7" mb={4} ml={{ base: 0, md: '76px' }}>
+					{description}
+				</Text>
+
+				{/* Links */}
+				{links && links.length > 0 && (
+					<Flex gap={2} flexWrap="wrap" ml={{ base: 0, md: '76px' }}>
+						{links.map((link, i) => (
+							<Link key={i} href={link.url} target="_blank" _hover={{ textDecoration: 'none' }}>
+								<Button
+									size="sm"
+									variant="outline"
+									leftIcon={link.icon === IoLogoGithub ? <IoLogoGithub /> : <IoGlobeOutline />}
+									bg={buttonBg}
+									borderColor={buttonBorder}
+									fontWeight="normal"
+									fontSize="xs"
+									_hover={{ transform: 'translateY(-2px)', shadow: 'md' }}
+									transition="all 0.2s"
+								>
+									{link.label}
+								</Button>
+							</Link>
+						))}
+					</Flex>
+				)}
+
+				{/* Dashed Separator */}
+				{!isLast && (
+					<Box
+						borderBottom="1px dashed"
+						borderColor={borderColor}
+						mt={6}
+						ml={{ base: 0, md: '76px' }}
+					/>
+				)}
+			</Box>
+		</Flex>
+	)
+}
+
+const Works = () => {
+	const subtitleColor = useColorModeValue('gray.600', 'gray.400')
+
+	return (
+		<Layout title="Work Experience">
+			<Container maxW="container.md" pt={6}>
+				{/* Header */}
 				<Section delay={0.1}>
-					<Heading as="h3" variant="section-title">
-						Experience 💼
-					</Heading>
-					{experiences.map((exp) => (
-						<ExperienceCard key={exp.company} {...exp} />
-					))}
+					<Box textAlign="center" mb={12}>
+						<Heading as="h1" size="xl" mb={4}>
+							Work Experience
+						</Heading>
+						<Text fontSize="md" color={subtitleColor} maxW="500px" mx="auto">
+							{new Date().getFullYear() - 2009}+ years of experience building mobile and web applications with passionate teams.
+						</Text>
+					</Box>
+				</Section>
+
+				{/* Experience List with Timeline */}
+				<Section delay={0.2}>
+					<Box pl={{ base: 0, md: 4 }}>
+						{experiences.map((exp, index) => (
+							<ExperienceCard
+								key={`${exp.company}-${exp.year}`}
+								{...exp}
+								isLast={index === experiences.length - 1}
+							/>
+						))}
+					</Box>
 				</Section>
 			</Container>
 		</Layout>
