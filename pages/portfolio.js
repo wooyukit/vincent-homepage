@@ -436,9 +436,7 @@ const Portfolio = () => {
 
 				<SimpleGrid columns={[1, 1, 2]} gap={6}>
 					{portfolioItems.map((item, index) => (
-						<Section key={item.id} delay={(Math.min(index, 6) + 1) * 0.1}>
-							<ProjectCard item={item} index={index} />
-						</Section>
+						<ProjectCard key={item.id} item={item} index={index} />
 					))}
 				</SimpleGrid>
 			</Container>
