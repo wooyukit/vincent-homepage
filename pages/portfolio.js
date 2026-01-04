@@ -1,9 +1,9 @@
-import { Container, Heading, SimpleGrid, Box, Text, useColorModeValue, Badge, Flex, Button, Icon, Link, Wrap, WrapItem } from "@chakra-ui/react"
+import { Container, Heading, SimpleGrid, Box, Text, useColorModeValue, Badge, Flex, Button, Icon, Wrap, WrapItem } from "@chakra-ui/react"
 import Image from 'next/image'
 import NextLink from 'next/link'
 import Layout from "../components/layouts/article"
 import Section from "../components/section"
-import { IoGlobeOutline, IoLogoGithub } from 'react-icons/io5'
+import { IoGlobeOutline } from 'react-icons/io5'
 
 const portfolioItems = [
 	{
@@ -420,8 +420,6 @@ const ProjectCard = ({ item, index }) => {
 }
 
 const Portfolio = () => {
-	const headerBg = useColorModeValue('gray.50', 'gray.900')
-
 	return (
 		<Layout title="Portfolio">
 			<Container maxW="container.lg" py={8}>
