@@ -5,14 +5,14 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/china-mobile-intranet-app-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/china-mobile-intranet-app-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/china-mobile-intranet-app-1.png", "w": "2160", "h": "3200" },
-	{ "path": "/images/portfolio/china-mobile-intranet-app-2.png", "w": "2140", "h": "3200" },
-	{ "path": "/images/portfolio/china-mobile-intranet-app-3.png", "w": "2200", "h": "3280" },
-	{ "path": "/images/portfolio/china-mobile-intranet-app-4.png", "w": "2160", "h": "3220" },
-	{ "path": "/images/portfolio/china-mobile-intranet-app-5.png", "w": "2240", "h": "3320" },
-	{ "path": "/images/portfolio/china-mobile-intranet-app-6.png", "w": "2220", "h": "3320" },
+	{ "path": "/images/portfolio/china-mobile-intranet-app-1.webp", "w": "2160", "h": "3200" },
+	{ "path": "/images/portfolio/china-mobile-intranet-app-2.webp", "w": "2140", "h": "3200" },
+	{ "path": "/images/portfolio/china-mobile-intranet-app-3.webp", "w": "2200", "h": "3280" },
+	{ "path": "/images/portfolio/china-mobile-intranet-app-4.webp", "w": "2160", "h": "3220" },
+	{ "path": "/images/portfolio/china-mobile-intranet-app-5.webp", "w": "2240", "h": "3320" },
+	{ "path": "/images/portfolio/china-mobile-intranet-app-6.webp", "w": "2220", "h": "3320" },
 ]
 
 const Work = () => {

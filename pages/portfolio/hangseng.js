@@ -6,7 +6,7 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from "react-photoswipe-gallery";
 
-const eyecatch = { "path": "/images/portfolio/hangseng-eyecatch.jpeg", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/hangseng-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
 	{ "path": "/images/portfolio/hangseng-1.webp", "w": "1242", "h": "2208" },
 	{ "path": "/images/portfolio/hangseng-2.webp", "w": "1242", "h": "2208" },
@@ -60,12 +60,12 @@ const Work = () => {
 							<Link
 								href="https://apps.apple.com/hk/app/hang-seng-business-mobile-app/id1117207965?l=en"
 								target="_blank">
-								<Image maxW={200} src="/images/appstore.png" alt="Download on App Store" />
+								<Image maxW={200} src="/images/appstore.webp" alt="Download on App Store" />
 							</Link>
 							<Link
 								href="https://play.google.com/store/apps/details?id=com.hangseng.cmbmobileapp"
 								target="_blank">
-								<Image maxW={200} src="/images/googleplay.png" alt="Download on Google Play" />
+								<Image maxW={200} src="/images/googleplay.webp" alt="Download on Google Play" />
 							</Link>
 						</Box>
 					</ListItem>

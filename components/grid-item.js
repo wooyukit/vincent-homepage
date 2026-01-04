@@ -19,17 +19,19 @@ export const GridItem = ({ children, href, title, thumbnail }) => (
 	</Box>
 )
 
-export const PortfolioGridItem = ({ children, id, title, thumbnail }) => (
+export const PortfolioGridItem = ({ children, id, title, thumbnail, priority = false }) => (
 	<Box w="100%" align="center">
 		<NextLink href={`/portfolio/${id}`}>
 			<LinkBox className='grid-item-linkbox' cursor="pointer">
 				<Box className='grid-item-thumbnail'>
-					<Image src={thumbnail}
-						blurDataURL={thumbnail}
+					<Image
+						src={thumbnail}
 						alt={title}
-						placeholder='blur'
-						width={1280}
-						height={720}
+						width={640}
+						height={360}
+						priority={priority}
+						loading={priority ? undefined : 'lazy'}
+						style={{ objectFit: 'cover' }}
 					/>
 				</Box>
 				<LinkOverlay href={`/portfolio/${id}`}>

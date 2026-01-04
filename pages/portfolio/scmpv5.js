@@ -6,7 +6,7 @@ import Layout from "../../components/layouts/article"
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = {"path": "/images/portfolio/scmpv5-eyecatch.png", "w": "1280", "h": "720"}
+const eyecatch = {"path": "/images/portfolio/scmpv5-eyecatch.webp", "w": "1280", "h": "720"}
 
 const srcs = [
 	{ "path": "/images/portfolio/scmpv5-1.webp", "w": "1242", "h": "2688" },
@@ -17,22 +17,22 @@ const srcs = [
 	{ "path": "/images/portfolio/scmpv5-6.webp", "w": "1242", "h": "2688" },
 ]
 const srcSs = [
-	{ "path": "/images/portfolio/scmpv5-1.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-2.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-3.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-4.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-5.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-6.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-7.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-8.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-9.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-10.png", "w": "1230", "h": "2450" },
-	{ "path": "/images/portfolio/scmpv5-11.png", "w": "2740", "h": "2050" },
-	{ "path": "/images/portfolio/scmpv5-12.png", "w": "2740", "h": "2050" },
-	{ "path": "/images/portfolio/scmpv5-13.png", "w": "2740", "h": "2050" },
-	{ "path": "/images/portfolio/scmpv5-14.png", "w": "2740", "h": "2050" },
-	{ "path": "/images/portfolio/scmpv5-15.png", "w": "2740", "h": "2050" },
-	{ "path": "/images/portfolio/scmpv5-16.png", "w": "2740", "h": "2050" },
+	{ "path": "/images/portfolio/scmpv5-1.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-2.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-3.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-4.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-5.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-6.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-7.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-8.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-9.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-10.webp", "w": "1230", "h": "2450" },
+	{ "path": "/images/portfolio/scmpv5-11.webp", "w": "2740", "h": "2050" },
+	{ "path": "/images/portfolio/scmpv5-12.webp", "w": "2740", "h": "2050" },
+	{ "path": "/images/portfolio/scmpv5-13.webp", "w": "2740", "h": "2050" },
+	{ "path": "/images/portfolio/scmpv5-14.webp", "w": "2740", "h": "2050" },
+	{ "path": "/images/portfolio/scmpv5-15.webp", "w": "2740", "h": "2050" },
+	{ "path": "/images/portfolio/scmpv5-16.webp", "w": "2740", "h": "2050" },
 ]
 
 
@@ -81,12 +81,12 @@ const Work = () => {
 							<Link
 								href="https://apps.apple.com/hk/app/south-china-morning-post/id623201967?l=en"
 								target="_blank">
-								<Image maxW={200} src="/images/appstore.png" alt="Download on App Store" />
+								<Image maxW={200} src="/images/appstore.webp" alt="Download on App Store" />
 							</Link>
 							<Link
 								href="https://play.google.com/store/apps/details?id=com.scmp.newspulse"
 								target="_blank">
-								<Image maxW={200} src="/images/googleplay.png" alt="Download on Google Play" />
+								<Image maxW={200} src="/images/googleplay.webp" alt="Download on Google Play" />
 							</Link>
 						</Box>
 					</ListItem>

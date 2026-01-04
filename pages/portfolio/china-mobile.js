@@ -5,14 +5,14 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/china-mobile-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/china-mobile-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/china-mobile-1.png", "w": "2160", "h": "3200" },
-	{ "path": "/images/portfolio/china-mobile-2.png", "w": "2140", "h": "3200" },
-	{ "path": "/images/portfolio/china-mobile-3.png", "w": "2160", "h": "3220" },
-	{ "path": "/images/portfolio/china-mobile-4.png", "w": "2160", "h": "3200" },
-	{ "path": "/images/portfolio/china-mobile-5.png", "w": "2120", "h": "3180" },
-	{ "path": "/images/portfolio/china-mobile-6.png", "w": "2140", "h": "3180" },
+	{ "path": "/images/portfolio/china-mobile-1.webp", "w": "2160", "h": "3200" },
+	{ "path": "/images/portfolio/china-mobile-2.webp", "w": "2140", "h": "3200" },
+	{ "path": "/images/portfolio/china-mobile-3.webp", "w": "2160", "h": "3220" },
+	{ "path": "/images/portfolio/china-mobile-4.webp", "w": "2160", "h": "3200" },
+	{ "path": "/images/portfolio/china-mobile-5.webp", "w": "2120", "h": "3180" },
+	{ "path": "/images/portfolio/china-mobile-6.webp", "w": "2140", "h": "3180" },
 ]
 
 const Work = () => {
@@ -52,12 +52,12 @@ const Work = () => {
 							<Link
 								href="https://apps.apple.com/hk/app/mylink-smart-life/id483513425?l=en"
 								target="_blank">
-								<Image maxW={200} src="/images/appstore.png" alt="Download on App Store" />
+								<Image maxW={200} src="/images/appstore.webp" alt="Download on App Store" />
 							</Link>
 							<Link
 								href="https://play.google.com/store/apps/details?id=com.ChinaMobile"
 								target="_blank">
-								<Image maxW={200} src="/images/googleplay.png" alt="Download on Google Play" />
+								<Image maxW={200} src="/images/googleplay.webp" alt="Download on Google Play" />
 							</Link>
 						</Box>
 					</ListItem>

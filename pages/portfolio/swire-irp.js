@@ -5,14 +5,14 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/swire-irp-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/swire-irp-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/swire-irp-1.png", "w": "5540", "h": "4160" },
-	{ "path": "/images/portfolio/swire-irp-2.png", "w": "5540", "h": "4160" },
-	{ "path": "/images/portfolio/swire-irp-3.png", "w": "5540", "h": "4160" },
-	{ "path": "/images/portfolio/swire-irp-4.png", "w": "5540", "h": "4160" },
-	{ "path": "/images/portfolio/swire-irp-5.png", "w": "5540", "h": "4160" },
-	{ "path": "/images/portfolio/swire-irp-6.png", "w": "5540", "h": "4160" },
+	{ "path": "/images/portfolio/swire-irp-1.webp", "w": "5540", "h": "4160" },
+	{ "path": "/images/portfolio/swire-irp-2.webp", "w": "5540", "h": "4160" },
+	{ "path": "/images/portfolio/swire-irp-3.webp", "w": "5540", "h": "4160" },
+	{ "path": "/images/portfolio/swire-irp-4.webp", "w": "5540", "h": "4160" },
+	{ "path": "/images/portfolio/swire-irp-5.webp", "w": "5540", "h": "4160" },
+	{ "path": "/images/portfolio/swire-irp-6.webp", "w": "5540", "h": "4160" },
 ]
 
 const Work = () => {

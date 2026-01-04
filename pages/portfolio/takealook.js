@@ -6,14 +6,14 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/takealook-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/takealook-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/takealook-1.png", "w": "1352", "h": "4003" },
-	{ "path": "/images/portfolio/takealook-2.png", "w": "1352", "h": "6146" },
-	{ "path": "/images/portfolio/takealook-3.png", "w": "1352", "h": "2719" },
-	{ "path": "/images/portfolio/takealook-4.png", "w": "1247", "h": "1006" },
-	{ "path": "/images/portfolio/takealook-5.png", "w": "1247", "h": "1566" },
-	{ "path": "/images/portfolio/takealook-6.png", "w": "1352", "h": "3971" },
+	{ "path": "/images/portfolio/takealook-1.webp", "w": "1352", "h": "4003" },
+	{ "path": "/images/portfolio/takealook-2.webp", "w": "1352", "h": "6146" },
+	{ "path": "/images/portfolio/takealook-3.webp", "w": "1352", "h": "2719" },
+	{ "path": "/images/portfolio/takealook-4.webp", "w": "1247", "h": "1006" },
+	{ "path": "/images/portfolio/takealook-5.webp", "w": "1247", "h": "1566" },
+	{ "path": "/images/portfolio/takealook-6.webp", "w": "1352", "h": "3971" },
 ]
 
 const Work = () => {

@@ -5,15 +5,15 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/letwork-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/letwork-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/letwork-1.png", "w": "2520", "h": "3840" },
-	{ "path": "/images/portfolio/letwork-2.png", "w": "2560", "h": "3840" },
-	{ "path": "/images/portfolio/letwork-3.png", "w": "2500", "h": "3800" },
-	{ "path": "/images/portfolio/letwork-4.jpg", "w": "2500", "h": "3840" },
-	{ "path": "/images/portfolio/letwork-5.png", "w": "2520", "h": "3760" },
-	{ "path": "/images/portfolio/letwork-6.png", "w": "2520", "h": "3720" },
-	{ "path": "/images/portfolio/letwork-7.png", "w": "4920", "h": "2840" },
+	{ "path": "/images/portfolio/letwork-1.webp", "w": "2520", "h": "3840" },
+	{ "path": "/images/portfolio/letwork-2.webp", "w": "2560", "h": "3840" },
+	{ "path": "/images/portfolio/letwork-3.webp", "w": "2500", "h": "3800" },
+	{ "path": "/images/portfolio/letwork-4.webp", "w": "2500", "h": "3840" },
+	{ "path": "/images/portfolio/letwork-5.webp", "w": "2520", "h": "3760" },
+	{ "path": "/images/portfolio/letwork-6.webp", "w": "2520", "h": "3720" },
+	{ "path": "/images/portfolio/letwork-7.webp", "w": "4920", "h": "2840" },
 ]
 
 const Work = () => {

@@ -5,11 +5,11 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/25-master-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/25-master-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/25-master-1.png", "w": "2180", "h": "3240" },
-	{ "path": "/images/portfolio/25-master-2.png", "w": "2160", "h": "3240" },
-	{ "path": "/images/portfolio/25-master-3.png", "w": "2160", "h": "3240" },
+	{ "path": "/images/portfolio/25-master-1.webp", "w": "2180", "h": "3240" },
+	{ "path": "/images/portfolio/25-master-2.webp", "w": "2160", "h": "3240" },
+	{ "path": "/images/portfolio/25-master-3.webp", "w": "2160", "h": "3240" },
 ]
 
 const Work = () => {

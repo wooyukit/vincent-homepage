@@ -5,17 +5,17 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/twinpeak-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/twinpeak-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/twinpeak-1.png", "w": "1960", "h": "3480" },
-	{ "path": "/images/portfolio/twinpeak-2.png", "w": "1470", "h": "2610" },
-	{ "path": "/images/portfolio/twinpeak-3.png", "w": "1920", "h": "3440" },
-	{ "path": "/images/portfolio/twinpeak-4.png", "w": "1440", "h": "2560" },
-	{ "path": "/images/portfolio/twinpeak-5.png", "w": "1247", "h": "2560" },
-	{ "path": "/images/portfolio/twinpeak-6.png", "w": "1960", "h": "3500" },
-	{ "path": "/images/portfolio/twinpeak-7.png", "w": "1470", "h": "2610" },
-	{ "path": "/images/portfolio/twinpeak-8.png", "w": "1470", "h": "2610" },
-	{ "path": "/images/portfolio/twinpeak-9.jpg", "w": "2760", "h": "4930" },
+	{ "path": "/images/portfolio/twinpeak-1.webp", "w": "1960", "h": "3480" },
+	{ "path": "/images/portfolio/twinpeak-2.webp", "w": "1470", "h": "2610" },
+	{ "path": "/images/portfolio/twinpeak-3.webp", "w": "1920", "h": "3440" },
+	{ "path": "/images/portfolio/twinpeak-4.webp", "w": "1440", "h": "2560" },
+	{ "path": "/images/portfolio/twinpeak-5.webp", "w": "1247", "h": "2560" },
+	{ "path": "/images/portfolio/twinpeak-6.webp", "w": "1960", "h": "3500" },
+	{ "path": "/images/portfolio/twinpeak-7.webp", "w": "1470", "h": "2610" },
+	{ "path": "/images/portfolio/twinpeak-8.webp", "w": "1470", "h": "2610" },
+	{ "path": "/images/portfolio/twinpeak-9.webp", "w": "2760", "h": "4930" },
 ]
 
 const Work = () => {

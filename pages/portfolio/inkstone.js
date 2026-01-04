@@ -6,7 +6,7 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/inkstone-eyecatch.jpeg", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/inkstone-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
 	{ "path": "/images/portfolio/inkstone-1.webp", "w": "1240", "h": "2208" },
 	{ "path": "/images/portfolio/inkstone-2.webp", "w": "1240", "h": "2208" },
@@ -15,11 +15,11 @@ const srcs = [
 	{ "path": "/images/portfolio/inkstone-5.webp", "w": "1240", "h": "2208" },
 ]
 const srcSs = [
-	{ "path": "/images/portfolio/inkstone-1.png", "w": "1500", "h": "3000" },
-	{ "path": "/images/portfolio/inkstone-2.png", "w": "1500", "h": "3000" },
-	{ "path": "/images/portfolio/inkstone-3.png", "w": "1500", "h": "3000" },
-	{ "path": "/images/portfolio/inkstone-4.png", "w": "1500", "h": "3000" },
-	{ "path": "/images/portfolio/inkstone-5.png", "w": "1500", "h": "3000" },
+	{ "path": "/images/portfolio/inkstone-1.webp", "w": "1500", "h": "3000" },
+	{ "path": "/images/portfolio/inkstone-2.webp", "w": "1500", "h": "3000" },
+	{ "path": "/images/portfolio/inkstone-3.webp", "w": "1500", "h": "3000" },
+	{ "path": "/images/portfolio/inkstone-4.webp", "w": "1500", "h": "3000" },
+	{ "path": "/images/portfolio/inkstone-5.webp", "w": "1500", "h": "3000" },
 ]
 
 const Work = () => {
@@ -57,12 +57,12 @@ const Work = () => {
 							<Link
 								href="https://apps.apple.com/hk/app/south-china-morning-post/id623201967?l=en"
 								target="_blank">
-								<Image maxW={200} src="/images/appstore.png" alt="Download on App Store" />
+								<Image maxW={200} src="/images/appstore.webp" alt="Download on App Store" />
 							</Link>
 							<Link
 								href="https://play.google.com/store/apps/details?id=com.scmp.inkstone"
 								target="_blank">
-								<Image maxW={200} src="/images/googleplay.png" alt="Download on Google Play" />
+								<Image maxW={200} src="/images/googleplay.webp" alt="Download on Google Play" />
 							</Link>
 						</Box>
 					</ListItem>

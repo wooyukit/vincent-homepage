@@ -5,14 +5,14 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/sie-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/sie-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/sie-1.png", "w": "1920", "h": "3420" },
-	{ "path": "/images/portfolio/sie-2.png", "w": "1920", "h": "3420" },
-	{ "path": "/images/portfolio/sie-3.png", "w": "1440", "h": "2560" },
-	{ "path": "/images/portfolio/sie-4.png", "w": "1920", "h": "3420" },
-	{ "path": "/images/portfolio/sie-5.png", "w": "1920", "h": "3420" },
-	{ "path": "/images/portfolio/sie-6.png", "w": "1920", "h": "3420" },
+	{ "path": "/images/portfolio/sie-1.webp", "w": "1920", "h": "3420" },
+	{ "path": "/images/portfolio/sie-2.webp", "w": "1920", "h": "3420" },
+	{ "path": "/images/portfolio/sie-3.webp", "w": "1440", "h": "2560" },
+	{ "path": "/images/portfolio/sie-4.webp", "w": "1920", "h": "3420" },
+	{ "path": "/images/portfolio/sie-5.webp", "w": "1920", "h": "3420" },
+	{ "path": "/images/portfolio/sie-6.webp", "w": "1920", "h": "3420" },
 ]
 
 const Work = () => {

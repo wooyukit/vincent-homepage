@@ -19,7 +19,7 @@ import ThemeToggleButton from './theme-toggle-button'
 import { IoLogoGithub } from 'react-icons/io5'
 import { DiApple, DiAndroid, DiReact } from "react-icons/di";
 
-const LinkItem = ({ href, path, _target, children, ...props }) => {
+const LinkItem = ({ href, path, target, children, ...props }) => {
 	const active = path === href
 	const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
 	return (
@@ -28,7 +28,7 @@ const LinkItem = ({ href, path, _target, children, ...props }) => {
 				p={2}
 				bg={active ? 'cyan' : undefined}
 				color={active ? '#202023' : inactiveColor}
-				_target={_target}
+				target={target}
 				{...props}>
 				{children}
 			</Link>
@@ -58,7 +58,7 @@ const Navbar = props => {
 					display={{ base: 'none', md: 'flex' }}
 					width={{ base: 'full', md: 'auto' }}
 					flexGrow={1}
-					mt={{ base: 4, nmd: 0 }}>
+					mt={{ base: 4, md: 0 }}>
 					<LinkItem href="/"
 						path={path}
 						display='inline-flex'
@@ -87,7 +87,7 @@ const Navbar = props => {
 						Portfolio
 					</LinkItem>
 					<LinkItem
-						_target="_blank"
+						target="_blank"
 						href="https://github.com/wooyukit/vincent-homepage"
 						path={path}
 						display='inline-flex'

@@ -6,17 +6,17 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from "react-photoswipe-gallery";
 
-const eyecatch = { "path": "/images/portfolio/scmpv4-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/scmpv4-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/scmpv4-1.jpg", "w": "1660", "h": "2970" },
-	{ "path": "/images/portfolio/scmpv4-2.png", "w": "1680", "h": "2970" },
-	{ "path": "/images/portfolio/scmpv4-3.png", "w": "1680", "h": "2970" },
-	{ "path": "/images/portfolio/scmpv4-4.png", "w": "1680", "h": "2970" },
-	{ "path": "/images/portfolio/scmpv4-5.png", "w": "3240", "h": "4620" },
-	{ "path": "/images/portfolio/scmpv4-6.png", "w": "2250", "h": "3210" },
-	{ "path": "/images/portfolio/scmpv4-7.png", "w": "2250", "h": "3200" },
-	{ "path": "/images/portfolio/scmpv4-8.png", "w": "2250", "h": "3200" },
-	{ "path": "/images/portfolio/scmpv4-9.png", "w": "2250", "h": "3200" },
+	{ "path": "/images/portfolio/scmpv4-1.webp", "w": "1660", "h": "2970" },
+	{ "path": "/images/portfolio/scmpv4-2.webp", "w": "1680", "h": "2970" },
+	{ "path": "/images/portfolio/scmpv4-3.webp", "w": "1680", "h": "2970" },
+	{ "path": "/images/portfolio/scmpv4-4.webp", "w": "1680", "h": "2970" },
+	{ "path": "/images/portfolio/scmpv4-5.webp", "w": "3240", "h": "4620" },
+	{ "path": "/images/portfolio/scmpv4-6.webp", "w": "2250", "h": "3210" },
+	{ "path": "/images/portfolio/scmpv4-7.webp", "w": "2250", "h": "3200" },
+	{ "path": "/images/portfolio/scmpv4-8.webp", "w": "2250", "h": "3200" },
+	{ "path": "/images/portfolio/scmpv4-9.webp", "w": "2250", "h": "3200" },
 ]
 
 const Work = () => {
@@ -58,12 +58,12 @@ const Work = () => {
 							<Link
 								href="https://apps.apple.com/hk/app/south-china-morning-post/id623201967?l=en"
 								target="_blank">
-								<Image maxW={200} src="/images/appstore.png" alt="Download on App Store" />
+								<Image maxW={200} src="/images/appstore.webp" alt="Download on App Store" />
 							</Link>
 							<Link
 								href="https://play.google.com/store/apps/details?id=com.scmp.newspulse"
 								target="_blank">
-								<Image maxW={200} src="/images/googleplay.png" alt="Download on Google Play" />
+								<Image maxW={200} src="/images/googleplay.webp" alt="Download on Google Play" />
 							</Link>
 						</Box>
 					</ListItem>

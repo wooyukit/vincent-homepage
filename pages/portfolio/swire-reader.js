@@ -5,12 +5,12 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/swire-reader-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/swire-reader-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/swire-reader-1.png", "w": "1470", "h": "2610" },
-	{ "path": "/images/portfolio/swire-reader-2.png", "w": "1470", "h": "2610" },
-	{ "path": "/images/portfolio/swire-reader-3.png", "w": "1470", "h": "2610" },
-	{ "path": "/images/portfolio/swire-reader-4.png", "w": "1470", "h": "2610" },
+	{ "path": "/images/portfolio/swire-reader-1.webp", "w": "1470", "h": "2610" },
+	{ "path": "/images/portfolio/swire-reader-2.webp", "w": "1470", "h": "2610" },
+	{ "path": "/images/portfolio/swire-reader-3.webp", "w": "1470", "h": "2610" },
+	{ "path": "/images/portfolio/swire-reader-4.webp", "w": "1470", "h": "2610" },
 ]
 
 const Work = () => {

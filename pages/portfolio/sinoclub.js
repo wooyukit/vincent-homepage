@@ -5,14 +5,14 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/sino-club-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/sino-club-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/sino-club-1.png", "w": "2360", "h": "4160" },
-	{ "path": "/images/portfolio/sino-club-2.png", "w": "2380", "h": "4200" },
-	{ "path": "/images/portfolio/sino-club-3.png", "w": "2360", "h": "4200" },
-	{ "path": "/images/portfolio/sino-club-4.png", "w": "2300", "h": "4080" },
-	{ "path": "/images/portfolio/sino-club-5.png", "w": "2280", "h": "4060" },
-	{ "path": "/images/portfolio/sino-club-6.png", "w": "2280", "h": "4060" },
+	{ "path": "/images/portfolio/sino-club-1.webp", "w": "2360", "h": "4160" },
+	{ "path": "/images/portfolio/sino-club-2.webp", "w": "2380", "h": "4200" },
+	{ "path": "/images/portfolio/sino-club-3.webp", "w": "2360", "h": "4200" },
+	{ "path": "/images/portfolio/sino-club-4.webp", "w": "2300", "h": "4080" },
+	{ "path": "/images/portfolio/sino-club-5.webp", "w": "2280", "h": "4060" },
+	{ "path": "/images/portfolio/sino-club-6.webp", "w": "2280", "h": "4060" },
 ]
 
 const Work = () => {

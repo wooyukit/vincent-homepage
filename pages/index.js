@@ -23,10 +23,13 @@ const loves = [
 ]
 
 const Page = () => {
+	const introBg = useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')
+	const borderColor = useColorModeValue('blackAlpha.400', 'whiteAlpha.800')
+
 	return (
 		<Layout>
 			<Container>
-				<Box borderRadius='lg' bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')} p={3} mb={6} align="center">
+				<Box borderRadius='lg' bg={introBg} p={3} mb={6} align="center">
 					Hello, I am a Mobile Application Developer based in Hong Kong!
 				</Box>
 				<Box display={{ md: 'flex' }} >
@@ -36,7 +39,7 @@ const Page = () => {
 					</Box>
 					<Box flexShrink={0} mt={{ base: 4, md: 0 }} ml={{ md: 6 }} align="center">
 						<Image
-							borderColor={useColorModeValue('blackAlpha.400', 'whiteAlpha.800')}
+							borderColor={borderColor}
 							borderWidth={2}
 							borderStyle="solid"
 							maxWidth="100px"
@@ -60,7 +63,7 @@ const Page = () => {
 						<ListItem>
 							<Link href="mailto:wooyukit@gmail.com">
 								<Button variant="ghost" colorScheme="teal" leftIcon={<Icon as={IoMail} />} />
-								wooyukit@gamil.com
+								wooyukit@gmail.com
 							</Link>
 						</ListItem>
 						<ListItem>

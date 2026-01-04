@@ -6,14 +6,14 @@ import Layout from "../../components/layouts/article";
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/apas-web-eyecatch.png", "w": "1280", "h": "720" }
+const eyecatch = { "path": "/images/portfolio/apas-web-eyecatch.webp", "w": "1280", "h": "720" }
 const srcs = [
-	{ "path": "/images/portfolio/apas-web-1.png", "w": "5520", "h": "3000" },
-	{ "path": "/images/portfolio/apas-web-2.png", "w": "5520", "h": "3180" },
-	{ "path": "/images/portfolio/apas-web-3.png", "w": "5520", "h": "3200" },
-	{ "path": "/images/portfolio/apas-web-4.png", "w": "5540", "h": "3180" },
-	{ "path": "/images/portfolio/apas-web-5.png", "w": "5540", "h": "3180" },
-	{ "path": "/images/portfolio/apas-web-6.png", "w": "5540", "h": "2500" },
+	{ "path": "/images/portfolio/apas-web-1.webp", "w": "5520", "h": "3000" },
+	{ "path": "/images/portfolio/apas-web-2.webp", "w": "5520", "h": "3180" },
+	{ "path": "/images/portfolio/apas-web-3.webp", "w": "5520", "h": "3200" },
+	{ "path": "/images/portfolio/apas-web-4.webp", "w": "5540", "h": "3180" },
+	{ "path": "/images/portfolio/apas-web-5.webp", "w": "5540", "h": "3180" },
+	{ "path": "/images/portfolio/apas-web-6.webp", "w": "5540", "h": "2500" },
 ]
 
 const Work = () => {
