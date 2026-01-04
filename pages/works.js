@@ -14,7 +14,7 @@ const experiences = [
 		company: 'OKX',
 		logo: '/images/works/okx-logo.jpeg',
 		alt: 'OKX',
-		position: 'Lead Engineer',
+		position: 'Engineering Lead',
 		location: 'Hong Kong',
 		year: '2022 - Present',
 		rounded: true,

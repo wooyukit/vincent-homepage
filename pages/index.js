@@ -17,12 +17,6 @@ const wave = keyframes`
 	100% { transform: rotate(0deg); }
 `
 
-const pulse = keyframes`
-	0% { box-shadow: 0 0 0 0 rgba(56, 178, 172, 0.4); }
-	70% { box-shadow: 0 0 0 15px rgba(56, 178, 172, 0); }
-	100% { box-shadow: 0 0 0 0 rgba(56, 178, 172, 0); }
-`
-
 const float = keyframes`
 	0% { transform: translateY(0px); }
 	50% { transform: translateY(-6px); }
@@ -33,6 +27,29 @@ const gradientMove = keyframes`
 	0% { background-position: 0% 50%; }
 	50% { background-position: 100% 50%; }
 	100% { background-position: 0% 50%; }
+`
+
+const floatSlow = keyframes`
+	0% { transform: translateY(0px) rotate(0deg); }
+	50% { transform: translateY(-15px) rotate(5deg); }
+	100% { transform: translateY(0px) rotate(0deg); }
+`
+
+const floatReverse = keyframes`
+	0% { transform: translateY(0px) rotate(0deg); }
+	50% { transform: translateY(10px) rotate(-5deg); }
+	100% { transform: translateY(0px) rotate(0deg); }
+`
+
+const glow = keyframes`
+	0% { box-shadow: 0 0 20px rgba(56, 178, 172, 0.3), 0 0 40px rgba(56, 178, 172, 0.1); }
+	50% { box-shadow: 0 0 30px rgba(56, 178, 172, 0.5), 0 0 60px rgba(56, 178, 172, 0.2); }
+	100% { box-shadow: 0 0 20px rgba(56, 178, 172, 0.3), 0 0 40px rgba(56, 178, 172, 0.1); }
+`
+
+const blink = keyframes`
+	0%, 50% { opacity: 1; }
+	51%, 100% { opacity: 0; }
 `
 
 const loves = [
@@ -85,19 +102,88 @@ const Page = () => {
 				bg={heroBg}
 				bgSize="200% 200%"
 				animation={`${gradientMove} 15s ease infinite`}
-				py={{ base: 12, md: 16 }}
+				py={{ base: 14, md: 20 }}
 				px={4}
 				mb={8}
 				borderRadius="2xl"
 				position="relative"
 				overflow="hidden"
 			>
-				<Container maxW="container.md">
+				{/* Floating Decorative Elements */}
+				<Box
+					position="absolute"
+					top="10%"
+					left="5%"
+					fontSize="2xl"
+					opacity={0.6}
+					animation={`${floatSlow} 6s ease-in-out infinite`}
+					display={{ base: 'none', md: 'block' }}
+				>
+					⚛️
+				</Box>
+				<Box
+					position="absolute"
+					top="20%"
+					right="8%"
+					fontSize="xl"
+					opacity={0.5}
+					animation={`${floatReverse} 5s ease-in-out infinite`}
+					display={{ base: 'none', md: 'block' }}
+				>
+					🦀
+				</Box>
+				<Box
+					position="absolute"
+					bottom="15%"
+					left="10%"
+					fontSize="lg"
+					opacity={0.4}
+					animation={`${floatSlow} 7s ease-in-out infinite`}
+					style={{ animationDelay: '1s' }}
+					display={{ base: 'none', md: 'block' }}
+				>
+					📱
+				</Box>
+				<Box
+					position="absolute"
+					bottom="25%"
+					right="12%"
+					fontSize="xl"
+					opacity={0.5}
+					animation={`${floatReverse} 4s ease-in-out infinite`}
+					display={{ base: 'none', md: 'block' }}
+				>
+					🍎
+				</Box>
+				<Box
+					position="absolute"
+					top="60%"
+					left="3%"
+					fontSize="md"
+					opacity={0.3}
+					animation={`${floatReverse} 8s ease-in-out infinite`}
+					display={{ base: 'none', lg: 'block' }}
+				>
+					{"</>"}
+				</Box>
+				<Box
+					position="absolute"
+					top="40%"
+					right="3%"
+					fontSize="md"
+					opacity={0.3}
+					animation={`${floatSlow} 6s ease-in-out infinite`}
+					display={{ base: 'none', lg: 'block' }}
+				>
+					{"{ }"}
+				</Box>
+
+				<Container maxW="container.md" position="relative" zIndex={1}>
 					<Flex
 						direction={{ base: 'column', md: 'row' }}
 						align="center"
 						justify="space-between"
-						gap={8}
+						gap={{ base: 8, md: 12 }}
 					>
 						{/* Profile Image */}
 						<Box
@@ -113,7 +199,7 @@ const Page = () => {
 								display="inline-block"
 								borderRadius="full"
 								overflow="hidden"
-								animation={`${pulse} 2s infinite`}
+								animation={`${glow} 3s ease-in-out infinite`}
 								shadow="2xl"
 							>
 								<Image
@@ -129,7 +215,7 @@ const Page = () => {
 						{/* Hero Content */}
 						<VStack
 							align={{ base: 'center', md: 'flex-start' }}
-							spacing={4}
+							spacing={5}
 							order={{ base: 2, md: 1 }}
 							textAlign={{ base: 'center', md: 'left' }}
 						>
@@ -142,36 +228,60 @@ const Page = () => {
 								>
 									👋
 								</Box>
-								<Text color="whiteAlpha.900" fontSize="lg">
+								<Text color="whiteAlpha.900" fontSize="lg" fontWeight="medium">
 									Hey there! I&apos;m
 								</Text>
 							</HStack>
 
-							<Heading
-								as="h1"
-								fontSize={{ base: '3xl', md: '4xl' }}
-								color="white"
-								fontWeight="bold"
-								lineHeight="shorter"
-							>
-								Vincent Woo 🚀
-							</Heading>
+							<Box>
+								<Heading
+									as="h1"
+									fontSize={{ base: '4xl', md: '5xl' }}
+									color="white"
+									fontWeight="bold"
+									lineHeight="shorter"
+									letterSpacing="tight"
+								>
+									Vincent Woo
+								</Heading>
+								<HStack mt={2} spacing={2} justify={{ base: 'center', md: 'flex-start' }}>
+									<Text
+										color="teal.200"
+										fontSize={{ base: 'lg', md: 'xl' }}
+										fontWeight="semibold"
+										fontFamily="mono"
+									>
+										Engineering Lead
+									</Text>
+									<Box
+										as="span"
+										w="2px"
+										h="20px"
+										bg="teal.200"
+										animation={`${blink} 1s infinite`}
+									/>
+								</HStack>
+							</Box>
 
 							<Text
-								color="whiteAlpha.900"
+								color="whiteAlpha.800"
 								fontSize={{ base: 'md', md: 'lg' }}
-								maxW="400px"
+								maxW="420px"
+								lineHeight="tall"
 							>
-								Lead Engineer crafting pixel-perfect mobile experiences that millions of users love! ✨
+								Crafting pixel-perfect mobile experiences at{' '}
+								<Text as="span" color="teal.200" fontWeight="semibold">OKX</Text>
+								{' '}that millions of users love. iOS, Android & beyond.
 							</Text>
 
-							<HStack spacing={3} pt={2}>
+							<HStack spacing={3} pt={3}>
 								<Link href="https://github.com/wooyukit" target="_blank" _hover={{ textDecoration: 'none' }}>
 									<Button
-										size="sm"
+										size="md"
 										bg="whiteAlpha.200"
 										color="white"
-										_hover={{ bg: 'whiteAlpha.300', transform: 'translateY(-2px)' }}
+										backdropFilter="blur(10px)"
+										_hover={{ bg: 'whiteAlpha.300', transform: 'translateY(-2px)', shadow: 'lg' }}
 										leftIcon={<IoLogoGithub />}
 										transition="all 0.2s"
 									>
@@ -180,10 +290,11 @@ const Page = () => {
 								</Link>
 								<Link href="https://www.linkedin.com/in/yu-kit-vincent-woo-63400332/" target="_blank" _hover={{ textDecoration: 'none' }}>
 									<Button
-										size="sm"
+										size="md"
 										bg="whiteAlpha.200"
 										color="white"
-										_hover={{ bg: 'whiteAlpha.300', transform: 'translateY(-2px)' }}
+										backdropFilter="blur(10px)"
+										_hover={{ bg: 'whiteAlpha.300', transform: 'translateY(-2px)', shadow: 'lg' }}
 										leftIcon={<IoLogoLinkedin />}
 										transition="all 0.2s"
 									>
@@ -199,7 +310,7 @@ const Page = () => {
 			<Container maxW="container.md">
 				{/* Stats Section */}
 				<Section delay={0.1}>
-					<SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={8}>
+					<SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={10}>
 						{stats.map((stat, index) => (
 							<Box
 								key={stat.label}
@@ -234,7 +345,7 @@ const Page = () => {
 						With over {new Date().getFullYear() - 2009} years in mobile development, I specialize in building high-performance iOS and Android applications that serve millions of users daily. From cryptocurrency exchanges to award-winning news platforms, I bring ideas to life with clean, maintainable code.
 					</Paragraph>
 					<Paragraph>
-						As a Lead Engineer, I architect scalable mobile solutions, mentor development teams, and drive technical decisions that shape product success. My expertise spans native development (Swift, Kotlin), cross-platform frameworks, and modern reactive programming patterns.
+						As a Engineering Lead, I architect scalable mobile solutions, mentor development teams, and drive technical decisions that shape product success. My expertise spans native development (Swift, Kotlin), cross-platform frameworks, and modern reactive programming patterns.
 					</Paragraph>
 					<Paragraph>
 						I&apos;m passionate about creating seamless user experiences, implementing robust CI/CD pipelines, and staying at the forefront of mobile technology trends.
@@ -290,6 +401,7 @@ const Page = () => {
 							</Button>
 						</NextLink>
 					</Flex>
+					<Box mb={8} />
 				</Section>
 
 				{/* Contact Section */}
@@ -333,6 +445,7 @@ const Page = () => {
 							</Link>
 						</SimpleGrid>
 					</Box>
+					<Box mb={4} />
 				</Section>
 
 				{/* Education Section */}
@@ -385,6 +498,7 @@ const Page = () => {
 							</Flex>
 						</Box>
 					</VStack>
+					<Box mb={6} />
 				</Section>
 
 				{/* Interests Section */}

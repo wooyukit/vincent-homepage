@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "vincent-homepage",
     "public": "out",
     "ignore": [
       "firebase.json",
