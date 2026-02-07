@@ -21,7 +21,7 @@ import { DiApple, DiAndroid, DiReact } from "react-icons/di";
 
 const LinkItem = ({ href, path, target, children, ...props }) => {
 	const active = path === href
-	const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
+	const inactiveColor = useColorModeValue('gray.200', 'whiteAlpha.900')
 	return (
 		<NextLink href={href} passHref>
 			<Link
