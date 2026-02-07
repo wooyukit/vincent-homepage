@@ -129,6 +129,9 @@ export const WorkImage = ({ src, alt, ...props }) => (
 			<Center
 				ref={ref}
 				onClick={open}
+				onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(e) } }}
+				role="button"
+				tabIndex={0}
 				cursor="pointer"
 				className="work-image-container"
 				borderRadius="xl"

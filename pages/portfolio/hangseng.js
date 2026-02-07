@@ -20,10 +20,10 @@ const srcs = [
 
 const Work = () => {
 	return (
-		<Layout title="SCMP App V5">
+		<Layout title="Hang Seng Business Mobile App">
 			<Container maxW="container.md">
 				<Title>
-					Hang Seng Business Mobile App <Badge>2019</Badge>
+					Hang Seng Business Mobile App <Badge>2017 - 2018</Badge>
 				</Title>
 				<WorkImage mb={6} src={eyecatch} alt="Hang Seng Business App" />
 				<P>

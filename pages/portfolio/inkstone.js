@@ -27,7 +27,7 @@ const Work = () => {
 		<Layout title="SCMP Inkstone App">
 			<Container maxW="container.md">
 				<Title>
-					SCMP Inkstone App <Badge>2017</Badge>
+					SCMP Inkstone App <Badge>2019 - 2020</Badge>
 				</Title>
 				<WorkImage mb={6} src={eyecatch} alt="SCMP Inkstone App" />
 				<P>
@@ -54,11 +54,6 @@ const Work = () => {
 					<ListItem>
 						<Meta>Download</Meta>
 						<Box display={{ sm: 'flex' }} align='center' alignItems="center">
-							<Link
-								href="https://apps.apple.com/hk/app/south-china-morning-post/id623201967?l=en"
-								target="_blank">
-								<Image maxW={200} src="/images/appstore.png" alt="Download on App Store" />
-							</Link>
 							<Link
 								href="https://play.google.com/store/apps/details?id=com.scmp.inkstone"
 								target="_blank">

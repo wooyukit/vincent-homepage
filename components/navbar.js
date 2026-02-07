@@ -88,6 +88,7 @@ const Navbar = props => {
 					</LinkItem>
 					<LinkItem
 						target="_blank"
+						rel="noopener noreferrer"
 						href="https://github.com/wooyukit/vincent-homepage"
 						path={path}
 						display='inline-flex'
