@@ -57,21 +57,16 @@ const StatCard = ({ label, value, isLoaded }) => {
       _hover={{ transform: 'translateY(-4px)', borderColor: 'teal.400' }}
       transition="all 0.3s"
     >
-      {isLoaded ? (
-        <>
-          <Text fontSize="2xl" fontWeight="bold" color="teal.500">
-            {value}
-          </Text>
-          <Text fontSize="xs" color={subtitleColor} fontWeight="medium">
-            {label}
-          </Text>
-        </>
-      ) : (
-        <>
-          <Skeleton height="32px" mb={2} />
-          <Skeleton height="14px" width="60%" mx="auto" />
-        </>
-      )}
+      <Skeleton isLoaded={isLoaded} fadeDuration={0.8}>
+        <Text fontSize="2xl" fontWeight="bold" color="teal.500">
+          {value}
+        </Text>
+      </Skeleton>
+      <Skeleton isLoaded={isLoaded} fadeDuration={0.8}>
+        <Text fontSize="xs" color={subtitleColor} fontWeight="medium">
+          {label}
+        </Text>
+      </Skeleton>
     </Box>
   )
 }
@@ -126,6 +121,15 @@ const Dashboard = () => {
   const tooltipBg = useColorModeValue('#fff', '#2D3748')
   const tooltipColor = useColorModeValue('#1A202C', '#fff')
   const chartTextColor = useColorModeValue('#4A5568', '#A0AEC0')
+
+  // Wait for section fade-in animations to finish before rendering charts
+  // Section delays: 0.2 (GitHub), 0.3 (Crates) + 0.8s duration = ~1.1s max
+  const [chartsReady, setChartsReady] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setChartsReady(true), 1200)
+    return () => clearTimeout(timer)
+  }, [])
 
   // GitHub state
   const [ghUser, setGhUser] = useState(null)
@@ -301,8 +305,8 @@ const Dashboard = () => {
                 <Text fontSize="sm" fontWeight="semibold" mb={3} color={subtitleColor}>
                   Language Breakdown
                 </Text>
-                {ghLoading ? (
-                  <Skeleton height="250px" borderRadius="xl" />
+                {ghLoading || !chartsReady ? (
+                  <Skeleton height="250px" borderRadius="xl" fadeDuration={0.8} />
                 ) : ghLanguages.length > 0 ? (
                   <Box
                     p={4}
@@ -319,6 +323,9 @@ const Dashboard = () => {
                           outerRadius={80}
                           dataKey="value"
                           nameKey="name"
+                          animationBegin={0}
+                          animationDuration={1500}
+                          animationEasing="ease-out"
                           label={({ name, percent }) =>
                             `${name} ${(percent * 100).toFixed(0)}%`
                           }
@@ -342,7 +349,7 @@ const Dashboard = () => {
                 <Text fontSize="sm" fontWeight="semibold" mb={3} color={subtitleColor}>
                   Top Repositories
                 </Text>
-                {ghLoading ? (
+                {ghLoading || !chartsReady ? (
                   <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
                     {[...Array(6)].map((_, i) => (
                       <Box
@@ -457,8 +464,8 @@ const Dashboard = () => {
                 <Text fontSize="sm" fontWeight="semibold" mb={3} color={subtitleColor}>
                   Top Crates by Downloads
                 </Text>
-                {cratesLoading ? (
-                  <Skeleton height="300px" borderRadius="xl" />
+                {cratesLoading || !chartsReady ? (
+                  <Skeleton height="300px" borderRadius="xl" fadeDuration={0.8} />
                 ) : topCrates.length > 0 ? (
                   <Box
                     p={4}
@@ -485,7 +492,13 @@ const Dashboard = () => {
                           tick={{ fill: chartTextColor, fontSize: 12 }}
                         />
                         <Tooltip content={<CustomTooltip tooltipBg={tooltipBg} tooltipColor={tooltipColor} />} />
-                        <Bar dataKey="downloads" radius={[0, 6, 6, 0]}>
+                        <Bar
+                          dataKey="downloads"
+                          radius={[0, 6, 6, 0]}
+                          animationBegin={0}
+                          animationDuration={1500}
+                          animationEasing="ease-out"
+                        >
                           {topCrates.map((_entry, index) => (
                             <Cell
                               key={`bar-${index}`}
