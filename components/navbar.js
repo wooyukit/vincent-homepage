@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import ThemeToggleButton from './theme-toggle-button'
-import { IoLogoGithub } from 'react-icons/io5'
+import { IoLogoGithub, IoBarChartOutline } from 'react-icons/io5'
 import { DiApple, DiAndroid, DiReact } from "react-icons/di";
 
 const LinkItem = ({ href, path, target, children, ...props }) => {
@@ -86,6 +86,15 @@ const Navbar = props => {
 						<DiReact />
 						Portfolio
 					</LinkItem>
+					<LinkItem href="/dashboard"
+						path={path}
+						display='inline-flex'
+						alignItems="center"
+						style={{ gap: 4 }}
+						pl={2}>
+						<IoBarChartOutline />
+						Dashboard
+					</LinkItem>
 					<LinkItem
 						target="_blank"
 						rel="noopener noreferrer"
@@ -113,6 +122,9 @@ const Navbar = props => {
 								</NextLink>
 								<NextLink href="/portfolio" passHref>
 									<MenuItem as={Link} style={{ gap: 4 }}><DiReact />Portfolio</MenuItem>
+								</NextLink>
+								<NextLink href="/dashboard" passHref>
+									<MenuItem as={Link} style={{ gap: 4 }}><IoBarChartOutline />Dashboard</MenuItem>
 								</NextLink>
 								<MenuItem as={Link} href="https://github.com/wooyukit/vincent-homepage" style={{ gap: 4 }}><IoLogoGithub />View Source</MenuItem>
 							</MenuList>
