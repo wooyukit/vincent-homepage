@@ -192,21 +192,16 @@ const Dashboard = () => {
   const fetchCrates = useCallback(async () => {
     setCratesLoading(true)
     setCratesError(null)
-    const cratesHeaders = {
-      headers: { 'User-Agent': 'vincent-homepage (wooyukit@gmail.com)' }
-    }
     try {
       const userRes = await fetch(
-        `https://crates.io/api/v1/users/${CRATES_USER}`,
-        cratesHeaders
+        `https://crates.io/api/v1/users/${CRATES_USER}`
       )
       if (!userRes.ok) throw new Error('Crates.io user lookup failed')
       const userData = await userRes.json()
       const userId = userData.user.id
 
       const cratesRes = await fetch(
-        `https://crates.io/api/v1/crates?user_id=${userId}&per_page=50&sort=downloads`,
-        cratesHeaders
+        `https://crates.io/api/v1/crates?user_id=${userId}&per_page=50&sort=downloads`
       )
       if (!cratesRes.ok) throw new Error('Crates.io crates lookup failed')
       const cratesData = await cratesRes.json()
