@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import {
   Container,
   Box,
@@ -76,21 +76,48 @@ const StatCard = ({ label, value, isLoaded }) => {
   )
 }
 
-const ErrorBox = ({ message, onRetry }) => (
-  <Box
-    p={4}
-    borderRadius="xl"
-    border="1px solid"
-    borderColor="red.300"
-    bg={useColorModeValue('red.50', 'red.900')}
-    textAlign="center"
-  >
-    <Text color="red.500" mb={2}>{message}</Text>
-    <Button size="sm" colorScheme="red" variant="outline" onClick={onRetry}>
-      Retry
-    </Button>
-  </Box>
-)
+const ErrorBox = ({ message, onRetry }) => {
+  const errorBg = useColorModeValue('red.50', 'red.900')
+
+  return (
+    <Box
+      p={4}
+      borderRadius="xl"
+      border="1px solid"
+      borderColor="red.300"
+      bg={errorBg}
+      textAlign="center"
+    >
+      <Text color="red.500" mb={2}>{message}</Text>
+      <Button size="sm" colorScheme="red" variant="outline" onClick={onRetry}>
+        Retry
+      </Button>
+    </Box>
+  )
+}
+
+const CustomTooltip = ({ active, payload, tooltipBg, tooltipColor }) => {
+  if (active && payload && payload.length) {
+    return (
+      <Box
+        bg={tooltipBg}
+        color={tooltipColor}
+        p={2}
+        borderRadius="md"
+        shadow="md"
+        fontSize="sm"
+      >
+        <Text fontWeight="bold">{payload[0].name}</Text>
+        <Text>
+          {payload[0].dataKey === 'downloads'
+            ? `${payload[0].value.toLocaleString()} downloads`
+            : `${payload[0].value} repos`}
+        </Text>
+      </Box>
+    )
+  }
+  return null
+}
 
 const Dashboard = () => {
   const cardBorder = useColorModeValue('gray.400', 'gray.600')
@@ -126,6 +153,9 @@ const Dashboard = () => {
           `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`
         )
       ])
+      if (userRes.status === 403 || reposRes.status === 403) {
+        throw new Error('GitHub API rate limit exceeded — please try again later')
+      }
       if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API request failed')
       const userData = await userRes.json()
       const reposData = await reposRes.json()
@@ -155,16 +185,21 @@ const Dashboard = () => {
   const fetchCrates = useCallback(async () => {
     setCratesLoading(true)
     setCratesError(null)
+    const cratesHeaders = {
+      headers: { 'User-Agent': 'vincent-homepage (wooyukit@gmail.com)' }
+    }
     try {
       const userRes = await fetch(
-        `https://crates.io/api/v1/users/${CRATES_USER}`
+        `https://crates.io/api/v1/users/${CRATES_USER}`,
+        cratesHeaders
       )
       if (!userRes.ok) throw new Error('Crates.io user lookup failed')
       const userData = await userRes.json()
       const userId = userData.user.id
 
       const cratesRes = await fetch(
-        `https://crates.io/api/v1/crates?user_id=${userId}&per_page=50&sort=downloads`
+        `https://crates.io/api/v1/crates?user_id=${userId}&per_page=50&sort=downloads`,
+        cratesHeaders
       )
       if (!cratesRes.ok) throw new Error('Crates.io crates lookup failed')
       const cratesData = await cratesRes.json()
@@ -190,42 +225,27 @@ const Dashboard = () => {
     fetchCrates()
   }, [fetchGitHub, fetchCrates])
 
-  const totalStars = ghRepos.reduce(
-    (sum, r) => sum + (r.stargazers_count || 0),
-    0
+  const totalStars = useMemo(
+    () => ghRepos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0),
+    [ghRepos]
   )
 
-  const topRepos = [...ghRepos]
-    .sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0))
-    .slice(0, 6)
+  const topRepos = useMemo(
+    () =>
+      [...ghRepos]
+        .sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0))
+        .slice(0, 6),
+    [ghRepos]
+  )
 
-  const topCrates = [...cratesList].slice(0, 10).map(c => ({
-    name: c.name,
-    downloads: c.downloads || 0
-  }))
-
-  const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-      return (
-        <Box
-          bg={tooltipBg}
-          color={tooltipColor}
-          p={2}
-          borderRadius="md"
-          shadow="md"
-          fontSize="sm"
-        >
-          <Text fontWeight="bold">{payload[0].name}</Text>
-          <Text>
-            {payload[0].dataKey === 'downloads'
-              ? `${payload[0].value.toLocaleString()} downloads`
-              : `${payload[0].value} repos`}
-          </Text>
-        </Box>
-      )
-    }
-    return null
-  }
+  const topCrates = useMemo(
+    () =>
+      [...cratesList].slice(0, 10).map(c => ({
+        name: c.name,
+        downloads: c.downloads || 0
+      })),
+    [cratesList]
+  )
 
   return (
     <Layout title="Dashboard">
@@ -310,7 +330,7 @@ const Dashboard = () => {
                             />
                           ))}
                         </Pie>
-                        <Tooltip content={<CustomTooltip />} />
+                        <Tooltip content={<CustomTooltip tooltipBg={tooltipBg} tooltipColor={tooltipColor} />} />
                       </PieChart>
                     </ResponsiveContainer>
                   </Box>
@@ -464,7 +484,7 @@ const Dashboard = () => {
                           width={120}
                           tick={{ fill: chartTextColor, fontSize: 12 }}
                         />
-                        <Tooltip content={<CustomTooltip />} />
+                        <Tooltip content={<CustomTooltip tooltipBg={tooltipBg} tooltipColor={tooltipColor} />} />
                         <Bar dataKey="downloads" radius={[0, 6, 6, 0]}>
                           {topCrates.map((_entry, index) => (
                             <Cell
