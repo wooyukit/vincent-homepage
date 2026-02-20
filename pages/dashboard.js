@@ -131,6 +131,9 @@ const Dashboard = () => {
     return () => clearTimeout(timer)
   }, [])
 
+  // Track when pie animation finishes so labels appear after slices
+  const [pieAnimDone, setPieAnimDone] = useState(false)
+
   // GitHub state
   const [ghUser, setGhUser] = useState(null)
   const [ghRepos, setGhRepos] = useState([])
@@ -324,10 +327,13 @@ const Dashboard = () => {
                           dataKey="value"
                           nameKey="name"
                           animationBegin={0}
-                          animationDuration={1500}
+                          animationDuration={1200}
                           animationEasing="ease-out"
-                          label={({ name, percent }) =>
-                            `${name} ${(percent * 100).toFixed(0)}%`
+                          onAnimationEnd={() => setPieAnimDone(true)}
+                          label={pieAnimDone
+                            ? ({ name, percent }) =>
+                                `${name} ${(percent * 100).toFixed(0)}%`
+                            : false
                           }
                         >
                           {ghLanguages.map((_entry, index) => (
@@ -337,7 +343,7 @@ const Dashboard = () => {
                             />
                           ))}
                         </Pie>
-                        <Tooltip content={<CustomTooltip tooltipBg={tooltipBg} tooltipColor={tooltipColor} />} />
+                        <Tooltip cursor={false} isAnimationActive={false} content={<CustomTooltip tooltipBg={tooltipBg} tooltipColor={tooltipColor} />} />
                       </PieChart>
                     </ResponsiveContainer>
                   </Box>
@@ -491,7 +497,7 @@ const Dashboard = () => {
                           width={120}
                           tick={{ fill: chartTextColor, fontSize: 12 }}
                         />
-                        <Tooltip content={<CustomTooltip tooltipBg={tooltipBg} tooltipColor={tooltipColor} />} />
+                        <Tooltip cursor={false} isAnimationActive={false} content={<CustomTooltip tooltipBg={tooltipBg} tooltipColor={tooltipColor} />} />
                         <Bar
                           dataKey="downloads"
                           radius={[0, 6, 6, 0]}
