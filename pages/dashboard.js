@@ -43,6 +43,9 @@ const CHART_COLORS = [
 const GITHUB_USER = 'wooyukit'
 const CRATES_USER = 'wooyukit'
 
+const pieLabel = ({ name, percent }) =>
+  `${name} ${(percent * 100).toFixed(0)}%`
+
 const StatCard = ({ label, value, isLoaded }) => {
   const cardBorder = useColorModeValue('gray.400', 'gray.600')
   const subtitleColor = useColorModeValue('gray.600', 'gray.400')
@@ -153,6 +156,7 @@ const Dashboard = () => {
   const fetchGitHub = useCallback(async () => {
     setGhLoading(true)
     setGhError(null)
+    setPieAnimDone(false)
     try {
       const [userRes, reposRes] = await Promise.all([
         fetch(`https://api.github.com/users/${GITHUB_USER}`),
@@ -325,11 +329,7 @@ const Dashboard = () => {
                           animationDuration={1200}
                           animationEasing="ease-out"
                           onAnimationEnd={() => setPieAnimDone(true)}
-                          label={pieAnimDone
-                            ? ({ name, percent }) =>
-                                `${name} ${(percent * 100).toFixed(0)}%`
-                            : false
-                          }
+                          label={pieAnimDone ? pieLabel : false}
                         >
                           {ghLanguages.map((_entry, index) => (
                             <Cell
