@@ -191,6 +191,7 @@ export const DownloadButtons = ({ appStoreUrl, playStoreUrl }) => (
 			<Link
 				href={appStoreUrl}
 				target="_blank"
+				rel="noopener noreferrer"
 				_hover={{ transform: 'scale(1.05)' }}
 				transition="all 0.2s"
 			>
@@ -206,6 +207,7 @@ export const DownloadButtons = ({ appStoreUrl, playStoreUrl }) => (
 			<Link
 				href={playStoreUrl}
 				target="_blank"
+				rel="noopener noreferrer"
 				_hover={{ transform: 'scale(1.05)' }}
 				transition="all 0.2s"
 			>

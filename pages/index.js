@@ -275,7 +275,7 @@ const Page = () => {
 							</Text>
 
 							<HStack spacing={3} pt={3}>
-								<Link href="https://github.com/wooyukit" target="_blank" _hover={{ textDecoration: 'none' }}>
+								<Link href="https://github.com/wooyukit" target="_blank" rel="noopener noreferrer" _hover={{ textDecoration: 'none' }}>
 									<Button
 										size="md"
 										bg="whiteAlpha.200"
@@ -288,7 +288,7 @@ const Page = () => {
 										GitHub
 									</Button>
 								</Link>
-								<Link href="https://www.linkedin.com/in/yu-kit-vincent-woo-63400332/" target="_blank" _hover={{ textDecoration: 'none' }}>
+								<Link href="https://www.linkedin.com/in/yu-kit-vincent-woo-63400332/" target="_blank" rel="noopener noreferrer" _hover={{ textDecoration: 'none' }}>
 									<Button
 										size="md"
 										bg="whiteAlpha.200"

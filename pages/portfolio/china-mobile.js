@@ -51,12 +51,14 @@ const Work = () => {
 						<Box display={{ sm: 'flex' }} align='center' alignItems="center">
 							<Link
 								href="https://apps.apple.com/hk/app/mylink-smart-life/id483513425?l=en"
-								target="_blank">
+								target="_blank"
+								rel="noopener noreferrer">
 								<Image maxW={200} src="/images/appstore.png" alt="Download on App Store" />
 							</Link>
 							<Link
 								href="https://play.google.com/store/apps/details?id=com.ChinaMobile"
-								target="_blank">
+								target="_blank"
+								rel="noopener noreferrer">
 								<Image maxW={200} src="/images/googleplay.png" alt="Download on Google Play" />
 							</Link>
 						</Box>
