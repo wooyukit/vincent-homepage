@@ -1,56 +1,11 @@
-import { Container, Box, Heading, Image, useColorModeValue, Button, Icon, Link, Tag, Wrap, WrapItem, Text, Badge, Flex, keyframes, SimpleGrid, VStack, HStack } from '@chakra-ui/react'
+import { Container, Box, Heading, Image, useColorModeValue, Button, Icon, Link, Tag, Wrap, WrapItem, Text, Badge, Flex, SimpleGrid, VStack, HStack } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Section from '../components/section'
 import Paragraph from '../components/paragraph'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import Layout from '../components/layouts/article'
 import { IoLogoGithub, IoPhonePortraitSharp, IoMail, IoLogoLinkedin } from 'react-icons/io5'
-
-const wave = keyframes`
-	0% { transform: rotate(0deg); }
-	10% { transform: rotate(14deg); }
-	20% { transform: rotate(-8deg); }
-	30% { transform: rotate(14deg); }
-	40% { transform: rotate(-4deg); }
-	50% { transform: rotate(10deg); }
-	60% { transform: rotate(0deg); }
-	100% { transform: rotate(0deg); }
-`
-
-const float = keyframes`
-	0% { transform: translateY(0px); }
-	50% { transform: translateY(-6px); }
-	100% { transform: translateY(0px); }
-`
-
-const gradientMove = keyframes`
-	0% { background-position: 0% 50%; }
-	50% { background-position: 100% 50%; }
-	100% { background-position: 0% 50%; }
-`
-
-const floatSlow = keyframes`
-	0% { transform: translateY(0px) rotate(0deg); }
-	50% { transform: translateY(-15px) rotate(5deg); }
-	100% { transform: translateY(0px) rotate(0deg); }
-`
-
-const floatReverse = keyframes`
-	0% { transform: translateY(0px) rotate(0deg); }
-	50% { transform: translateY(10px) rotate(-5deg); }
-	100% { transform: translateY(0px) rotate(0deg); }
-`
-
-const glow = keyframes`
-	0% { box-shadow: 0 0 20px rgba(56, 178, 172, 0.3), 0 0 40px rgba(56, 178, 172, 0.1); }
-	50% { box-shadow: 0 0 30px rgba(56, 178, 172, 0.5), 0 0 60px rgba(56, 178, 172, 0.2); }
-	100% { box-shadow: 0 0 20px rgba(56, 178, 172, 0.3), 0 0 40px rgba(56, 178, 172, 0.1); }
-`
-
-const blink = keyframes`
-	0%, 50% { opacity: 1; }
-	51%, 100% { opacity: 0; }
-`
+import { wave, float, gradientMove, floatSlow, floatReverse, glow, blink } from '../lib/animations'
 
 const loves = [
 	{ name: "Music", emoji: "🎵" },
