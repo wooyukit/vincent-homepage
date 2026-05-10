@@ -360,7 +360,7 @@ const ProjectCard = ({ item, index }) => {
 			<Box p={5}>
 				<NextLink href={`/portfolio/${item.id}`}>
 					<Heading
-						as="h3"
+						as="h2"
 						size="md"
 						color={titleColor}
 						cursor="pointer"

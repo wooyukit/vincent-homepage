@@ -292,7 +292,7 @@ const Dashboard = () => {
 
         {/* GitHub Section */}
         <Section delay={0.2}>
-          <Heading as="h3" fontSize="xl" mb={4}>
+          <Heading as="h2" fontSize="xl" mb={4}>
             GitHub
           </Heading>
 
@@ -471,7 +471,7 @@ const Dashboard = () => {
 
         {/* Crates.io Section */}
         <Section delay={0.3}>
-          <Heading as="h3" fontSize="xl" mb={4}>
+          <Heading as="h2" fontSize="xl" mb={4}>
             Crates.io
           </Heading>
 
@@ -566,7 +566,7 @@ const Dashboard = () => {
 
         {/* Product Events Placeholder */}
         <Section delay={0.4}>
-          <Heading as="h3" fontSize="xl" mb={4}>
+          <Heading as="h2" fontSize="xl" mb={4}>
             Product Events
           </Heading>
           <Box

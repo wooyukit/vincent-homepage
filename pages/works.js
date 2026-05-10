@@ -212,7 +212,7 @@ const ExperienceCard = ({ logo, alt, position, year, description, rounded, curre
 						</Flex>
 
 						{/* Title */}
-						<Heading as="h3" fontSize={{ base: 'lg', md: 'xl' }} color={titleColor} fontWeight="bold" mb={1}>
+						<Heading as="h2" fontSize={{ base: 'lg', md: 'xl' }} color={titleColor} fontWeight="bold" mb={1}>
 							{position}
 						</Heading>
 

@@ -294,7 +294,7 @@ const Page = () => {
 
 				{/* About Section */}
 				<Section delay={0.2}>
-					<Heading as="h3" fontSize="xl" mb={4}>
+					<Heading as="h2" fontSize="xl" mb={4}>
 						👨‍💻 About Me
 					</Heading>
 					<Paragraph>
@@ -369,7 +369,7 @@ const Page = () => {
 						border="1px dashed"
 						borderColor={cardBorder}
 					>
-						<Heading as="h3" fontSize="xl" mb={4}>
+						<Heading as="h2" fontSize="xl" mb={4}>
 							📬 Get In Touch
 						</Heading>
 						<SimpleGrid columns={{ base: 1, sm: 2 }} spacing={3}>
@@ -406,7 +406,7 @@ const Page = () => {
 
 				{/* Education Section */}
 				<Section delay={0.4}>
-					<Heading as="h3" fontSize="xl" mb={4}>
+					<Heading as="h2" fontSize="xl" mb={4}>
 						🎓 Where I Leveled Up
 					</Heading>
 					<VStack spacing={4} align="stretch">
@@ -421,7 +421,7 @@ const Page = () => {
 							<Flex justify="space-between" align="flex-start" flexWrap="wrap" gap={2}>
 								<Box>
 									<Badge colorScheme="teal" mb={2}>📅 2017</Badge>
-									<Heading as="h4" fontSize="md" mb={1}>
+									<Heading as="h3" fontSize="md" mb={1}>
 										🎯 Master of Science in Information System Management
 									</Heading>
 									<Text color={subtitleColor} fontSize="sm">
@@ -443,7 +443,7 @@ const Page = () => {
 							<Flex justify="space-between" align="flex-start" flexWrap="wrap" gap={2}>
 								<Box>
 									<Badge colorScheme="teal" mb={2}>📅 2009</Badge>
-									<Heading as="h4" fontSize="md" mb={1}>
+									<Heading as="h3" fontSize="md" mb={1}>
 										⚡ Bachelor of Electronic and Information Engineering
 									</Heading>
 									<Text color={subtitleColor} fontSize="sm">
@@ -459,7 +459,7 @@ const Page = () => {
 
 				{/* Interests Section */}
 				<Section delay={0.5}>
-					<Heading as="h3" fontSize="xl" mb={4}>
+					<Heading as="h2" fontSize="xl" mb={4}>
 						❤️ When I&apos;m Not Coding
 					</Heading>
 					<Wrap spacing={2}>
