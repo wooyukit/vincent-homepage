@@ -29,16 +29,23 @@ import {
 import Section from '../components/section'
 import Layout from '../components/layouts/article'
 
-const CHART_COLORS = [
-  '#38B2AC',
-  '#4FD1C5',
-  '#81E6D9',
-  '#B2F5EA',
-  '#E6FFFA',
-  '#319795',
-  '#2C7A7B',
-  '#285E61'
-]
+const DASHBOARD_CONFIG = {
+  chartsReadyDelay: 1200,
+  pieAnimationDuration: 1200,
+  barAnimationDuration: 1500,
+  pieChartHeight: 250,
+  barChartHeight: 300,
+  chartColors: [
+    '#38B2AC',
+    '#4FD1C5',
+    '#81E6D9',
+    '#B2F5EA',
+    '#E6FFFA',
+    '#319795',
+    '#2C7A7B',
+    '#285E61'
+  ]
+}
 
 const GITHUB_USER = 'wooyukit'
 const CRATES_USER = 'wooyukit'
@@ -130,7 +137,10 @@ const Dashboard = () => {
   const [chartsReady, setChartsReady] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setChartsReady(true), 1200)
+    const timer = setTimeout(
+      () => setChartsReady(true),
+      DASHBOARD_CONFIG.chartsReadyDelay
+    )
     return () => clearTimeout(timer)
   }, [])
 
@@ -165,9 +175,19 @@ const Dashboard = () => {
         )
       ])
       if (userRes.status === 403 || reposRes.status === 403) {
-        throw new Error('GitHub API rate limit exceeded — please try again later')
+        throw new Error(
+          'GitHub API rate limit exceeded — please try again later'
+        )
       }
-      if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API request failed')
+      if (userRes.status === 404) {
+        throw new Error(`GitHub user not found: ${GITHUB_USER}`)
+      }
+      if (!userRes.ok) {
+        throw new Error(`GitHub API error (user): ${userRes.status}`)
+      }
+      if (!reposRes.ok) {
+        throw new Error(`GitHub API error (repos): ${reposRes.status}`)
+      }
       const userData = await userRes.json()
       const reposData = await reposRes.json()
 
@@ -187,6 +207,7 @@ const Dashboard = () => {
         .map(([name, value]) => ({ name, value }))
       setGhLanguages(sorted)
     } catch (err) {
+      console.error('GitHub fetch failed:', err)
       setGhError(err.message || 'Failed to fetch GitHub data')
     } finally {
       setGhLoading(false)
@@ -200,14 +221,18 @@ const Dashboard = () => {
       const userRes = await fetch(
         `https://crates.io/api/v1/users/${CRATES_USER}`
       )
-      if (!userRes.ok) throw new Error('Crates.io user lookup failed')
+      if (!userRes.ok) {
+        throw new Error(`crates.io error (user lookup): ${userRes.status}`)
+      }
       const userData = await userRes.json()
       const userId = userData.user.id
 
       const cratesRes = await fetch(
         `https://crates.io/api/v1/crates?user_id=${userId}&per_page=50&sort=downloads`
       )
-      if (!cratesRes.ok) throw new Error('Crates.io crates lookup failed')
+      if (!cratesRes.ok) {
+        throw new Error(`crates.io error (crates lookup): ${cratesRes.status}`)
+      }
       const cratesData = await cratesRes.json()
 
       const crates = cratesData.crates || []
@@ -220,7 +245,8 @@ const Dashboard = () => {
         )
       })
     } catch (err) {
-      setCratesError(err.message || 'Failed to fetch Crates.io data')
+      console.error('crates.io fetch failed:', err)
+      setCratesError(err.message || 'Failed to fetch crates.io data')
     } finally {
       setCratesLoading(false)
     }
@@ -277,7 +303,7 @@ const Dashboard = () => {
           {ghError ? (
             <ErrorBox message={ghError} onRetry={fetchGitHub} />
           ) : (
-            <>
+            <Box aria-live="polite" aria-busy={ghLoading}>
               {/* Stat Cards */}
               <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={6}>
                 <StatCard
@@ -308,7 +334,11 @@ const Dashboard = () => {
                   Language Breakdown
                 </Text>
                 {ghLoading || !chartsReady ? (
-                  <Skeleton height="250px" borderRadius="xl" fadeDuration={0.8} />
+                  <Skeleton
+                    height={`${DASHBOARD_CONFIG.pieChartHeight}px`}
+                    borderRadius="xl"
+                    fadeDuration={0.8}
+                  />
                 ) : ghLanguages.length > 0 ? (
                   <Box
                     p={4}
@@ -316,7 +346,10 @@ const Dashboard = () => {
                     border="1px dashed"
                     borderColor={cardBorder}
                   >
-                    <ResponsiveContainer width="100%" height={250}>
+                    <ResponsiveContainer
+                      width="100%"
+                      height={DASHBOARD_CONFIG.pieChartHeight}
+                    >
                       <PieChart>
                         <Pie
                           data={ghLanguages}
@@ -326,7 +359,7 @@ const Dashboard = () => {
                           dataKey="value"
                           nameKey="name"
                           animationBegin={0}
-                          animationDuration={1200}
+                          animationDuration={DASHBOARD_CONFIG.pieAnimationDuration}
                           animationEasing="ease-out"
                           onAnimationEnd={() => setPieAnimDone(true)}
                           label={pieAnimDone ? pieLabel : false}
@@ -334,7 +367,11 @@ const Dashboard = () => {
                           {ghLanguages.map((_entry, index) => (
                             <Cell
                               key={`cell-${index}`}
-                              fill={CHART_COLORS[index % CHART_COLORS.length]}
+                              fill={
+                                DASHBOARD_CONFIG.chartColors[
+                                  index % DASHBOARD_CONFIG.chartColors.length
+                                ]
+                              }
                             />
                           ))}
                         </Pie>
@@ -432,7 +469,7 @@ const Dashboard = () => {
                   </SimpleGrid>
                 )}
               </Box>
-            </>
+            </Box>
           )}
         </Section>
 
@@ -445,7 +482,7 @@ const Dashboard = () => {
           {cratesError ? (
             <ErrorBox message={cratesError} onRetry={fetchCrates} />
           ) : (
-            <>
+            <Box aria-live="polite" aria-busy={cratesLoading}>
               {/* Stat Cards */}
               <SimpleGrid columns={2} spacing={4} mb={6}>
                 <StatCard
@@ -466,7 +503,11 @@ const Dashboard = () => {
                   Top Crates by Downloads
                 </Text>
                 {cratesLoading || !chartsReady ? (
-                  <Skeleton height="300px" borderRadius="xl" fadeDuration={0.8} />
+                  <Skeleton
+                    height={`${DASHBOARD_CONFIG.barChartHeight}px`}
+                    borderRadius="xl"
+                    fadeDuration={0.8}
+                  />
                 ) : topCrates.length > 0 ? (
                   <Box
                     p={4}
@@ -474,7 +515,10 @@ const Dashboard = () => {
                     border="1px dashed"
                     borderColor={cardBorder}
                   >
-                    <ResponsiveContainer width="100%" height={300}>
+                    <ResponsiveContainer
+                      width="100%"
+                      height={DASHBOARD_CONFIG.barChartHeight}
+                    >
                       <BarChart
                         data={topCrates}
                         layout="vertical"
@@ -497,13 +541,17 @@ const Dashboard = () => {
                           dataKey="downloads"
                           radius={[0, 6, 6, 0]}
                           animationBegin={0}
-                          animationDuration={1500}
+                          animationDuration={DASHBOARD_CONFIG.barAnimationDuration}
                           animationEasing="ease-out"
                         >
                           {topCrates.map((_entry, index) => (
                             <Cell
                               key={`bar-${index}`}
-                              fill={CHART_COLORS[index % CHART_COLORS.length]}
+                              fill={
+                                DASHBOARD_CONFIG.chartColors[
+                                  index % DASHBOARD_CONFIG.chartColors.length
+                                ]
+                              }
                             />
                           ))}
                         </Bar>
@@ -516,7 +564,7 @@ const Dashboard = () => {
                   </Text>
                 )}
               </Box>
-            </>
+            </Box>
           )}
         </Section>
 
