@@ -144,9 +144,6 @@ const Dashboard = () => {
     return () => clearTimeout(timer)
   }, [])
 
-  // Track when pie animation finishes so labels appear after slices
-  const [pieAnimDone, setPieAnimDone] = useState(false)
-
   // GitHub state
   const [ghUser, setGhUser] = useState(null)
   const [ghRepos, setGhRepos] = useState([])
@@ -166,7 +163,6 @@ const Dashboard = () => {
   const fetchGitHub = useCallback(async () => {
     setGhLoading(true)
     setGhError(null)
-    setPieAnimDone(false)
     try {
       const [userRes, reposRes] = await Promise.all([
         fetch(`https://api.github.com/users/${GITHUB_USER}`),
@@ -361,8 +357,8 @@ const Dashboard = () => {
                           animationBegin={0}
                           animationDuration={DASHBOARD_CONFIG.pieAnimationDuration}
                           animationEasing="ease-out"
-                          onAnimationEnd={() => setPieAnimDone(true)}
-                          label={pieAnimDone ? pieLabel : false}
+                          label={pieLabel}
+                          isAnimationActive
                         >
                           {ghLanguages.map((_entry, index) => (
                             <Cell
