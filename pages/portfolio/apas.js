@@ -30,7 +30,7 @@ const Work = () => {
 				<List mx={4} my={4} spacing={4}>
 					<ListItem>
 						<Meta>Website</Meta>
-						<Link href="https://www.apas.com.hk" target="_blank">https://www.apas.com.hk <ExternalLinkIcon mx="2px" />
+						<Link href="https://www.apas.com.hk" target="_blank" rel="noopener noreferrer">https://www.apas.com.hk <ExternalLinkIcon mx="2px" />
 						</Link>
 					</ListItem>
 					<ListItem>

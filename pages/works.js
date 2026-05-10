@@ -232,7 +232,7 @@ const ExperienceCard = ({ logo, alt, position, year, description, rounded, curre
 				{links && links.length > 0 && (
 					<Flex gap={2} flexWrap="wrap" ml={{ base: 0, md: '76px' }}>
 						{links.map((link, i) => (
-							<Link key={i} href={link.url} target="_blank" _hover={{ textDecoration: 'none' }}>
+							<Link key={i} href={link.url} target="_blank" rel="noopener noreferrer" _hover={{ textDecoration: 'none' }}>
 								<Button
 									size="sm"
 									variant="outline"

@@ -34,7 +34,7 @@ const Work = () => {
 				<List mx={4} my={4} spacing={4}>
 					<ListItem>
 						<Meta>Mobile App</Meta>
-						<Link href="https://www.hangseng.com/en-hk/business/" target="_blank">https://www.hangseng.com/en-hk/business/ <ExternalLinkIcon mx="2px" />
+						<Link href="https://www.hangseng.com/en-hk/business/" target="_blank" rel="noopener noreferrer">https://www.hangseng.com/en-hk/business/ <ExternalLinkIcon mx="2px" />
 						</Link>
 					</ListItem>
 					<ListItem>
@@ -59,12 +59,14 @@ const Work = () => {
 						<Box display={{ sm: 'flex' }} align='center' alignItems="center">
 							<Link
 								href="https://apps.apple.com/hk/app/hang-seng-business-mobile-app/id1117207965?l=en"
-								target="_blank">
+								target="_blank"
+								rel="noopener noreferrer">
 								<Image maxW={200} src="/images/appstore.png" alt="Download on App Store" />
 							</Link>
 							<Link
 								href="https://play.google.com/store/apps/details?id=com.hangseng.cmbmobileapp"
-								target="_blank">
+								target="_blank"
+								rel="noopener noreferrer">
 								<Image maxW={200} src="/images/googleplay.png" alt="Download on Google Play" />
 							</Link>
 						</Box>
