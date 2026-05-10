@@ -9,7 +9,7 @@ const Main = ({ children, router }) => {
 		<Box as="main">
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<title>Vincent Homepage</title>
+				<title>Vincent Woo (WOO Yu Kit Vincent) — Engineering Lead | Mobile Developer</title>
 			</Head>
 			<Navbar path={router.asPath} />
 			<Container maxW="container.lg" pt={16}>
