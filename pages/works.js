@@ -2,6 +2,7 @@ import { Container, Box, Heading, Image, useColorModeValue, Text, Flex, Link, Bu
 import Section from '../components/section'
 import Layout from '../components/layouts/article'
 import { IoLogoGithub, IoGlobeOutline } from 'react-icons/io5'
+import { getYearsOfExperience } from '../lib/constants'
 
 const pulse = keyframes`
 	0% { box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7); }
@@ -277,7 +278,7 @@ const Works = () => {
 							Work Experience
 						</Heading>
 						<Text fontSize="md" color={subtitleColor} maxW="500px" mx="auto">
-							{new Date().getFullYear() - 2009}+ years of experience building mobile and web applications with passionate teams.
+							{getYearsOfExperience()}+ years of experience building mobile and web applications with passionate teams.
 						</Text>
 					</Box>
 				</Section>

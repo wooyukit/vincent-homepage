@@ -6,6 +6,7 @@ import { ChevronRightIcon } from '@chakra-ui/icons'
 import Layout from '../components/layouts/article'
 import { IoLogoGithub, IoPhonePortraitSharp, IoMail, IoLogoLinkedin } from 'react-icons/io5'
 import { wave, float, gradientMove, floatSlow, floatReverse, glow, blink } from '../lib/animations'
+import { getYearsOfExperience } from '../lib/constants'
 
 const loves = [
 	{ name: "Music", emoji: "🎵" },
@@ -35,7 +36,7 @@ const skills = [
 ]
 
 const stats = [
-	{ number: `${new Date().getFullYear() - 2009}+`, label: "Years Experience", emoji: "⏱️" },
+	{ number: `${getYearsOfExperience()}+`, label: "Years Experience", emoji: "⏱️" },
 	{ number: "50+", label: "Projects Delivered", emoji: "🚀" },
 	{ number: "10+", label: "Tech Stacks", emoji: "🛠️" },
 	{ number: "2", label: "Degrees", emoji: "🎓" },
@@ -297,7 +298,7 @@ const Page = () => {
 						👨‍💻 About Me
 					</Heading>
 					<Paragraph>
-						With over {new Date().getFullYear() - 2009} years in mobile development, I specialize in building high-performance iOS and Android applications that serve millions of users daily. From cryptocurrency exchanges to award-winning news platforms, I bring ideas to life with clean, maintainable code.
+						With over {getYearsOfExperience()} years in mobile development, I specialize in building high-performance iOS and Android applications that serve millions of users daily. From cryptocurrency exchanges to award-winning news platforms, I bring ideas to life with clean, maintainable code.
 					</Paragraph>
 					<Paragraph>
 						As a Engineering Lead, I architect scalable mobile solutions, mentor development teams, and drive technical decisions that shape product success. My expertise spans native development (Swift, Kotlin), cross-platform frameworks, and modern reactive programming patterns.
