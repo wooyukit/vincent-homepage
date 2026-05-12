@@ -9,7 +9,7 @@ export default class Document extends NextDocument {
 				<Head>
 					<meta name="description" content="Vincent Woo (WOO Yu Kit Vincent) — Engineering Lead with 17+ years of mobile development experience. Building high-performance iOS and Android apps at OKX, SCMP, Hang Seng Bank, and more." />
 					<meta name="author" content="WOO Yu Kit Vincent" />
-					<meta name="keywords" content="Vincent Woo, WOO Yu Kit Vincent, WOO Yu Kit, Yu Kit Vincent Woo, Engineering Lead, Mobile Developer, iOS Developer, Android Developer, Hong Kong Developer, OKX, SCMP" />
+					<meta name="keywords" content="Vincent Woo, VincentWoo, Woo Yu Kit, WooYuKit, Woo Yu Kit Vincent, Vincent Woo Yu Kit, Yu Kit Woo, Yu Kit Vincent Woo, Vincent Yu Kit Woo, Engineering Lead, Mobile Developer, iOS Developer, Android Developer, Hong Kong Developer, OKX, SCMP" />
 					<meta name="robots" content="index, follow" />
 					<link rel="canonical" href="https://vincent-homepage.web.app" />
 					<meta property="og:title" content="Vincent Woo (WOO Yu Kit Vincent) — Engineering Lead" />
@@ -29,7 +29,7 @@ export default class Document extends NextDocument {
 								'@context': 'https://schema.org',
 								'@type': 'Person',
 								name: 'Vincent Woo',
-								alternateName: ['WOO Yu Kit Vincent', 'WOO Yu Kit', 'Yu Kit Vincent Woo'],
+								alternateName: ['VincentWoo', 'Woo Yu Kit', 'WooYuKit', 'Woo Yu Kit Vincent', 'Vincent Woo Yu Kit', 'Yu Kit Woo', 'Yu Kit Vincent Woo', 'Vincent Yu Kit Woo'],
 								givenName: 'Yu Kit Vincent',
 								familyName: 'Woo',
 								jobTitle: 'Engineering Lead',
