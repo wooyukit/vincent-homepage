@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Navbar from '../navbar.js'
-import GlassBackdrop from '../glass-backdrop'
 import { Box, Container, Link } from '@chakra-ui/react'
 
 const Main = ({ children, router }) => {
@@ -9,7 +8,6 @@ const Main = ({ children, router }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <GlassBackdrop />
       <Link
         href="#main-content"
         position="fixed"
@@ -31,10 +29,7 @@ const Main = ({ children, router }) => {
         id="main-content"
         tabIndex={-1}
         maxW="container.lg"
-        position="relative"
-        zIndex={1}
-        px={{ base: 6, md: 4 }}
-        pt={28}
+        pt={20}
         pb={8}
       >
         {children}
