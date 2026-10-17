@@ -1,13 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import {
-  Box,
-  Button,
-  Heading,
-  Text,
-  Spinner,
-  useColorModeValue
-} from '@chakra-ui/react'
+import { Box, Button, Heading, Text, Spinner } from '@chakra-ui/react'
 
 const Planet = dynamic(() => import('./planet'), {
   ssr: false,
@@ -20,7 +13,7 @@ const Planet = dynamic(() => import('./planet'), {
 
 const PlanetPreview = () => {
   const [expanded, setExpanded] = useState(false)
-  const muted = useColorModeValue('gray.600', 'gray.400')
+  const muted = 'text-muted'
 
   return (
     <Box

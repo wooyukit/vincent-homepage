@@ -6,8 +6,7 @@ import {
   Text,
   SimpleGrid,
   HStack,
-  Button,
-  useColorModeValue
+  Button
 } from '@chakra-ui/react'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
@@ -23,7 +22,7 @@ const matches = (project, filter) =>
 
 const Portfolio = () => {
   const [filter, setFilter] = useState('All')
-  const muted = useColorModeValue('gray.600', 'gray.400')
+  const muted = 'text-muted'
   const visible = projects.filter(project => matches(project, filter))
 
   return (

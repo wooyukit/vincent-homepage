@@ -1,21 +1,13 @@
 import NextLink from 'next/link'
 import Image from 'next/image'
-import {
-  Box,
-  Heading,
-  Text,
-  Link,
-  Badge,
-  Flex,
-  useColorModeValue
-} from '@chakra-ui/react'
+import { Box, Heading, Text, Link, Badge, Flex } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { useReveal } from '../lib/use-reveal'
 
 const ProjectCard = ({ project, priority = false, index = 0 }) => {
   const ref = useReveal()
-  const muted = useColorModeValue('gray.600', 'gray.400')
-  const accent = useColorModeValue('blue.700', 'blue.200')
+  const muted = 'text-muted'
+  const accent = 'text-accent'
 
   return (
     <Box

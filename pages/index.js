@@ -13,8 +13,7 @@ import {
   WrapItem,
   Badge,
   Divider,
-  Icon,
-  useColorModeValue
+  Icon
 } from '@chakra-ui/react'
 import { ArrowForwardIcon, ArrowDownIcon } from '@chakra-ui/icons'
 import {
@@ -57,9 +56,9 @@ const interests = [
 ]
 
 const Page = () => {
-  const border = useColorModeValue('gray.200', 'gray.700')
-  const muted = useColorModeValue('gray.600', 'gray.400')
-  const accent = useColorModeValue('blue.700', 'blue.200')
+  const border = 'border-default'
+  const muted = 'text-muted'
+  const accent = 'text-accent'
 
   return (
     <Layout>

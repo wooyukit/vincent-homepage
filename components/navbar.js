@@ -11,8 +11,7 @@ import {
   MenuList,
   MenuItem,
   Portal,
-  IconButton,
-  useColorModeValue
+  IconButton
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { IoPauseOutline, IoPlayOutline } from 'react-icons/io5'
@@ -31,16 +30,11 @@ const navigation = [
 const Navbar = ({ path }) => {
   const { paused, toggle } = useAutomaticMotion()
   const current = path.split(/[?#]/)[0]
-  const accent = useColorModeValue('gray.900', 'white')
-  const activeBg = useColorModeValue(
-    'rgba(0, 0, 0, 0.035)',
-    'rgba(255, 255, 255, 0.06)'
-  )
-  const inactive = useColorModeValue('gray.800', 'gray.200')
-  const scrollShade = useColorModeValue(
-    'linear-gradient(to bottom, rgba(245, 245, 247, 0.82), rgba(245, 245, 247, 0.54) 62%, rgba(245, 245, 247, 0))',
-    'linear-gradient(to bottom, rgba(9, 9, 11, 0.88), rgba(9, 9, 11, 0.62) 62%, rgba(9, 9, 11, 0))'
-  )
+  const accent = 'text-strong'
+  const activeBg = 'var(--chakra-colors-navigation-active)'
+  const inactive = 'text-navigation'
+  const scrollShade =
+    'linear-gradient(to bottom, var(--chakra-colors-navigation-shade-start), var(--chakra-colors-navigation-shade-middle) 62%, var(--chakra-colors-navigation-shade-end))'
   const isActive = href =>
     current === href || (href !== '/' && current.startsWith(`${href}/`))
 

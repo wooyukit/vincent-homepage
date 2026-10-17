@@ -58,7 +58,7 @@ const DASHBOARD_CONFIG = {
 const pieLabel = ({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`
 
 const StatCard = ({ label, value, isLoaded }) => {
-  const subtitleColor = useColorModeValue('gray.600', 'gray.400')
+  const subtitleColor = 'text-muted'
 
   return (
     <Box
@@ -71,11 +71,7 @@ const StatCard = ({ label, value, isLoaded }) => {
       transition="all 0.3s"
     >
       <Skeleton isLoaded={isLoaded} fadeDuration={0.8}>
-        <Text
-          fontSize="2xl"
-          fontWeight="bold"
-          color={useColorModeValue('blue.700', 'blue.200')}
-        >
+        <Text fontSize="2xl" fontWeight="bold" color="text-accent">
           {value}
         </Text>
       </Skeleton>
@@ -89,7 +85,7 @@ const StatCard = ({ label, value, isLoaded }) => {
 }
 
 const ErrorBox = ({ message, onRetry }) => {
-  const errorBg = useColorModeValue('red.50', 'red.900')
+  const errorBg = 'surface-error'
 
   return (
     <Box
@@ -169,7 +165,7 @@ const Dashboard = () => {
     ],
     DASHBOARD_CONFIG.chartColors
   )
-  const subtitleColor = useColorModeValue('gray.600', 'gray.400')
+  const subtitleColor = 'text-muted'
   const tooltipBg = useColorModeValue('#fff', '#1b232e')
   const tooltipColor = useColorModeValue('#1A202C', '#fff')
   const chartTextColor = useColorModeValue('#526078', '#b0b8c6')

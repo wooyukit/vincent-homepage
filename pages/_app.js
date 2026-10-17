@@ -4,6 +4,8 @@ import theme from '../lib/theme'
 import { MotionConfig } from 'framer-motion'
 import RouteProgress from '../components/route-progress'
 import { AutomaticMotionProvider } from '../lib/automatic-motion'
+import 'photoswipe/dist/photoswipe.css'
+import 'photoswipe/dist/default-skin/default-skin.css'
 
 const Website = ({ Component, pageProps, router }) => {
   return (

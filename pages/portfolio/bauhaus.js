@@ -11,8 +11,7 @@ import {
 import { Title, WorkImage, Meta } from '../../components/work'
 import P from '../../components/paragraph'
 import Layout from '../../components/layouts/article'
-import 'photoswipe/dist/photoswipe.css'
-import { Gallery } from 'react-photoswipe-gallery'
+import Gallery from '../../components/project-gallery'
 
 const eyecatch = {
   path: '/images/portfolio/bauhaus-eyecatch.webp',

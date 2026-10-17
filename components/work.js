@@ -7,16 +7,17 @@ import {
   Center,
   Flex,
   Icon,
-  Text,
-  useColorModeValue
+  Text
 } from '@chakra-ui/react'
 import { ChevronLeftIcon } from '@chakra-ui/icons'
 import { IoCalendarOutline } from 'react-icons/io5'
 import Image from 'next/image'
 import { Item } from 'react-photoswipe-gallery'
+import images from '../lib/generated-images.json'
+import { getImageDimensions } from '../lib/image-path'
 
 export const Title = ({ children, year }) => {
-  const accent = useColorModeValue('blue.700', 'blue.200')
+  const accent = 'text-accent'
   return (
     <Box mb={6}>
       <Link
@@ -76,13 +77,13 @@ export const ProjectInfo = ({ children }) => {
 }
 
 export const InfoRow = ({ icon, label, children }) => {
-  const labelColor = useColorModeValue('gray.600', 'gray.400')
+  const labelColor = 'text-muted'
 
   return (
     <Flex
       py={3}
       borderBottom="1px solid"
-      borderColor={useColorModeValue('gray.100', 'gray.700')}
+      borderColor="surface-subtle"
       _last={{ borderBottom: 'none', pb: 0 }}
       _first={{ pt: 0 }}
       direction={{ base: 'column', sm: 'row' }}
@@ -100,8 +101,8 @@ export const InfoRow = ({ icon, label, children }) => {
 }
 
 export const TechStack = ({ techs }) => {
-  const tagBg = useColorModeValue('gray.100', 'gray.700')
-  const tagColor = useColorModeValue('gray.700', 'gray.300')
+  const tagBg = 'surface-subtle'
+  const tagColor = 'text-tag'
 
   return (
     <Flex flexWrap="wrap" gap={2}>
@@ -123,53 +124,62 @@ export const TechStack = ({ techs }) => {
   )
 }
 
-export const WorkImage = ({ src, alt, ...props }) => (
-  <Item original={src.path} thumbnail={src.path} width={src.w} height={src.h}>
-    {({ ref, open }) => (
-      <Center
-        as="button"
-        type="button"
-        w="full"
-        aria-label={`Enlarge ${alt}`}
-        ref={ref}
-        onClick={open}
-        cursor="pointer"
-        className="work-image-container"
-        borderRadius="xl"
-        overflow="hidden"
-        _hover={{
-          transform: 'scale(1.02)',
-          shadow: 'xl'
-        }}
-        transition="all 0.3s ease"
-        _focusVisible={{
-          outline: '3px solid',
-          outlineColor: 'blue.400',
-          outlineOffset: 3
-        }}
-        {...props}
-      >
-        <Image
-          width={Number(src.w)}
-          height={Number(src.h)}
-          src={src.path}
-          alt={alt}
-          sizes={
-            src.path.includes('eyecatch')
-              ? '(min-width: 48em) 768px, 100vw'
-              : '(min-width: 48em) 240px, 50vw'
-          }
-          priority={src.path.includes('eyecatch')}
-          style={{ width: '100%', height: 'auto' }}
-          className="work-thumbnail"
-        />
-      </Center>
-    )}
-  </Item>
-)
+export const WorkImage = ({ src, alt, ...props }) => {
+  const { width, height } = getImageDimensions(images, src)
+  return (
+    <Item
+      original={src.path}
+      thumbnail={src.path}
+      width={width}
+      height={height}
+      title={alt}
+    >
+      {({ ref, open }) => (
+        <Center
+          as="button"
+          type="button"
+          w="full"
+          aria-label={`Enlarge ${alt}`}
+          ref={ref}
+          onClick={open}
+          cursor="pointer"
+          className="work-image-container"
+          borderRadius="xl"
+          overflow="hidden"
+          _hover={{
+            transform: 'scale(1.02)',
+            shadow: 'xl'
+          }}
+          transition="all 0.3s ease"
+          _focusVisible={{
+            outline: '3px solid',
+            outlineColor: 'blue.400',
+            outlineOffset: 3
+          }}
+          {...props}
+        >
+          <Image
+            width={width}
+            height={height}
+            src={src.path}
+            alt={alt}
+            sizes={
+              src.path.includes('eyecatch')
+                ? '(min-width: 48em) 768px, 100vw'
+                : '(min-width: 48em) 240px, 50vw'
+            }
+            priority={src.path.includes('eyecatch')}
+            style={{ width: '100%', height: 'auto' }}
+            className="work-thumbnail"
+          />
+        </Center>
+      )}
+    </Item>
+  )
+}
 
 export const HeroImage = ({ src, alt }) => {
-  const borderColor = useColorModeValue('gray.200', 'gray.700')
+  const borderColor = 'border-default'
 
   return (
     <Box
@@ -236,7 +246,7 @@ export const DownloadButtons = ({ appStoreUrl, playStoreUrl }) => (
 )
 
 export const GallerySection = ({ title, children }) => {
-  const headingColor = useColorModeValue('gray.700', 'gray.200')
+  const headingColor = 'text-heading'
 
   return (
     <Box my={8}>
@@ -251,7 +261,7 @@ export const GallerySection = ({ title, children }) => {
 }
 
 export const FeatureList = ({ features }) => {
-  const textColor = useColorModeValue('gray.600', 'gray.400')
+  const textColor = 'text-muted'
 
   return (
     <Box>

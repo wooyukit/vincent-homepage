@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import Image from 'next/image'
-import { Link, Text, useColorModeValue } from '@chakra-ui/react'
+import { Link, Text } from '@chakra-ui/react'
 
 const Logo = () => (
   <Link
@@ -11,7 +11,7 @@ const Logo = () => (
     alignItems="center"
     gap={2}
     flexShrink={0}
-    color={useColorModeValue('gray.900', 'white')}
+    color="text-strong"
     _hover={{ textDecoration: 'none' }}
   >
     <Image
@@ -30,7 +30,7 @@ const Logo = () => (
       whiteSpace="nowrap"
     >
       Vincent Woo
-      <Text as="span" color={useColorModeValue('blue.700', 'blue.200')}>
+      <Text as="span" color="text-accent">
         .
       </Text>
     </Text>

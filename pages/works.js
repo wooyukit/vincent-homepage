@@ -4,7 +4,6 @@ import {
   Box,
   Heading,
   Image,
-  useColorModeValue,
   Text,
   Flex,
   Link,
@@ -157,15 +156,15 @@ const ExperienceCard = ({
   links,
   isLast
 }) => {
-  const dateColor = useColorModeValue('gray.500', 'gray.400')
-  const titleColor = useColorModeValue('gray.800', 'white')
-  const locationColor = useColorModeValue('gray.500', 'gray.400')
-  const descColor = useColorModeValue('gray.600', 'gray.300')
-  const borderColor = useColorModeValue('gray.200', 'gray.700')
-  const buttonBg = useColorModeValue('gray.100', 'whiteAlpha.100')
-  const buttonBorder = useColorModeValue('gray.300', 'gray.700')
-  const timelineBg = useColorModeValue('gray.200', 'gray.700')
-  const dotBg = useColorModeValue('gray.400', 'gray.500')
+  const dateColor = 'text-subtle'
+  const titleColor = 'text-title'
+  const locationColor = 'text-subtle'
+  const descColor = 'text-description'
+  const borderColor = 'border-default'
+  const buttonBg = 'surface-control'
+  const buttonBorder = 'border-control'
+  const timelineBg = 'border-default'
+  const dotBg = 'timeline-dot'
 
   return (
     <Flex position="relative">
@@ -197,7 +196,7 @@ const ExperienceCard = ({
           zIndex={1}
           animation={current ? `${pulse} 2s 2` : 'none'}
           border={current ? '3px solid' : 'none'}
-          borderColor={useColorModeValue('blue.100', 'blue.900')}
+          borderColor="border-accent"
         />
       </Box>
 
@@ -316,7 +315,7 @@ const ExperienceCard = ({
 }
 
 const Works = () => {
-  const subtitleColor = useColorModeValue('gray.600', 'gray.400')
+  const subtitleColor = 'text-muted'
 
   return (
     <Layout title="Work Experience">

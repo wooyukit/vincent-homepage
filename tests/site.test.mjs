@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { projects, featuredProjects } from '../data/projects.js'
 import { getPageMetadata } from '../lib/seo.js'
-import { selectImageSource } from '../lib/image-path.js'
+import { getImageDimensions, selectImageSource } from '../lib/image-path.js'
 import { cachedData, loadGitHub, loadCrates } from '../lib/dashboard-data.js'
 
 test('every project has a unique canonical URL and its own social image', () => {
@@ -44,6 +44,24 @@ test('responsive image selection uses existing variants and never upscales', () 
     '/_optimized/test-image-960.webp'
   )
   assert.equal(selectImageSource(images, '/icon.svg', 32), '/icon.svg')
+})
+
+test('gallery sizing uses native image dimensions instead of inflated page metadata', () => {
+  const images = {
+    '/screenshot.webp': { width: 190, height: 336 }
+  }
+  assert.deepEqual(
+    getImageDimensions(images, {
+      path: '/screenshot.webp',
+      w: '1900',
+      h: '3360'
+    }),
+    { width: 190, height: 336 }
+  )
+  assert.deepEqual(
+    getImageDimensions(images, { path: '/other.svg', w: '1280', h: '720' }),
+    { width: 1280, height: 720 }
+  )
 })
 
 test('dashboard cache deduplicates requests, supports refresh, and recovers from errors', async () => {
