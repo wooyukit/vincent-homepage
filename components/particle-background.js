@@ -1,10 +1,10 @@
-import { useId, useRef } from 'react'
+import { useRef } from 'react'
 import { keyframes } from '@emotion/react'
 import { Box } from '@chakra-ui/react'
 import { useMotionVisibility } from '../lib/use-motion-visibility'
 
-// Generate the same cloud for the static export and hydration. Six independently
-// moving depth layers give the spheres parallax without a rendering loop.
+// Stable coordinates keep the static export and hydration identical. Small,
+// flat points move in separate currents without a JavaScript rendering loop.
 const createLayer = layer => {
   let seed = 9127 + layer * 1013
   const random = () => {
@@ -12,7 +12,7 @@ const createLayer = layer => {
     return (seed - 1) / 2147483646
   }
 
-  return Array.from({ length: 84 }, () => {
+  return Array.from({ length: 144 }, () => {
     const x = -80 + random() * 1440
     const spread = (random() + random() + random() - 1.5) * 130
     const y =
@@ -21,13 +21,13 @@ const createLayer = layer => {
       Math.cos(x / 390 + layer * 0.5) * 65 +
       (layer - 2.5) * 85 +
       spread
-    const radius = 1.3 + layer * 0.55 + random() * 1.8
+    const radius = 0.45 + layer * 0.08 + random() * 0.65
 
     return {
       x: Number(x.toFixed(2)),
       y: Number(y.toFixed(2)),
       radius: Number(radius.toFixed(2)),
-      opacity: Number((0.45 + random() * 0.55).toFixed(2))
+      opacity: Number((0.3 + random() * 0.65).toFixed(2))
     }
   })
 }
@@ -36,16 +36,17 @@ const layers = Array.from({ length: 6 }, (_, index) => createLayer(index))
 
 const flow = keyframes`
   0%, 100% {
-    transform: translate3d(-18px, -12px, 0) rotate(-2deg) scale(0.98);
+    transform: translate3d(0, 0, 0);
+    opacity: 0.55;
   }
   50% {
-    transform: translate3d(22px, 18px, 0) rotate(2deg) scale(1.025);
+    transform: translate3d(var(--particle-drift-x), var(--particle-drift-y), 0);
+    opacity: 1;
   }
 `
 
 const ParticleBackground = () => {
   const ref = useRef(null)
-  const id = useId().replace(/:/g, '')
   useMotionVisibility(ref)
 
   return (
@@ -80,55 +81,39 @@ const ParticleBackground = () => {
           { display: 'none' }
       }}
     >
-      {layers.map((particles, index) => {
-        const gradient = `${id}-sphere-${index}`
-
-        return (
-          <Box
-            key={index}
-            className="particle-wave"
-            style={{
-              '--particle-duration': `${12 + index * 2}s`,
-              animationDelay: `${-index * 3.7 - 2}s`
-            }}
+      {layers.map((particles, index) => (
+        <Box
+          key={index}
+          className="particle-wave"
+          style={{
+            '--particle-duration': `${14 + index * 2}s`,
+            '--particle-drift-x': `${
+              (index % 2 ? -1 : 1) * (32 + index * 5)
+            }px`,
+            '--particle-drift-y': `${-24 - index * 4}px`,
+            animationDelay: `${-index * 3.7 - 2}s`
+          }}
+        >
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 1280 900"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+            fill="var(--chakra-colors-page-particle)"
           >
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 1280 900"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
-            >
-              <defs>
-                <radialGradient id={gradient} cx="28%" cy="24%" r="72%">
-                  <stop
-                    offset="0%"
-                    stopColor="var(--chakra-colors-page-particle-highlight)"
-                  />
-                  <stop
-                    offset="38%"
-                    stopColor="var(--chakra-colors-page-particle-body)"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="var(--chakra-colors-page-particle-shadow)"
-                  />
-                </radialGradient>
-              </defs>
-              {particles.map((particle, particleIndex) => (
-                <circle
-                  key={particleIndex}
-                  cx={particle.x}
-                  cy={particle.y}
-                  r={particle.radius}
-                  opacity={particle.opacity}
-                  fill={`url(#${gradient})`}
-                />
-              ))}
-            </svg>
-          </Box>
-        )
-      })}
+            {particles.map((particle, particleIndex) => (
+              <circle
+                key={particleIndex}
+                cx={particle.x}
+                cy={particle.y}
+                r={particle.radius}
+                opacity={particle.opacity}
+              />
+            ))}
+          </svg>
+        </Box>
+      ))}
     </Box>
   )
 }
