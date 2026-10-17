@@ -3,38 +3,46 @@ import { keyframes } from '@emotion/react'
 import { Box } from '@chakra-ui/react'
 import { useMotionVisibility } from '../lib/use-motion-visibility'
 
-// Stable positions keep the exported HTML and hydration identical. The first
-// eight points form the smaller mobile arrangement.
-const positions = [
-  [6, 22],
-  [88, 14],
-  [14, 62],
-  [82, 74],
-  [42, 12],
-  [58, 48],
-  [94, 46],
-  [36, 82],
-  [24, 30],
-  [72, 28],
-  [48, 64],
-  [8, 86],
-  [66, 88],
-  [92, 88],
-  [32, 52],
-  [54, 24],
-  [18, 10],
-  [76, 54]
+// Independent, overlapping light clusters reveal the same aligned dot grid.
+// Fixed coordinates and negative delays keep hydration stable and avoid a
+// synchronized start, without a canvas or JavaScript animation loop.
+const clusters = [
+  [
+    [8, 14],
+    [72, 72],
+    [92, 38]
+  ],
+  [
+    [36, 26],
+    [12, 80],
+    [72, 18]
+  ],
+  [
+    [56, 56],
+    [93, 88],
+    [28, 4]
+  ],
+  [
+    [16, 48],
+    [56, 92],
+    [88, 10]
+  ],
+  [
+    [86, 60],
+    [34, 74],
+    [48, 8]
+  ],
+  [
+    [66, 32],
+    [6, 94],
+    [44, 46]
+  ]
 ]
 
-const drift = keyframes`
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-    opacity: 0.2;
-  }
-  50% {
-    transform: translate3d(var(--particle-x), var(--particle-y), 0);
-    opacity: 0.85;
-  }
+const glow = keyframes`
+  0%, 100% { opacity: 0.04; }
+  42% { opacity: 0.8; }
+  72% { opacity: 0.18; }
 `
 
 const ParticleBackground = () => {
@@ -46,53 +54,58 @@ const ParticleBackground = () => {
       ref={ref}
       className="particle-background"
       aria-hidden="true"
-      position="absolute"
+      position="fixed"
       inset={0}
-      maxH="1000px"
       overflow="hidden"
       pointerEvents="none"
       zIndex={-1}
+      opacity={{ base: 0.55, md: 0.7 }}
       sx={{
+        // Keep the pattern quieter through the reading area.
         maskImage:
-          'linear-gradient(to bottom, transparent, black 100px, black 680px, transparent 1000px)',
+          'linear-gradient(90deg, black, rgba(0, 0, 0, 0.48) 30%, rgba(0, 0, 0, 0.48) 70%, black)',
         WebkitMaskImage:
-          'linear-gradient(to bottom, transparent, black 100px, black 680px, transparent 1000px)',
-        '& .particle': {
+          'linear-gradient(90deg, black, rgba(0, 0, 0, 0.48) 30%, rgba(0, 0, 0, 0.48) 70%, black)',
+        '& .particle-cluster': {
           position: 'absolute',
-          borderRadius: 'full',
-          bg: 'page-particle',
-          boxShadow: '0 0 12px 2px var(--chakra-colors-page-particle-glow)',
-          animation: `${drift} var(--particle-duration) ease-in-out infinite`,
+          inset: 0,
+          backgroundImage:
+            'radial-gradient(circle, var(--chakra-colors-page-particle) 1.5px, var(--chakra-colors-page-particle-glow) 2px, transparent 4px)',
+          backgroundSize: 'var(--particle-spacing) var(--particle-spacing)',
+          animation: `${glow} var(--particle-duration) ease-in-out infinite`,
           animationPlayState: 'paused'
         },
-        '&[data-motion="active"] .particle': {
+        '&[data-motion="active"] .particle-cluster': {
           animationPlayState: 'running'
         },
         '@media (max-width: 47.99em)': {
-          '& .particle:nth-of-type(n + 9)': { display: 'none' }
+          '& .particle-cluster:nth-of-type(n + 5)': { display: 'none' }
         },
         '@media (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce), (prefers-contrast: more), (forced-colors: active)':
           { display: 'none' }
       }}
     >
-      {positions.map(([x, y], index) => (
-        <span
-          key={index}
-          className="particle"
-          style={{
-            left: `${x}%`,
-            top: `${y}%`,
-            width: 3 + (index % 3),
-            height: 3 + (index % 3),
-            '--particle-x': `${
-              (index % 2 ? 1 : -1) * (24 + (index % 4) * 12)
-            }px`,
-            '--particle-y': `${-64 - (index % 5) * 14}px`,
-            '--particle-duration': `${18 + (index % 5) * 3}s`,
-            animationDelay: `${-index * 2.7}s`
-          }}
-        />
-      ))}
+      {clusters.map((centers, index) => {
+        const mask = centers
+          .map(
+            ([x, y]) =>
+              `radial-gradient(ellipse clamp(150px, 20vw, 280px) clamp(160px, 24vh, 280px) at ${x}% ${y}%, black, transparent 85%)`
+          )
+          .join(', ')
+
+        return (
+          <span
+            key={index}
+            className="particle-cluster"
+            style={{
+              maskImage: mask,
+              WebkitMaskImage: mask,
+              '--particle-duration': `${7 + index}s`,
+              animationDelay: `${-index * 2.3 - 1.4}s`
+            }}
+          />
+        )
+      })}
     </Box>
   )
 }
