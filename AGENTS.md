@@ -4,13 +4,13 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## Project Overview
 
-Personal portfolio website for Vincent (Kit) built with Next.js 12, Chakra UI, Three.js, and recharts. Statically exported and deployed to Firebase Hosting. Live at https://vincent-homepage.web.app/.
+Personal portfolio website for Vincent (Kit) built with Next.js 16 (Pages Router), React 18, Chakra UI 2, Three.js, and Recharts 3. Statically exported and deployed to Firebase Hosting. Live at https://vincent-homepage.web.app/.
 
 ## Commands
 
 ```bash
 npm run dev        # Start dev server (binds 0.0.0.0)
-npm run build      # Production build: next build && next export → /out
+npm run build      # Production build: optimize images, then next build --webpack → /out
 npm run lint       # ESLint (Next.js config)
 npm run prettier   # Format all files with Prettier
 ```
@@ -19,30 +19,34 @@ Deployment: `firebase deploy --only hosting` (serves the `out/` directory).
 
 ## Architecture
 
-**Next.js 12 with static export** — no server-side rendering in production. All pages are pre-rendered to static HTML.
+Requires Node.js 22+. `npm run test` runs regression checks, `npm run check:export` validates generated pages, and `npm run preview` serves the production export locally.
+
+**Next.js 16 Pages Router with `output: 'export'`** — no server-side rendering in production. All pages are pre-rendered to static HTML.
 
 ### Key Directories
 
 - `pages/` — Next.js file-based routing. Each portfolio project has its own page under `pages/portfolio/`. `pages/dashboard.js` is the metrics dashboard.
-- `components/` — Reusable UI. `layouts/main.js` wraps all pages (navbar + 3D planet). `layouts/article.js` adds page transition animations.
-- `lib/theme.js` — Chakra UI theme (dark mode default, font "M Plus Rounded 1c", custom color `glassTeal`).
+- `components/` — Reusable UI. `layouts/main.js` wraps all pages (navbar + main content). The homepage loads the 3D planet only after the visitor opens its preview. `layouts/article.js` adds page transition animations.
+- `lib/theme.js` — Apple-inspired editorial theme with neutral light and dark surfaces, blue accents, native system typography, and reduced-motion rules. Use the `primary` and `glass` button variants and `.eyebrow` labels. Shared liquid-glass layer styles (`glassCard`, `glassFloating`, `glassMedia`, `glassFeature`) provide theme-aware translucent surfaces, reflective edges, and solid accessibility fallbacks. Keep live backdrop blur limited to floating navigation, menus, and the portrait caption; project grids use `glassCard` without blur. Clear navigation uses a scroll-edge fade for legibility. Use `glassMedia` with light text over photography; menus retain a denser tint for readability.
+- `data/projects.js` — Shared project dates, technologies, summaries, and featured selections.
+- `scripts/optimize-images.mjs` — Generates cached responsive WebP variants before development and builds. Generated images and their manifest are ignored by Git.
 - `lib/model.js` — Three.js GLTF model loader for the 3D planet component.
 - `docs/plans/` — Design documents and implementation plans for features.
 - `public/images/` — Static assets. `works/` has company logos, `portfolio/` has project screenshots.
 
 ### Component Hierarchy
 
-`_app.js` (Chakra provider + AnimatePresence) → `Main` layout (navbar + planet) → `Article` layout (motion transitions) → Page content
+`_app.js` (Chakra provider + MotionConfig) → `Main` layout (navbar + main content) → `Article` layout (motion transitions) → Page content
 
 ### Patterns
 
 - **Color mode**: Use `useColorModeValue()` for light/dark theme values throughout.
-- **Animations**: Framer Motion for page transitions and section reveals (`Section` component). Chakra `keyframes` for CSS animations (wave, float, glow, pulse, gradient).
-- **3D component**: `Planet` is loaded via `dynamic()` with `ssr: false` and wrapped in `NoSSR`.
+- **Animations**: CSS provides a 500ms page entrance and 560ms section entrances (delays capped at 240ms). Route changes mount immediately to avoid blank exit gaps and scroll jumps. Framer Motion drives the persistent navigation indicator and rotating hero text. `useReveal` progressively enables scroll reveals for below-the-fold sections and cards; static HTML and keyboard-focused content stay visible. `useMotionVisibility` pauses looping motion offscreen, in background tabs, or when reduced motion is requested. `AutomaticMotionProvider` also supplies the navigation pause control. Keep movement to transforms/opacity.
+- **3D component**: The homepage’s `PlanetPreview` loads `Planet` via `dynamic()` with `ssr: false` on request. The render loop pauses offscreen or in background tabs and honors reduced motion.
 - **Portfolio pages**: Use shared components from `components/work.js` (`Title`, `WorkImage`, `Meta`).
-- **All content is hardcoded** — no database, no API calls. Data lives directly in page files as JS arrays/objects. Exception: `dashboard.js` fetches live data client-side.
-- **Dashboard page**: Fetches GitHub API (`/users/wooyukit` + repos) and crates.io API client-side via `useEffect`. Uses `recharts` (v2.x, React 17 compatible) for PieChart and BarChart. Charts are gated behind a `chartsReady` timer (1.2s) so they animate after the Framer Motion section fade-in completes — never overlap animations.
-- **Animation staggering**: When combining Framer Motion (Section/Layout fade-in) with recharts animations, delay chart rendering until the parent is fully visible. Use a `useState` + `setTimeout` pattern to gate chart mount.
+- **Content is static** — no database. Shared project content lives in `data/projects.js`; other content lives in pages. The dashboard fetches public data client-side through `lib/dashboard-data.js`, with pagination, five-minute caching, and in-flight deduplication.
+- **Dashboard page**: Fetches GitHub API (`/users/wooyukit` + repos) and crates.io API client-side via `useEffect`. Uses `recharts` v3 for PieChart and BarChart. Dashboard sections disable scroll reveals with `revealOnScroll={false}`. Charts are gated behind a `chartsReady` timer (1.2s) so they animate after page and section entrances complete — never overlap animations.
+- **Animation staggering**: When combining page/section entrances with Recharts animations, delay chart rendering until the parent is fully visible. Use a `useState` + `setTimeout` pattern to gate chart mount.
 
 ## Code Style
 

@@ -1,491 +1,514 @@
-import { Container, Box, Heading, Image, useColorModeValue, Button, Icon, Link, Tag, Wrap, WrapItem, Text, Badge, Flex, SimpleGrid, VStack, HStack } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import Section from '../components/section'
-import Paragraph from '../components/paragraph'
-import { ChevronRightIcon } from '@chakra-ui/icons'
+import Image from 'next/image'
+import {
+  Box,
+  Heading,
+  Text,
+  Button,
+  Link,
+  Flex,
+  SimpleGrid,
+  HStack,
+  Wrap,
+  WrapItem,
+  Badge,
+  Divider,
+  Icon,
+  useColorModeValue
+} from '@chakra-ui/react'
+import { ArrowForwardIcon, ArrowDownIcon } from '@chakra-ui/icons'
+import {
+  IoLogoGithub,
+  IoLogoLinkedin,
+  IoMailOutline,
+  IoPhonePortraitOutline
+} from 'react-icons/io5'
 import Layout from '../components/layouts/article'
-import { IoLogoGithub, IoPhonePortraitSharp, IoMail, IoLogoLinkedin } from 'react-icons/io5'
-import { wave, float, gradientMove, floatSlow, floatReverse, glow, blink } from '../lib/animations'
+import Section from '../components/section'
+import ProjectCard from '../components/project-card'
+import PlanetPreview from '../components/planet-preview'
+import RotatingWords from '../components/rotating-words'
+import AnimatedCounter from '../components/animated-counter'
+import SkillsMarquee from '../components/skills-marquee'
+import { featuredProjects } from '../data/projects'
 import { getYearsOfExperience } from '../lib/constants'
 
-const loves = [
-	{ name: "Music", emoji: "🎵" },
-	{ name: "Guitar", emoji: "🎸" },
-	{ name: "Table Tennis", emoji: "🏓" },
-	{ name: "Basketball", emoji: "🏀" },
-	{ name: "Chinese Chess", emoji: "♟️" },
-	{ name: "GYM", emoji: "🏋️" },
-	{ name: "Movies", emoji: "🎬" },
-	{ name: "BlockChain", emoji: "⛓️" },
-	{ name: "Gaming", emoji: "🎮" },
-	{ name: "3D Animation", emoji: "🎨" },
-	{ name: "Tech", emoji: "💻" },
-	{ name: "Machine Learning", emoji: "🤖" }
-]
-
 const skills = [
-	{ name: "Swift", color: "orange", emoji: "🍎" },
-	{ name: "Kotlin", color: "purple", emoji: "🤖" },
-	{ name: "Rust", color: "red", emoji: "🦀" },
-	{ name: "Flutter", color: "cyan", emoji: "🦋" },
-	{ name: "React", color: "blue", emoji: "⚛️" },
-	{ name: "JavaScript", color: "yellow", emoji: "📜" },
-	{ name: "TypeScript", color: "blue", emoji: "💙" },
-	{ name: "Node.js", color: "green", emoji: "💚" },
-	{ name: "GraphQL", color: "pink", emoji: "📊" },
+  'Swift',
+  'Kotlin',
+  'Rust',
+  'Flutter',
+  'React',
+  'TypeScript',
+  'Node.js',
+  'GraphQL'
 ]
-
-const stats = [
-	{ number: `${getYearsOfExperience()}+`, label: "Years Experience", emoji: "⏱️" },
-	{ number: "50+", label: "Projects Delivered", emoji: "🚀" },
-	{ number: "10+", label: "Tech Stacks", emoji: "🛠️" },
-	{ number: "2", label: "Degrees", emoji: "🎓" },
+const interests = [
+  'Music & guitar',
+  'Table tennis',
+  'Basketball',
+  'Chinese chess',
+  'Gym',
+  'Movies',
+  'Blockchain',
+  'Gaming',
+  '3D animation',
+  'Machine learning'
 ]
 
 const Page = () => {
-	const heroBg = useColorModeValue(
-		'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #6B8DD6 100%)',
-		'linear-gradient(135deg, #2d1b4e 0%, #1a3a5c 50%, #0d4d4d 100%)'
-	)
-	const borderColor = useColorModeValue('white', 'teal.200')
-	const cardBorder = useColorModeValue('gray.400', 'gray.600')
-	const subtitleColor = useColorModeValue('gray.600', 'gray.400')
+  const border = useColorModeValue('gray.200', 'gray.700')
+  const muted = useColorModeValue('gray.600', 'gray.400')
+  const accent = useColorModeValue('blue.700', 'blue.200')
 
-	return (
-		<Layout>
-			{/* Hero Section */}
-			<Box
-				bg={heroBg}
-				bgSize="200% 200%"
-				animation={`${gradientMove} 15s ease infinite`}
-				py={{ base: 14, md: 20 }}
-				px={4}
-				mb={8}
-				borderRadius="2xl"
-				position="relative"
-				overflow="hidden"
-			>
-				{/* Floating Decorative Elements */}
-				<Box
-					position="absolute"
-					top="10%"
-					left="5%"
-					fontSize="2xl"
-					opacity={0.6}
-					animation={`${floatSlow} 6s ease-in-out infinite`}
-					display={{ base: 'none', md: 'block' }}
-				>
-					⚛️
-				</Box>
-				<Box
-					position="absolute"
-					top="20%"
-					right="8%"
-					fontSize="xl"
-					opacity={0.5}
-					animation={`${floatReverse} 5s ease-in-out infinite`}
-					display={{ base: 'none', md: 'block' }}
-				>
-					🦀
-				</Box>
-				<Box
-					position="absolute"
-					bottom="15%"
-					left="10%"
-					fontSize="lg"
-					opacity={0.4}
-					animation={`${floatSlow} 7s ease-in-out infinite`}
-					style={{ animationDelay: '1s' }}
-					display={{ base: 'none', md: 'block' }}
-				>
-					📱
-				</Box>
-				<Box
-					position="absolute"
-					bottom="25%"
-					right="12%"
-					fontSize="xl"
-					opacity={0.5}
-					animation={`${floatReverse} 4s ease-in-out infinite`}
-					display={{ base: 'none', md: 'block' }}
-				>
-					🍎
-				</Box>
-				<Box
-					position="absolute"
-					top="60%"
-					left="3%"
-					fontSize="md"
-					opacity={0.3}
-					animation={`${floatReverse} 8s ease-in-out infinite`}
-					display={{ base: 'none', lg: 'block' }}
-				>
-					{"</>"}
-				</Box>
-				<Box
-					position="absolute"
-					top="40%"
-					right="3%"
-					fontSize="md"
-					opacity={0.3}
-					animation={`${floatSlow} 6s ease-in-out infinite`}
-					display={{ base: 'none', lg: 'block' }}
-				>
-					{"{ }"}
-				</Box>
+  return (
+    <Layout>
+      <Box as="section" py={{ base: 8, md: 16 }} mb={{ base: 8, md: 10 }}>
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          align="center"
+          gap={{ base: 12, md: 10, lg: 14 }}
+        >
+          <Box flex={1} minW={0} w="full">
+            <HStack
+              className="hero-reveal"
+              spacing={3}
+              mb={5}
+              style={{ '--hero-delay': '0s' }}
+            >
+              <Box
+                as="span"
+                className="greeting-wave"
+                fontSize="xl"
+                aria-hidden="true"
+              >
+                👋
+              </Box>
+              <Text className="eyebrow">Engineering Lead · Hong Kong</Text>
+            </HStack>
+            <Heading
+              className="hero-reveal"
+              as="h1"
+              fontSize={{
+                base: 'clamp(2.6rem, 11.8vw, 3.5rem)',
+                md: '64px',
+                lg: '80px'
+              }}
+              lineHeight="1.05"
+              mb={5}
+              style={{ '--hero-delay': '0.08s' }}
+            >
+              Vincent Woo
+              <span style={{ color: 'var(--chakra-colors-blue-500)' }}>.</span>
+            </Heading>
+            <Box
+              className="hero-reveal"
+              fontSize={{ base: '2xl', lg: '3xl' }}
+              lineHeight="1.35"
+              fontWeight="medium"
+              mb={5}
+              style={{ '--hero-delay': '0.16s' }}
+            >
+              <Text>Engineering for</Text>
+              <Box color={accent}>
+                <RotatingWords />
+              </Box>
+            </Box>
+            <Text
+              className="hero-reveal"
+              color={muted}
+              fontSize={{ base: 'md', lg: 'lg' }}
+              lineHeight="tall"
+              maxW="460px"
+              mb={7}
+              style={{ '--hero-delay': '0.24s' }}
+            >
+              I lead mobile engineering at OKX. I build reliable apps, support
+              thoughtful teams, and care about the details people feel.
+            </Text>
+            <Flex
+              className="hero-reveal"
+              gap={3}
+              flexWrap="wrap"
+              mb={6}
+              style={{ '--hero-delay': '0.32s' }}
+            >
+              <Button
+                as="a"
+                href="#selected-work"
+                variant="primary"
+                rightIcon={<ArrowForwardIcon />}
+                size="lg"
+                px={6}
+              >
+                View my work
+              </Button>
+              <Button
+                as="a"
+                href="mailto:wooyukit@gmail.com"
+                variant="glass"
+                size="lg"
+              >
+                Let’s talk
+              </Button>
+            </Flex>
+            <HStack
+              className="hero-reveal"
+              spacing={5}
+              fontSize="sm"
+              color={muted}
+              style={{ '--hero-delay': '0.4s' }}
+            >
+              <Link
+                href="https://github.com/wooyukit"
+                isExternal
+                display="inline-flex"
+                alignItems="center"
+                gap={2}
+                color="inherit"
+              >
+                <IoLogoGithub aria-hidden />
+                GitHub
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/yu-kit-vincent-woo-63400332/"
+                isExternal
+                display="inline-flex"
+                alignItems="center"
+                gap={2}
+                color="inherit"
+              >
+                <IoLogoLinkedin aria-hidden />
+                LinkedIn
+              </Link>
+            </HStack>
+          </Box>
+          <Box
+            className="portrait-frame hero-reveal"
+            flexShrink={0}
+            w={{ base: '86%', md: '290px', lg: '330px' }}
+            maxW="340px"
+            mb={{ base: 5, md: 0 }}
+            mr={{ base: 0, md: 3 }}
+            style={{ '--hero-delay': '0.15s' }}
+          >
+            <Box
+              borderRadius="28px"
+              overflow="hidden"
+              bg="gray.200"
+              aspectRatio={4 / 5}
+            >
+              <Image
+                className="portrait-image"
+                src="/images/kit.jpg"
+                alt="Vincent Woo"
+                width={640}
+                height={800}
+                sizes="(min-width: 62em) 330px, (min-width: 48em) 290px, 80vw"
+                priority
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: '50% 40%'
+                }}
+              />
+            </Box>
+            <HStack
+              className="portrait-caption"
+              position="absolute"
+              bottom={5}
+              left={{ base: -3, md: -5 }}
+              layerStyle="glassMedia"
+              p={4}
+              borderRadius="xl"
+              spacing={3}
+            >
+              <Flex
+                w={10}
+                h={10}
+                align="center"
+                justify="center"
+                borderRadius="full"
+                bg="whiteAlpha.200"
+                color="white"
+              >
+                <Icon as={IoPhonePortraitOutline} boxSize={5} />
+              </Flex>
+              <Box>
+                <Text fontWeight="semibold" fontSize="sm">
+                  Mobile, thoughtfully made.
+                </Text>
+                <Text color="whiteAlpha.900" fontSize="xs" mt={1}>
+                  iOS · Android · Web
+                </Text>
+              </Box>
+            </HStack>
+          </Box>
+        </Flex>
+      </Box>
 
-				<Container maxW="container.md" position="relative" zIndex={1}>
-					<Flex
-						direction={{ base: 'column', md: 'row' }}
-						align="center"
-						justify="space-between"
-						gap={{ base: 8, md: 12 }}
-					>
-						{/* Profile Image */}
-						<Box
-							flexShrink={0}
-							order={{ base: 1, md: 2 }}
-						>
-							<Box
-								borderColor={borderColor}
-								borderWidth={4}
-								borderStyle="solid"
-								w={{ base: '140px', md: '160px' }}
-								h={{ base: '140px', md: '160px' }}
-								display="inline-block"
-								borderRadius="full"
-								overflow="hidden"
-								animation={`${glow} 3s ease-in-out infinite`}
-								shadow="2xl"
-							>
-								<Image
-									src="/images/kit-logo.jpg"
-									alt="Profile Image"
-									width="100%"
-									height="100%"
-									objectFit="cover"
-								/>
-							</Box>
-						</Box>
+      <Section>
+        <SimpleGrid
+          columns={3}
+          gap={{ base: 4, md: 10 }}
+          py={7}
+          px={{ base: 4, md: 7 }}
+          layerStyle="glassCard"
+          borderRadius="2xl"
+        >
+          <Box>
+            <Text
+              fontSize={{ base: '3xl', md: '4xl' }}
+              fontWeight="bold"
+              letterSpacing="tight"
+            >
+              <AnimatedCounter value={getYearsOfExperience()} />
+            </Text>
+            <Text color={muted} fontSize={{ base: 'xs', md: 'sm' }} mt={1}>
+              Years of experience
+            </Text>
+          </Box>
+          <Box>
+            <Text
+              fontSize={{ base: '3xl', md: '4xl' }}
+              fontWeight="bold"
+              letterSpacing="tight"
+            >
+              <AnimatedCounter value={50} />
+            </Text>
+            <Text color={muted} fontSize={{ base: 'xs', md: 'sm' }} mt={1}>
+              Projects delivered
+            </Text>
+          </Box>
+          <Box alignSelf="center">
+            <Text fontSize={{ base: 'md', md: 'xl' }} fontWeight="semibold">
+              OKX · SCMP
+            </Text>
+            <Text color={muted} fontSize={{ base: 'xs', md: 'sm' }} mt={1}>
+              Experience across fintech & media
+            </Text>
+          </Box>
+        </SimpleGrid>
+      </Section>
+      <Box color={muted} mb={{ base: 10, md: 14 }}>
+        <SkillsMarquee />
+      </Box>
 
-						{/* Hero Content */}
-						<VStack
-							align={{ base: 'center', md: 'flex-start' }}
-							spacing={5}
-							order={{ base: 2, md: 1 }}
-							textAlign={{ base: 'center', md: 'left' }}
-						>
-							<HStack>
-								<Box
-									as="span"
-									animation={`${wave} 2.5s infinite`}
-									display="inline-block"
-									fontSize="2xl"
-								>
-									👋
-								</Box>
-								<Text color="whiteAlpha.900" fontSize="lg" fontWeight="medium">
-									Hey there! I&apos;m
-								</Text>
-							</HStack>
+      <Section delay={0.08}>
+        <Box id="selected-work">
+          <Flex
+            justify="space-between"
+            align="flex-end"
+            gap={4}
+            mb={7}
+            flexWrap="wrap"
+          >
+            <Box>
+              <Text className="eyebrow" mb={3}>
+                A few highlights
+              </Text>
+              <Heading as="h2" fontSize={{ base: '3xl', md: '4xl' }}>
+                Selected work.
+              </Heading>
+            </Box>
+            <Link
+              as={NextLink}
+              href="/portfolio"
+              className="arrow-link"
+              fontSize="sm"
+              fontWeight="semibold"
+              color={accent}
+              pb={1}
+            >
+              Explore all projects <ArrowForwardIcon aria-hidden />
+            </Link>
+          </Flex>
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={6}>
+            {featuredProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))}
+            <Box
+              className="surface-card"
+              layerStyle="glassCard"
+              borderRadius="2xl"
+              p={{ base: 7, md: 9 }}
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+            >
+              <Text className="eyebrow" mb={4}>
+                The people behind the product
+              </Text>
+              <Heading as="h3" fontSize="2xl" mb={4}>
+                Good engineering is a team sport.
+              </Heading>
+              <Text color={muted} fontSize="sm" lineHeight="tall" mb={6}>
+                Architecture, mentorship, and delivery. I help teams turn
+                complex challenges into products that work well for the people
+                using them.
+              </Text>
+              <Link
+                as={NextLink}
+                href="/works"
+                className="arrow-link"
+                color={accent}
+                fontSize="sm"
+                fontWeight="semibold"
+              >
+                Explore my experience <ArrowForwardIcon aria-hidden />
+              </Link>
+            </Box>
+          </SimpleGrid>
+        </Box>
+      </Section>
 
-							<Box>
-								<Heading
-									as="h1"
-									fontSize={{ base: '4xl', md: '5xl' }}
-									color="white"
-									fontWeight="bold"
-									lineHeight="shorter"
-									letterSpacing="tight"
-								>
-									Vincent Woo
-								</Heading>
-								<HStack mt={2} spacing={2} justify={{ base: 'center', md: 'flex-start' }}>
-									<Text
-										color="teal.200"
-										fontSize={{ base: 'lg', md: 'xl' }}
-										fontWeight="semibold"
-										fontFamily="mono"
-									>
-										Engineering Lead
-									</Text>
-									<Box
-										as="span"
-										w="2px"
-										h="20px"
-										bg="teal.200"
-										animation={`${blink} 1s infinite`}
-									/>
-								</HStack>
-							</Box>
+      <Section delay={0.08}>
+        <SimpleGrid
+          columns={{ base: 1, md: 2 }}
+          gap={{ base: 8, md: 12 }}
+          py={{ base: 8, md: 12 }}
+        >
+          <Box>
+            <Text className="eyebrow" mb={4}>
+              A little about me
+            </Text>
+            <Heading as="h2" fontSize={{ base: '2xl', md: '3xl' }} mb={5}>
+              Thoughtful systems.
+              <br />
+              Everyday experiences.
+            </Heading>
+            <Text color={muted} lineHeight="tall" mb={4}>
+              From news platforms to banking and crypto, I work where reliable
+              engineering meets everyday user experience. I architect mobile
+              systems, mentor engineers, and help teams deliver.
+            </Text>
+            <Text color={muted} lineHeight="tall">
+              My work spans native Swift and Kotlin, cross-platform development,
+              and a growing interest in Rust and open source.
+            </Text>
+          </Box>
+          <Box alignSelf="center">
+            <Text fontWeight="semibold" mb={4}>
+              Tools I work with
+            </Text>
+            <Wrap spacing={2} mb={6}>
+              {skills.map(skill => (
+                <WrapItem key={skill}>
+                  <Badge px={4} py={2} borderRadius="full" colorScheme="gray">
+                    {skill}
+                  </Badge>
+                </WrapItem>
+              ))}
+            </Wrap>
+            <Link
+              as={NextLink}
+              href="/dashboard"
+              className="arrow-link"
+              color={accent}
+              fontSize="sm"
+              fontWeight="semibold"
+            >
+              Explore my open source activity <ArrowForwardIcon aria-hidden />
+            </Link>
+          </Box>
+        </SimpleGrid>
+      </Section>
 
-							<Text
-								color="whiteAlpha.800"
-								fontSize={{ base: 'md', md: 'lg' }}
-								maxW="420px"
-								lineHeight="tall"
-							>
-								Crafting pixel-perfect mobile experiences at{' '}
-								<Text as="span" color="teal.200" fontWeight="semibold">OKX</Text>
-								{' '}that millions of users love. iOS, Android & beyond.
-							</Text>
+      <Section>
+        <Divider mb={8} />
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} mb={10}>
+          <Box>
+            <Heading as="h2" size="md" mb={4}>
+              Education
+            </Heading>
+            <Text fontSize="sm" fontWeight="semibold">
+              MSc, Information System Management
+            </Text>
+            <Text color={muted} fontSize="sm" mb={4}>
+              City University of Hong Kong · 2017
+            </Text>
+            <Text fontSize="sm" fontWeight="semibold">
+              Bachelor of Electronic and Information Engineering
+            </Text>
+            <Text color={muted} fontSize="sm">
+              Hong Kong Polytechnic University · 2009
+            </Text>
+          </Box>
+          <Box>
+            <Heading as="h2" size="md" mb={4}>
+              Away from the keyboard
+            </Heading>
+            <Text color={muted} fontSize="sm" lineHeight="tall">
+              {interests.join(' · ')}
+            </Text>
+          </Box>
+        </SimpleGrid>
+      </Section>
 
-							<HStack spacing={3} pt={3}>
-								<Link href="https://github.com/wooyukit" target="_blank" rel="noopener noreferrer" _hover={{ textDecoration: 'none' }}>
-									<Button
-										size="md"
-										bg="whiteAlpha.200"
-										color="white"
-										backdropFilter="blur(10px)"
-										_hover={{ bg: 'whiteAlpha.300', transform: 'translateY(-2px)', shadow: 'lg' }}
-										leftIcon={<IoLogoGithub />}
-										transition="all 0.2s"
-									>
-										GitHub
-									</Button>
-								</Link>
-								<Link href="https://www.linkedin.com/in/yu-kit-vincent-woo-63400332/" target="_blank" rel="noopener noreferrer" _hover={{ textDecoration: 'none' }}>
-									<Button
-										size="md"
-										bg="whiteAlpha.200"
-										color="white"
-										backdropFilter="blur(10px)"
-										_hover={{ bg: 'whiteAlpha.300', transform: 'translateY(-2px)', shadow: 'lg' }}
-										leftIcon={<IoLogoLinkedin />}
-										transition="all 0.2s"
-									>
-										LinkedIn
-									</Button>
-								</Link>
-							</HStack>
-						</VStack>
-					</Flex>
-				</Container>
-			</Box>
-
-			<Container maxW="container.md">
-				{/* Stats Section */}
-				<Section delay={0.1}>
-					<SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={10}>
-						{stats.map((stat, index) => (
-							<Box
-								key={stat.label}
-								p={4}
-								borderRadius="xl"
-								textAlign="center"
-								border="1px dashed"
-								borderColor={cardBorder}
-								_hover={{ transform: 'translateY(-4px)', borderColor: 'teal.400' }}
-								transition="all 0.3s"
-								animation={`${float} 3s ease-in-out infinite`}
-								style={{ animationDelay: `${index * 0.2}s` }}
-							>
-								<Text fontSize="2xl" mb={1}>{stat.emoji}</Text>
-								<Text fontSize="2xl" fontWeight="bold" color="teal.500">
-									{stat.number}
-								</Text>
-								<Text fontSize="xs" color={subtitleColor} fontWeight="medium">
-									{stat.label}
-								</Text>
-							</Box>
-						))}
-					</SimpleGrid>
-				</Section>
-
-				{/* About Section */}
-				<Section delay={0.2}>
-					<Heading as="h2" fontSize="xl" mb={4}>
-						👨‍💻 About Me
-					</Heading>
-					<Paragraph>
-						With over {getYearsOfExperience()} years in mobile development, I specialize in building high-performance iOS and Android applications that serve millions of users daily. From cryptocurrency exchanges to award-winning news platforms, I bring ideas to life with clean, maintainable code.
-					</Paragraph>
-					<Paragraph>
-						As a Engineering Lead, I architect scalable mobile solutions, mentor development teams, and drive technical decisions that shape product success. My expertise spans native development (Swift, Kotlin), cross-platform frameworks, and modern reactive programming patterns.
-					</Paragraph>
-					<Paragraph>
-						I&apos;m passionate about creating seamless user experiences, implementing robust CI/CD pipelines, and staying at the forefront of mobile technology trends.
-					</Paragraph>
-
-					<Box mt={6} mb={6}>
-						<Text fontWeight="semibold" mb={3} fontSize="sm" color={subtitleColor}>
-							🛠️ TECH STACK
-						</Text>
-						<Wrap spacing={2}>
-							{skills.map((skill) => (
-								<WrapItem key={skill.name}>
-									<Badge
-										colorScheme={skill.color}
-										px={3}
-										py={1}
-										borderRadius="full"
-										fontSize="sm"
-										fontWeight="medium"
-										_hover={{ transform: 'scale(1.05)' }}
-										transition="all 0.2s"
-										cursor="default"
-									>
-										{skill.emoji} {skill.name}
-									</Badge>
-								</WrapItem>
-							))}
-						</Wrap>
-					</Box>
-
-					<Flex gap={3} justify="center" flexWrap="wrap">
-						<NextLink href="/portfolio">
-							<Button
-								rightIcon={<ChevronRightIcon />}
-								colorScheme="teal"
-								size="lg"
-								_hover={{ transform: 'scale(1.05)' }}
-								transition="all 0.2s"
-							>
-								🎨 View Portfolio
-							</Button>
-						</NextLink>
-						<NextLink href="/works">
-							<Button
-								rightIcon={<ChevronRightIcon />}
-								variant="outline"
-								colorScheme="teal"
-								size="lg"
-								_hover={{ transform: 'scale(1.05)' }}
-								transition="all 0.2s"
-							>
-								💼 Work Experience
-							</Button>
-						</NextLink>
-					</Flex>
-					<Box mb={8} />
-				</Section>
-
-				{/* Contact Section */}
-				<Section delay={0.3}>
-					<Box
-						p={6}
-						borderRadius="xl"
-						mb={6}
-						border="1px dashed"
-						borderColor={cardBorder}
-					>
-						<Heading as="h2" fontSize="xl" mb={4}>
-							📬 Get In Touch
-						</Heading>
-						<SimpleGrid columns={{ base: 1, sm: 2 }} spacing={3}>
-							<Link href="tel:+85263485516" _hover={{ textDecoration: 'none' }}>
-								<Button
-									w="full"
-									variant="outline"
-									colorScheme="teal"
-									leftIcon={<Icon as={IoPhonePortraitSharp} />}
-									_hover={{ transform: 'translateY(-2px)', shadow: 'md' }}
-									transition="all 0.2s"
-									justifyContent="flex-start"
-								>
-									📞 +(852) 6348 5516
-								</Button>
-							</Link>
-							<Link href="mailto:wooyukit@gmail.com" _hover={{ textDecoration: 'none' }}>
-								<Button
-									w="full"
-									variant="outline"
-									colorScheme="teal"
-									leftIcon={<Icon as={IoMail} />}
-									_hover={{ transform: 'translateY(-2px)', shadow: 'md' }}
-									transition="all 0.2s"
-									justifyContent="flex-start"
-								>
-									✉️ wooyukit@gmail.com
-								</Button>
-							</Link>
-						</SimpleGrid>
-					</Box>
-					<Box mb={4} />
-				</Section>
-
-				{/* Education Section */}
-				<Section delay={0.4}>
-					<Heading as="h2" fontSize="xl" mb={4}>
-						🎓 Where I Leveled Up
-					</Heading>
-					<VStack spacing={4} align="stretch">
-						<Box
-							p={5}
-							borderRadius="xl"
-							border="1px dashed"
-							borderColor={cardBorder}
-							_hover={{ borderColor: 'teal.400' }}
-							transition="all 0.2s"
-						>
-							<Flex justify="space-between" align="flex-start" flexWrap="wrap" gap={2}>
-								<Box>
-									<Badge colorScheme="teal" mb={2}>📅 2017</Badge>
-									<Heading as="h3" fontSize="md" mb={1}>
-										🎯 Master of Science in Information System Management
-									</Heading>
-									<Text color={subtitleColor} fontSize="sm">
-										City University of Hong Kong 🇭🇰
-									</Text>
-								</Box>
-								<Badge colorScheme="purple">📊 GPA: 2.97</Badge>
-							</Flex>
-						</Box>
-
-						<Box
-							p={5}
-							borderRadius="xl"
-							border="1px dashed"
-							borderColor={cardBorder}
-							_hover={{ borderColor: 'teal.400' }}
-							transition="all 0.2s"
-						>
-							<Flex justify="space-between" align="flex-start" flexWrap="wrap" gap={2}>
-								<Box>
-									<Badge colorScheme="teal" mb={2}>📅 2009</Badge>
-									<Heading as="h3" fontSize="md" mb={1}>
-										⚡ Bachelor of Electronic and Information Engineering
-									</Heading>
-									<Text color={subtitleColor} fontSize="sm">
-										Hong Kong Polytechnic University 🇭🇰
-									</Text>
-								</Box>
-								<Badge colorScheme="yellow">🏆 GPA: 3.2 Honors</Badge>
-							</Flex>
-						</Box>
-					</VStack>
-					<Box mb={6} />
-				</Section>
-
-				{/* Interests Section */}
-				<Section delay={0.5}>
-					<Heading as="h2" fontSize="xl" mb={4}>
-						❤️ When I&apos;m Not Coding
-					</Heading>
-					<Wrap spacing={2}>
-						{loves.map((love, index) => (
-							<WrapItem key={love.name}>
-								<Tag
-									borderRadius="full"
-									variant="subtle"
-									colorScheme="teal"
-									size="lg"
-									px={4}
-									_hover={{ transform: 'scale(1.1)', shadow: 'sm' }}
-									transition="all 0.2s"
-									cursor="default"
-									animation={`${float} 3s ease-in-out infinite`}
-									style={{ animationDelay: `${index * 0.1}s` }}
-								>
-									{love.emoji} {love.name}
-								</Tag>
-							</WrapItem>
-						))}
-					</Wrap>
-				</Section>
-			</Container>
-		</Layout>
-	)
+      <Section>
+        <Box
+          id="contact"
+          layerStyle="glassFeature"
+          borderRadius="2xl"
+          p={{ base: 7, md: 10 }}
+        >
+          <Text className="eyebrow" mb={4}>
+            Let’s connect
+          </Text>
+          <Heading as="h2" fontSize={{ base: '2xl', md: '4xl' }} mb={4}>
+            Have something in mind?
+          </Heading>
+          <Text color={muted} lineHeight="tall" mb={6}>
+            A project, an engineering challenge, or a conversation.
+            <br />
+            I’d love to hear from you.
+          </Text>
+          <Flex gap={5} align="center" flexWrap="wrap">
+            <Button
+              as="a"
+              href="mailto:wooyukit@gmail.com"
+              variant="primary"
+              leftIcon={<IoMailOutline />}
+              px={6}
+            >
+              Say hello
+            </Button>
+            <Link href="tel:+85263485516" color={accent} fontSize="sm">
+              +852 6348 5516
+            </Link>
+          </Flex>
+        </Box>
+      </Section>
+      <PlanetPreview />
+      <Flex
+        as="footer"
+        borderTop="1px solid"
+        borderColor={border}
+        pt={6}
+        justify="space-between"
+        gap={3}
+        flexWrap="wrap"
+        color={muted}
+        fontSize="xs"
+      >
+        <Text>Vincent Woo · Made in Hong Kong</Text>
+        <HStack spacing={5}>
+          <Link href="#main-content" color="inherit">
+            Back to top <ArrowDownIcon transform="rotate(180deg)" aria-hidden />
+          </Link>
+          <Link
+            href="https://github.com/wooyukit/vincent-homepage"
+            isExternal
+            color="inherit"
+          >
+            View source
+          </Link>
+        </HStack>
+      </Flex>
+    </Layout>
+  )
 }
 
 export default Page

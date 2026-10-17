@@ -1,62 +1,86 @@
-import { Container, Badge, List, ListItem, SimpleGrid, Divider, UnorderedList } from "@chakra-ui/react";
-import { Title, WorkImage, Meta } from "../../components/work";
+import { getProject } from '../../data/projects'
+import {
+  Container,
+  Badge,
+  List,
+  ListItem,
+  SimpleGrid,
+  Divider,
+  UnorderedList
+} from '@chakra-ui/react'
+import { Title, WorkImage, Meta } from '../../components/work'
 import P from '../../components/paragraph'
-import Layout from "../../components/layouts/article";
+import Layout from '../../components/layouts/article'
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery } from 'react-photoswipe-gallery'
 
-const eyecatch = { "path": "/images/portfolio/sie-eyecatch.webp", "w": "1280", "h": "720" }
+const eyecatch = {
+  path: '/images/portfolio/sie-eyecatch.webp',
+  w: '1280',
+  h: '720'
+}
 const srcs = [
-	{ "path": "/images/portfolio/sie-1.webp", "w": "1920", "h": "3420" },
-	{ "path": "/images/portfolio/sie-2.webp", "w": "1920", "h": "3420" },
-	{ "path": "/images/portfolio/sie-3.webp", "w": "1440", "h": "2560" },
-	{ "path": "/images/portfolio/sie-4.webp", "w": "1920", "h": "3420" },
-	{ "path": "/images/portfolio/sie-5.webp", "w": "1920", "h": "3420" },
-	{ "path": "/images/portfolio/sie-6.webp", "w": "1920", "h": "3420" },
+  { path: '/images/portfolio/sie-1.webp', w: '1920', h: '3420' },
+  { path: '/images/portfolio/sie-2.webp', w: '1920', h: '3420' },
+  { path: '/images/portfolio/sie-3.webp', w: '1440', h: '2560' },
+  { path: '/images/portfolio/sie-4.webp', w: '1920', h: '3420' },
+  { path: '/images/portfolio/sie-5.webp', w: '1920', h: '3420' },
+  { path: '/images/portfolio/sie-6.webp', w: '1920', h: '3420' }
 ]
 
 const Work = () => {
-	return (
-		<Layout title="SIE Fund App">
-			<Container maxW="container.md">
-				<Title>
-					Government SIE Fund App <Badge>2014</Badge>
-				</Title>
-				<WorkImage mb={6} src={eyecatch} alt="SIE Fund App" />
-				<P>
-					Government SIE Fund department app provide user with interactive function such as Funding News, Activities, Case sharing, Funding ideas and Funny games.
-				</P>
-				<List mx={4} my={4} spacing={4}>
-					<ListItem>
-						<Meta>Mobile App</Meta>
-					</ListItem>
-					<ListItem>
-						<Meta>Platform</Meta>
-						<span>iOS / Android</span>
-					</ListItem>
-					<ListItem>
-						<Meta>Stack</Meta>
-						<span>Objective-C, Java, Game Programming, Multiple Language, Accessibility Vision Support</span>
-					</ListItem>
-					<ListItem>
-						<Meta>Features</Meta>
-						<UnorderedList>
-							<ListItem>Brand News Design and User Experience</ListItem>
-							<ListItem>Interest Games with Certifications Sharing</ListItem>
-							<ListItem>Accessibility Vision Support for the disabled users</ListItem>
-						</UnorderedList>
-					</ListItem>
-				</List>
-				<Divider my={4} />
-				<Gallery>
-					<SimpleGrid mt={6} columns={[2, 3, 4, 4]} columnGap={2} alignItems="center">
-						{srcs.map((src) => (
-							<WorkImage key={src.path} src={src} alt="SIE Fund App" mb={2} />
-						))}
-					</SimpleGrid>
-				</Gallery>
-			</Container>
-		</Layout>
-	)
+  const project = getProject('sie')
+  return (
+    <Layout title="SIE Fund App">
+      <Container maxW="container.md">
+        <Gallery>
+          <Title>
+            Government SIE Fund App <Badge>{project.date}</Badge>
+          </Title>
+          <WorkImage mb={6} src={eyecatch} alt="SIE Fund App" />
+          <P>
+            Government SIE Fund department app provide user with interactive
+            function such as Funding News, Activities, Case sharing, Funding
+            ideas and Funny games.
+          </P>
+          <List mx={4} my={4} spacing={4}>
+            <ListItem>
+              <Meta>Mobile App</Meta>
+            </ListItem>
+            <ListItem>
+              <Meta>Platform</Meta>
+              <span>iOS / Android</span>
+            </ListItem>
+            <ListItem>
+              <Meta>Stack</Meta>
+              <span>{project.tech.join(', ')}</span>
+            </ListItem>
+            <ListItem>
+              <Meta>Features</Meta>
+              <UnorderedList>
+                <ListItem>Brand News Design and User Experience</ListItem>
+                <ListItem>Interest Games with Certifications Sharing</ListItem>
+                <ListItem>
+                  Accessibility Vision Support for the disabled users
+                </ListItem>
+              </UnorderedList>
+            </ListItem>
+          </List>
+          <Divider my={4} />
+
+          <SimpleGrid
+            mt={6}
+            columns={[2, 3, 4, 4]}
+            columnGap={2}
+            alignItems="center"
+          >
+            {srcs.map(src => (
+              <WorkImage key={src.path} src={src} alt="SIE Fund App" mb={2} />
+            ))}
+          </SimpleGrid>
+        </Gallery>
+      </Container>
+    </Layout>
+  )
 }
 export default Work

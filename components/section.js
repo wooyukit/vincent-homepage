@@ -1,20 +1,19 @@
-import { motion } from 'framer-motion'
-import { chakra, shouldForwardProp } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
+import { useReveal } from '../lib/use-reveal'
 
-const StyledDiv = chakra(motion.div, {
-	shouldForwardProp: prop => {
-		return shouldForwardProp(prop) || prop === 'transition'
-	}
-})
-
-const Section = ({ children, delay = 0 }) => (
-	<StyledDiv
-		initial={{ y: 10, opacity: 0 }}
-		animate={{ y: 0, opacity: 1 }}
-		transition={{ duration: 0.8, delay }}
-		mb={6}>
-		{children}
-	</StyledDiv>
-)
+const Section = ({ children, delay = 0, revealOnScroll = true, ...props }) => {
+  const ref = useReveal(revealOnScroll)
+  return (
+    <Box
+      ref={ref}
+      className="section-reveal"
+      style={{ '--section-delay': `${Math.max(0, Math.min(delay, 0.24))}s` }}
+      mb={6}
+      {...props}
+    >
+      {children}
+    </Box>
+  )
+}
 
 export default Section

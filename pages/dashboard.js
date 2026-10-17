@@ -1,4 +1,7 @@
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import { useReducedMotion } from 'framer-motion'
+import { loadGitHub, loadCrates } from '../lib/dashboard-data'
+import { useDashboardResource } from '../lib/use-dashboard-resource'
 import {
   Container,
   Box,
@@ -11,9 +14,14 @@ import {
   Button,
   Skeleton,
   SkeletonText,
+  VisuallyHidden,
   useColorModeValue
 } from '@chakra-ui/react'
-import { IoLogoGithub, IoStarOutline, IoGitBranchOutline } from 'react-icons/io5'
+import {
+  IoLogoGithub,
+  IoStarOutline,
+  IoGitBranchOutline
+} from 'react-icons/io5'
 import {
   PieChart,
   Pie,
@@ -36,39 +44,38 @@ const DASHBOARD_CONFIG = {
   pieChartHeight: 250,
   barChartHeight: 300,
   chartColors: [
-    '#38B2AC',
-    '#4FD1C5',
-    '#81E6D9',
-    '#B2F5EA',
-    '#E6FFFA',
-    '#319795',
-    '#2C7A7B',
-    '#285E61'
+    '#86a4ff',
+    '#a3b8ce',
+    '#8bc7b6',
+    '#dba0a4',
+    '#a3c5a0',
+    '#dcc28f',
+    '#a9a2cd',
+    '#b4c0db'
   ]
 }
 
-const GITHUB_USER = 'wooyukit'
-const CRATES_USER = 'wooyukit'
-
-const pieLabel = ({ name, percent }) =>
-  `${name} ${(percent * 100).toFixed(0)}%`
+const pieLabel = ({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`
 
 const StatCard = ({ label, value, isLoaded }) => {
-  const cardBorder = useColorModeValue('gray.400', 'gray.600')
   const subtitleColor = useColorModeValue('gray.600', 'gray.400')
 
   return (
     <Box
+      className="surface-card"
+      layerStyle="glassCard"
       p={4}
       borderRadius="xl"
       textAlign="center"
-      border="1px dashed"
-      borderColor={cardBorder}
-      _hover={{ transform: 'translateY(-4px)', borderColor: 'teal.400' }}
+      _hover={{ transform: 'translateY(-4px)', borderColor: 'blue.400' }}
       transition="all 0.3s"
     >
       <Skeleton isLoaded={isLoaded} fadeDuration={0.8}>
-        <Text fontSize="2xl" fontWeight="bold" color="teal.500">
+        <Text
+          fontSize="2xl"
+          fontWeight="bold"
+          color={useColorModeValue('blue.700', 'blue.200')}
+        >
           {value}
         </Text>
       </Skeleton>
@@ -93,7 +100,9 @@ const ErrorBox = ({ message, onRetry }) => {
       bg={errorBg}
       textAlign="center"
     >
-      <Text color="red.500" mb={2}>{message}</Text>
+      <Text color="red.500" mb={2}>
+        {message}
+      </Text>
       <Button size="sm" colorScheme="red" variant="outline" onClick={onRetry}>
         Retry
       </Button>
@@ -124,16 +133,49 @@ const CustomTooltip = ({ active, payload, tooltipBg, tooltipColor }) => {
   return null
 }
 
-const Dashboard = () => {
-  const cardBorder = useColorModeValue('gray.400', 'gray.600')
-  const subtitleColor = useColorModeValue('gray.600', 'gray.400')
-  const cardBg = useColorModeValue('white', 'whiteAlpha.50')
-  const tooltipBg = useColorModeValue('#fff', '#2D3748')
-  const tooltipColor = useColorModeValue('#1A202C', '#fff')
-  const chartTextColor = useColorModeValue('#4A5568', '#A0AEC0')
+const ChartDataTable = ({ data, valueKey, caption, valueLabel }) => (
+  <VisuallyHidden>
+    <table>
+      <caption>{caption}</caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">{valueLabel}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map(item => (
+          <tr key={item.name}>
+            <th scope="row">{item.name}</th>
+            <td>{item[valueKey]}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </VisuallyHidden>
+)
 
-  // Wait for section fade-in animations to finish before rendering charts
-  // Section delays: 0.2 (GitHub), 0.3 (Crates) + 0.8s duration = ~1.1s max
+const Dashboard = () => {
+  const chartColors = useColorModeValue(
+    [
+      '#4165df',
+      '#647d9b',
+      '#39846e',
+      '#b86f78',
+      '#66895f',
+      '#9b783b',
+      '#7e71ac',
+      '#788ba6'
+    ],
+    DASHBOARD_CONFIG.chartColors
+  )
+  const subtitleColor = useColorModeValue('gray.600', 'gray.400')
+  const tooltipBg = useColorModeValue('#fff', '#1b232e')
+  const tooltipColor = useColorModeValue('#1A202C', '#fff')
+  const chartTextColor = useColorModeValue('#526078', '#b0b8c6')
+
+  // Keep chart animations separate from the page and section entrances.
+  // The longest entrance is 240ms delay + 560ms duration, below this 1.2s gate.
   const [chartsReady, setChartsReady] = useState(false)
 
   useEffect(() => {
@@ -144,114 +186,26 @@ const Dashboard = () => {
     return () => clearTimeout(timer)
   }, [])
 
-  // GitHub state
-  const [ghUser, setGhUser] = useState(null)
-  const [ghRepos, setGhRepos] = useState([])
-  const [ghLanguages, setGhLanguages] = useState([])
-  const [ghLoading, setGhLoading] = useState(true)
-  const [ghError, setGhError] = useState(null)
-
-  // Crates.io state
-  const [cratesList, setCratesList] = useState([])
-  const [cratesStats, setCratesStats] = useState({
-    count: 0,
-    totalDownloads: 0
-  })
-  const [cratesLoading, setCratesLoading] = useState(true)
-  const [cratesError, setCratesError] = useState(null)
-
-  const fetchGitHub = useCallback(async () => {
-    setGhLoading(true)
-    setGhError(null)
-    try {
-      const [userRes, reposRes] = await Promise.all([
-        fetch(`https://api.github.com/users/${GITHUB_USER}`),
-        fetch(
-          `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`
-        )
-      ])
-      if (userRes.status === 403 || reposRes.status === 403) {
-        throw new Error(
-          'GitHub API rate limit exceeded — please try again later'
-        )
-      }
-      if (userRes.status === 404) {
-        throw new Error(`GitHub user not found: ${GITHUB_USER}`)
-      }
-      if (!userRes.ok) {
-        throw new Error(`GitHub API error (user): ${userRes.status}`)
-      }
-      if (!reposRes.ok) {
-        throw new Error(`GitHub API error (repos): ${reposRes.status}`)
-      }
-      const userData = await userRes.json()
-      const reposData = await reposRes.json()
-
-      setGhUser(userData)
-      setGhRepos(reposData)
-
-      // Build language breakdown
-      const langMap = {}
-      reposData.forEach(repo => {
-        if (repo.language) {
-          langMap[repo.language] = (langMap[repo.language] || 0) + 1
-        }
-      })
-      const sorted = Object.entries(langMap)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 8)
-        .map(([name, value]) => ({ name, value }))
-      setGhLanguages(sorted)
-    } catch (err) {
-      console.error('GitHub fetch failed:', err)
-      setGhError(err.message || 'Failed to fetch GitHub data')
-    } finally {
-      setGhLoading(false)
-    }
-  }, [])
-
-  const fetchCrates = useCallback(async () => {
-    setCratesLoading(true)
-    setCratesError(null)
-    try {
-      const userRes = await fetch(
-        `https://crates.io/api/v1/users/${CRATES_USER}`
-      )
-      if (!userRes.ok) {
-        throw new Error(`crates.io error (user lookup): ${userRes.status}`)
-      }
-      const userData = await userRes.json()
-      const userId = userData.user.id
-
-      const cratesRes = await fetch(
-        `https://crates.io/api/v1/crates?user_id=${userId}&per_page=50&sort=downloads`
-      )
-      if (!cratesRes.ok) {
-        throw new Error(`crates.io error (crates lookup): ${cratesRes.status}`)
-      }
-      const cratesData = await cratesRes.json()
-
-      const crates = cratesData.crates || []
-      setCratesList(crates)
-      setCratesStats({
-        count: crates.length,
-        totalDownloads: crates.reduce(
-          (sum, c) => sum + (c.downloads || 0),
-          0
-        )
-      })
-    } catch (err) {
-      console.error('crates.io fetch failed:', err)
-      setCratesError(err.message || 'Failed to fetch crates.io data')
-    } finally {
-      setCratesLoading(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchGitHub()
-    fetchCrates()
-  }, [fetchGitHub, fetchCrates])
+  const github = useDashboardResource(loadGitHub)
+  const crates = useDashboardResource(loadCrates)
+  const reducedMotion = useReducedMotion()
+  const ghUser = github.data?.user
+  const ghRepos = useMemo(() => github.data?.repos || [], [github.data])
+  const ghLanguages = github.data?.languages || []
+  const ghLoading = github.loading
+  const ghError = github.error
+  const fetchGitHub = github.retry
+  const cratesList = useMemo(() => crates.data?.crates || [], [crates.data])
+  const cratesLoading = crates.loading
+  const cratesError = crates.error
+  const fetchCrates = crates.retry
+  const cratesStats = {
+    count: cratesList.length,
+    totalDownloads: cratesList.reduce(
+      (sum, crate) => sum + (crate.downloads || 0),
+      0
+    )
+  }
 
   const totalStars = useMemo(
     () => ghRepos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0),
@@ -279,19 +233,23 @@ const Dashboard = () => {
     <Layout title="Dashboard">
       <Container maxW="container.md" pt={6}>
         {/* Header */}
-        <Section delay={0.1}>
+        <Section revealOnScroll={false} delay={0.1}>
           <Box textAlign="center" mb={8}>
+            <Text className="eyebrow" mb={3}>
+              Code & community
+            </Text>
             <Heading as="h1" size="xl" mb={2}>
-              Dashboard
+              Open source
             </Heading>
             <Text fontSize="md" color={subtitleColor}>
-              Live metrics from GitHub and Crates.io
+              Public activity from GitHub and crates.io · cached for five
+              minutes
             </Text>
           </Box>
         </Section>
 
         {/* GitHub Section */}
-        <Section delay={0.2}>
+        <Section revealOnScroll={false} delay={0.2}>
           <Heading as="h2" fontSize="xl" mb={4}>
             GitHub
           </Heading>
@@ -326,8 +284,13 @@ const Dashboard = () => {
 
               {/* Language Pie Chart */}
               <Box mb={6}>
-                <Text fontSize="sm" fontWeight="semibold" mb={3} color={subtitleColor}>
-                  Language Breakdown
+                <Text
+                  fontSize="sm"
+                  fontWeight="semibold"
+                  mb={3}
+                  color={subtitleColor}
+                >
+                  Repository languages
                 </Text>
                 {ghLoading || !chartsReady ? (
                   <Skeleton
@@ -336,12 +299,7 @@ const Dashboard = () => {
                     fadeDuration={0.8}
                   />
                 ) : ghLanguages.length > 0 ? (
-                  <Box
-                    p={4}
-                    borderRadius="xl"
-                    border="1px dashed"
-                    borderColor={cardBorder}
-                  >
+                  <Box p={4} borderRadius="xl" layerStyle="glassCard">
                     <ResponsiveContainer
                       width="100%"
                       height={DASHBOARD_CONFIG.pieChartHeight}
@@ -355,32 +313,50 @@ const Dashboard = () => {
                           dataKey="value"
                           nameKey="name"
                           animationBegin={0}
-                          animationDuration={DASHBOARD_CONFIG.pieAnimationDuration}
+                          animationDuration={
+                            DASHBOARD_CONFIG.pieAnimationDuration
+                          }
                           animationEasing="ease-out"
                           label={pieLabel}
-                          isAnimationActive
+                          isAnimationActive={!reducedMotion}
                         >
                           {ghLanguages.map((_entry, index) => (
                             <Cell
                               key={`cell-${index}`}
-                              fill={
-                                DASHBOARD_CONFIG.chartColors[
-                                  index % DASHBOARD_CONFIG.chartColors.length
-                                ]
-                              }
+                              fill={chartColors[index % chartColors.length]}
                             />
                           ))}
                         </Pie>
-                        <Tooltip cursor={false} isAnimationActive={false} content={<CustomTooltip tooltipBg={tooltipBg} tooltipColor={tooltipColor} />} />
+                        <Tooltip
+                          cursor={false}
+                          isAnimationActive={false}
+                          content={
+                            <CustomTooltip
+                              tooltipBg={tooltipBg}
+                              tooltipColor={tooltipColor}
+                            />
+                          }
+                        />
                       </PieChart>
                     </ResponsiveContainer>
+                    <ChartDataTable
+                      data={ghLanguages}
+                      valueKey="value"
+                      caption="Repositories by primary language"
+                      valueLabel="Repositories"
+                    />
                   </Box>
                 ) : null}
               </Box>
 
               {/* Top Repos */}
               <Box mb={6}>
-                <Text fontSize="sm" fontWeight="semibold" mb={3} color={subtitleColor}>
+                <Text
+                  fontSize="sm"
+                  fontWeight="semibold"
+                  mb={3}
+                  color={subtitleColor}
+                >
                   Top Repositories
                 </Text>
                 {ghLoading || !chartsReady ? (
@@ -390,8 +366,7 @@ const Dashboard = () => {
                         key={i}
                         p={4}
                         borderRadius="xl"
-                        border="1px dashed"
-                        borderColor={cardBorder}
+                        layerStyle="glassCard"
                       >
                         <Skeleton height="18px" mb={2} />
                         <SkeletonText noOfLines={2} spacing={2} />
@@ -411,12 +386,10 @@ const Dashboard = () => {
                         <Box
                           p={4}
                           borderRadius="xl"
-                          border="1px dashed"
-                          borderColor={cardBorder}
-                          bg={cardBg}
+                          layerStyle="glassCard"
                           _hover={{
                             transform: 'translateY(-4px)',
-                            borderColor: 'teal.400'
+                            borderColor: 'blue.400'
                           }}
                           transition="all 0.3s"
                           h="100%"
@@ -438,7 +411,7 @@ const Dashboard = () => {
                           <Flex gap={3} align="center" flexWrap="wrap">
                             {repo.language && (
                               <Badge
-                                colorScheme="teal"
+                                colorScheme="blue"
                                 borderRadius="full"
                                 px={2}
                                 fontSize="xs"
@@ -470,7 +443,7 @@ const Dashboard = () => {
         </Section>
 
         {/* Crates.io Section */}
-        <Section delay={0.3}>
+        <Section revealOnScroll={false} delay={0.3}>
           <Heading as="h2" fontSize="xl" mb={4}>
             Crates.io
           </Heading>
@@ -495,7 +468,12 @@ const Dashboard = () => {
 
               {/* Downloads Bar Chart */}
               <Box mb={6}>
-                <Text fontSize="sm" fontWeight="semibold" mb={3} color={subtitleColor}>
+                <Text
+                  fontSize="sm"
+                  fontWeight="semibold"
+                  mb={3}
+                  color={subtitleColor}
+                >
                   Top Crates by Downloads
                 </Text>
                 {cratesLoading || !chartsReady ? (
@@ -505,12 +483,7 @@ const Dashboard = () => {
                     fadeDuration={0.8}
                   />
                 ) : topCrates.length > 0 ? (
-                  <Box
-                    p={4}
-                    borderRadius="xl"
-                    border="1px dashed"
-                    borderColor={cardBorder}
-                  >
+                  <Box p={4} borderRadius="xl" layerStyle="glassCard">
                     <ResponsiveContainer
                       width="100%"
                       height={DASHBOARD_CONFIG.barChartHeight}
@@ -532,27 +505,41 @@ const Dashboard = () => {
                           width={120}
                           tick={{ fill: chartTextColor, fontSize: 12 }}
                         />
-                        <Tooltip cursor={false} isAnimationActive={false} content={<CustomTooltip tooltipBg={tooltipBg} tooltipColor={tooltipColor} />} />
+                        <Tooltip
+                          cursor={false}
+                          isAnimationActive={false}
+                          content={
+                            <CustomTooltip
+                              tooltipBg={tooltipBg}
+                              tooltipColor={tooltipColor}
+                            />
+                          }
+                        />
                         <Bar
+                          isAnimationActive={!reducedMotion}
                           dataKey="downloads"
                           radius={[0, 6, 6, 0]}
                           animationBegin={0}
-                          animationDuration={DASHBOARD_CONFIG.barAnimationDuration}
+                          animationDuration={
+                            DASHBOARD_CONFIG.barAnimationDuration
+                          }
                           animationEasing="ease-out"
                         >
                           {topCrates.map((_entry, index) => (
                             <Cell
                               key={`bar-${index}`}
-                              fill={
-                                DASHBOARD_CONFIG.chartColors[
-                                  index % DASHBOARD_CONFIG.chartColors.length
-                                ]
-                              }
+                              fill={chartColors[index % chartColors.length]}
                             />
                           ))}
                         </Bar>
                       </BarChart>
                     </ResponsiveContainer>
+                    <ChartDataTable
+                      data={topCrates}
+                      valueKey="downloads"
+                      caption="Top Rust crates by total downloads"
+                      valueLabel="Downloads"
+                    />
                   </Box>
                 ) : (
                   <Text fontSize="sm" color={subtitleColor}>
@@ -562,28 +549,6 @@ const Dashboard = () => {
               </Box>
             </Box>
           )}
-        </Section>
-
-        {/* Product Events Placeholder */}
-        <Section delay={0.4}>
-          <Heading as="h2" fontSize="xl" mb={4}>
-            Product Events
-          </Heading>
-          <Box
-            p={8}
-            borderRadius="xl"
-            border="1px dashed"
-            borderColor={cardBorder}
-            textAlign="center"
-            mb={6}
-          >
-            <Text fontSize="lg" color={subtitleColor}>
-              Coming soon
-            </Text>
-            <Text fontSize="sm" color={subtitleColor} mt={1}>
-              Product analytics and event tracking will appear here.
-            </Text>
-          </Box>
         </Section>
       </Container>
     </Layout>

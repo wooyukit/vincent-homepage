@@ -1,139 +1,174 @@
-import Logo from './logo'
 import NextLink from 'next/link'
+import { motion } from 'framer-motion'
 import {
-	Container,
-	Box,
-	Link,
-	Stack,
-	Heading,
-	Flex,
-	Menu,
-	MenuItem,
-	MenuList,
-	MenuButton,
-	IconButton,
-	useColorModeValue
+  Box,
+  Container,
+  Flex,
+  HStack,
+  Link,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Portal,
+  IconButton,
+  useColorModeValue
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
+import { IoPauseOutline, IoPlayOutline } from 'react-icons/io5'
+import { useAutomaticMotion } from '../lib/automatic-motion'
+import { glassReflection } from '../lib/theme'
+import Logo from './logo'
 import ThemeToggleButton from './theme-toggle-button'
-import { IoLogoGithub, IoBarChartOutline } from 'react-icons/io5'
-import { DiApple, DiAndroid, DiReact } from "react-icons/di";
 
-const LinkItem = ({ href, path, target, children, ...props }) => {
-	const active = path === href
-	const inactiveColor = useColorModeValue('gray.700', 'whiteAlpha.900')
-	return (
-		<NextLink href={href} passHref>
-			<Link
-				p={2}
-				bg={active ? 'cyan' : undefined}
-				color={active ? '#202023' : inactiveColor}
-				target={target}
-				{...props}>
-				{children}
-			</Link>
-		</NextLink>
-	)
-}
+const navigation = [
+  { href: '/', label: 'Home' },
+  { href: '/portfolio', label: 'Projects' },
+  { href: '/works', label: 'Experience' },
+  { href: '/dashboard', label: 'Open source' }
+]
 
-const Navbar = props => {
-	const { path } = props
-	return (
-		<Box
-			position="fixed"
-			as="nav"
-			w="100%"
-			bg={useColorModeValue('#ffffff40', '#20202380')}
-			style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
-			zIndex={10}
-			{...props}
-		>
-			<Container display="flex" p={2} maxW="container.md" wrap="wrap" align="center" justify="space-between">
-				<Flex align="center" mr={5}>
-					<Heading as="h1" size="lg" letterSpacing={'tighter'}>
-						<Logo />
-					</Heading>
-				</Flex>
-				<Stack direction={{ base: 'column', md: 'row' }}
-					display={{ base: 'none', md: 'flex' }}
-					width={{ base: 'full', md: 'auto' }}
-					flexGrow={1}
-					mt={{ base: 4, md: 0 }}>
-					<LinkItem href="/"
-						path={path}
-						display='inline-flex'
-						alignItems="center"
-						style={{ gap: 4 }}
-						pl={2}>
-						<DiApple />
-						Profile
-					</LinkItem>
-					<LinkItem href="/works"
-						path={path}
-						display='inline-flex'
-						alignItems="center"
-						style={{ gap: 4 }}
-						pl={2}>
-						<DiAndroid />
-						Works
-					</LinkItem>
-					<LinkItem href="/portfolio"
-						path={path}
-						display='inline-flex'
-						alignItems="center"
-						style={{ gap: 4 }}
-						pl={2}>
-						<DiReact />
-						Portfolio
-					</LinkItem>
-					<LinkItem href="/dashboard"
-						path={path}
-						display='inline-flex'
-						alignItems="center"
-						style={{ gap: 4 }}
-						pl={2}>
-						<IoBarChartOutline />
-						Dashboard
-					</LinkItem>
-					<LinkItem
-						target="_blank"
-						rel="noopener noreferrer"
-						href="https://github.com/wooyukit/vincent-homepage"
-						path={path}
-						display='inline-flex'
-						alignItems="center"
-						style={{ gap: 4 }}
-						pl={2}>
-						<IoLogoGithub />
-						Source
-					</LinkItem>
-				</Stack>
-				<Box flex={1} align="right">
-					<ThemeToggleButton />
-					<Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
-						<Menu>
-							<MenuButton as={IconButton} icon={<HamburgerIcon />} variant="outline" aria-label='Options' />
-							<MenuList>
-								<NextLink href="/" passHref>
-									<MenuItem as={Link} style={{ gap: 4 }}><DiApple />Profile</MenuItem>
-								</NextLink>
-								<NextLink href="/works" passHref>
-									<MenuItem as={Link} style={{ gap: 4 }}><DiAndroid />Works</MenuItem>
-								</NextLink>
-								<NextLink href="/portfolio" passHref>
-									<MenuItem as={Link} style={{ gap: 4 }}><DiReact />Portfolio</MenuItem>
-								</NextLink>
-								<NextLink href="/dashboard" passHref>
-									<MenuItem as={Link} style={{ gap: 4 }}><IoBarChartOutline />Dashboard</MenuItem>
-								</NextLink>
-								<MenuItem as={Link} href="https://github.com/wooyukit/vincent-homepage" style={{ gap: 4 }}><IoLogoGithub />View Source</MenuItem>
-							</MenuList>
-						</Menu>
-					</Box>
-				</Box>
-			</Container>
-		</Box>
-	)
+const Navbar = ({ path }) => {
+  const { paused, toggle } = useAutomaticMotion()
+  const current = path.split(/[?#]/)[0]
+  const accent = useColorModeValue('gray.900', 'white')
+  const activeBg = useColorModeValue(
+    'rgba(0, 0, 0, 0.035)',
+    'rgba(255, 255, 255, 0.06)'
+  )
+  const inactive = useColorModeValue('gray.800', 'gray.200')
+  const scrollShade = useColorModeValue(
+    'linear-gradient(to bottom, rgba(245, 245, 247, 0.82), rgba(245, 245, 247, 0.54) 62%, rgba(245, 245, 247, 0))',
+    'linear-gradient(to bottom, rgba(9, 9, 11, 0.88), rgba(9, 9, 11, 0.62) 62%, rgba(9, 9, 11, 0))'
+  )
+  const isActive = href =>
+    current === href || (href !== '/' && current.startsWith(`${href}/`))
+
+  return (
+    <Box
+      as="nav"
+      aria-label="Main navigation"
+      position="fixed"
+      top={{ base: 2, md: 3 }}
+      w="full"
+      px={{ base: 2, md: 4 }}
+      zIndex={20}
+      _before={{
+        content: '""',
+        position: 'absolute',
+        top: { base: -2, md: -3 },
+        left: 0,
+        width: 'full',
+        height: '100px',
+        backgroundImage: scrollShade,
+        pointerEvents: 'none',
+        zIndex: -1
+      }}
+    >
+      <Container
+        className="glass-navigation"
+        layerStyle="glassFloating"
+        maxW="container.lg"
+        borderRadius={{ base: '2xl', md: 'full' }}
+        px={{ base: 3, md: 4 }}
+        py={2}
+      >
+        <Flex justify="space-between" align="center" gap={{ base: 2, md: 4 }}>
+          <Logo />
+          <HStack spacing={1} display={{ base: 'none', md: 'flex' }}>
+            {navigation.map(item => (
+              <Link
+                as={NextLink}
+                key={item.href}
+                href={item.href}
+                px={3}
+                py={2}
+                position="relative"
+                isolation="isolate"
+                borderRadius="full"
+                fontSize="xs"
+                fontWeight={isActive(item.href) ? 'semibold' : 'medium'}
+                color={isActive(item.href) ? accent : inactive}
+                transition="color 180ms ease"
+                _hover={{ color: accent, textDecoration: 'none' }}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {isActive(item.href) && (
+                  <motion.span
+                    layoutId="active-navigation"
+                    aria-hidden="true"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      borderRadius: 999,
+                      backgroundColor: activeBg,
+                      backgroundImage: glassReflection,
+                      boxShadow: 'inset 0 1px 0 var(--glass-edge-top)',
+                      border: '1px solid var(--glass-border)',
+                      zIndex: -1
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 430,
+                      damping: 34,
+                      mass: 0.7
+                    }}
+                  />
+                )}
+                {item.label}
+              </Link>
+            ))}
+          </HStack>
+          <HStack spacing={{ base: 1, sm: 2 }}>
+            <IconButton
+              aria-label={
+                paused
+                  ? 'Resume automatic animations'
+                  : 'Pause automatic animations'
+              }
+              title={
+                paused
+                  ? 'Resume automatic animations'
+                  : 'Pause automatic animations'
+              }
+              icon={paused ? <IoPlayOutline /> : <IoPauseOutline />}
+              variant="ghost"
+              onClick={toggle}
+              sx={{
+                '@media (prefers-reduced-motion: reduce)': { display: 'none' }
+              }}
+            />
+            <ThemeToggleButton />
+            <Box display={{ base: 'block', md: 'none' }}>
+              <Menu>
+                <MenuButton
+                  as={IconButton}
+                  icon={<HamburgerIcon />}
+                  variant="ghost"
+                  aria-label="Open navigation"
+                />
+                <Portal>
+                  <MenuList>
+                    {navigation.map(item => (
+                      <MenuItem
+                        as={NextLink}
+                        key={item.href}
+                        href={item.href}
+                        aria-current={isActive(item.href) ? 'page' : undefined}
+                        fontWeight={isActive(item.href) ? 'bold' : 'normal'}
+                      >
+                        {item.label}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </Portal>
+              </Menu>
+            </Box>
+          </HStack>
+        </Flex>
+      </Container>
+    </Box>
+  )
 }
 
 export default Navbar

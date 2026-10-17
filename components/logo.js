@@ -1,42 +1,40 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 import Image from 'next/image'
-import { Text, useColorModeValue } from '@chakra-ui/react'
-import styled from '@emotion/styled'
+import { Link, Text, useColorModeValue } from '@chakra-ui/react'
 
-const LogoBox = styled.span`
-	font-weight: bold;
-	font-size: 18px;
-	display: inline-flex;
-	align-items: center;
-	height: 30px;
-	line-height: 20px;
-	padding: 5px;
+const Logo = () => (
+  <Link
+    as={NextLink}
+    href="/"
+    aria-label="Vincent Woo home"
+    display="inline-flex"
+    alignItems="center"
+    gap={2}
+    flexShrink={0}
+    color={useColorModeValue('gray.900', 'white')}
+    _hover={{ textDecoration: 'none' }}
+  >
+    <Image
+      src="/images/logo-ico.png"
+      width={24}
+      height={32}
+      alt=""
+      aria-hidden="true"
+      style={{ objectFit: 'contain' }}
+    />
+    <Text
+      as="span"
+      fontWeight="bold"
+      fontSize={{ base: 'md', md: 'lg' }}
+      letterSpacing="tight"
+      whiteSpace="nowrap"
+    >
+      Vincent Woo
+      <Text as="span" color={useColorModeValue('blue.700', 'blue.200')}>
+        .
+      </Text>
+    </Text>
+  </Link>
+)
 
-	img {
-		transition: 500ms ease;
-	}
-
-	&:hover img {
-		transform: rotate(360deg);
-	}
-`
-
-const Logo = () => {
-	return (
-		<Link href="/">
-			<a>
-				<LogoBox>
-					<Image src="/images/logo-ico.png" width={20} height={20} alt='logo' />
-					<Text
-						color={useColorModeValue('gray.800', 'whiteAlpha.900')}
-						fontFamily="M PLUS Rounded 1c, sans-serif"
-						fontWeight="bold"
-						ml={3}>
-						WOO Yu Kit Vincent
-					</Text>
-				</LogoBox>
-			</a>
-		</Link>
-	)
-}
 export default Logo

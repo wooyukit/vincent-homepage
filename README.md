@@ -18,14 +18,14 @@
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| ⚛️ Next.js | React framework for SSG/SSR |
-| 💅 Chakra UI | Component library & styling |
-| 🎬 Framer Motion | Animations |
-| 🌐 Three.js | 3D graphics (voxel dog!) |
-| 🔥 Firebase | Hosting |
-| 📸 PhotoSwipe | Image gallery lightbox |
+| Technology       | Purpose                        |
+| ---------------- | ------------------------------ |
+| ⚛️ Next.js       | React framework for SSG/SSR    |
+| 💅 Chakra UI     | Component library & styling    |
+| 🎬 Framer Motion | Animations                     |
+| 🌐 Three.js      | Optional interactive 3D planet |
+| 🔥 Firebase      | Hosting                        |
+| 📸 PhotoSwipe    | Image gallery lightbox         |
 
 ## 🙏 Credits
 
@@ -40,7 +40,7 @@
 
 ### 📦 Prerequisites
 
-- Node.js 16+
+- Node.js 22+
 - npm or yarn
 
 ### 💻 Development
@@ -95,3 +95,16 @@ MIT © Vincent Woo
 ---
 
 Made with ❤️ and ☕ in Hong Kong 🇭🇰
+
+## Optimization workflow
+
+- `npm ci` installs locked dependencies.
+- `npm run dev` prepares responsive images and starts local development.
+- `npm run lint` and `npm test` check source and regression coverage.
+- `npm run build` prepares images and writes the Firebase-ready static site to `out/`.
+- `npm run check:export` verifies metadata, image references, readable HTML, and 404 configuration.
+- `npm run preview` serves the production site at `http://localhost:3000` (or the next available port), including clean URLs and proper 404 responses.
+
+The site uses Next.js 16 Pages Router, React 18, and Chakra UI 2. React 18 preserves compatibility with the existing Chakra components; moving to Chakra UI 3 and React 19 is a separate migration. Project dates and technology lists are shared between the archive and detail pages in `data/projects.js`.
+
+Images are resized to real WebP variants during development/build, without an image service or runtime server. Generated assets in `public/_optimized/` and `lib/generated-images.json` are cached locally and excluded from Git. The 3D planet loads only when opened and pauses when offscreen or in a background tab.

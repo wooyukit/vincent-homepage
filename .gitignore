@@ -5,4 +5,7 @@ dist
 .env
 out
 .firebase
+firebase-debug.log*
 .claude
+public/_optimized/
+lib/generated-images.json
