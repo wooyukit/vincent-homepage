@@ -1,4 +1,3 @@
-import { keyframes } from '@emotion/react'
 import {
   Container,
   Box,
@@ -12,14 +11,9 @@ import {
 } from '@chakra-ui/react'
 import Section from '../components/section'
 import Layout from '../components/layouts/article'
+import CurrentJobIndicator from '../components/current-job-indicator'
 import { IoLogoGithub, IoGlobeOutline } from 'react-icons/io5'
 import { getYearsOfExperience } from '../lib/constants'
-
-const pulse = keyframes`
-	0% { box-shadow: 0 0 0 0 rgba(65, 101, 223, 0.3); }
-	70% { box-shadow: 0 0 0 10px rgba(65, 101, 223, 0); }
-	100% { box-shadow: 0 0 0 0 rgba(65, 101, 223, 0); }
-`
 
 const experiences = [
   {
@@ -192,12 +186,12 @@ const ExperienceCard = ({
           w={current ? '20px' : '16px'}
           h={current ? '20px' : '16px'}
           borderRadius="full"
-          bg={current ? 'blue.200' : dotBg}
+          bg={current ? undefined : dotBg}
           zIndex={1}
-          animation={current ? `${pulse} 2s 2` : 'none'}
-          border={current ? '3px solid' : 'none'}
-          borderColor="border-accent"
-        />
+          aria-hidden="true"
+        >
+          {current && <CurrentJobIndicator />}
+        </Box>
       </Box>
 
       {/* Content */}
