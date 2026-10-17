@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Navbar from '../navbar.js'
-import ParticleBackground from '../particle-background'
 import { Box, Container, Link } from '@chakra-ui/react'
 
 const Main = ({ children, router }) => {
@@ -9,7 +8,6 @@ const Main = ({ children, router }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <ParticleBackground />
       <Link
         href="#main-content"
         position="fixed"
