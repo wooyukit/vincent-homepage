@@ -40,7 +40,9 @@ const Navbar = ({ path }) => {
 
   return (
     <Box
-      as="nav"
+      as={motion.nav}
+      layoutRoot
+      layoutScroll
       aria-label="Main navigation"
       position="fixed"
       top={{ base: 2, md: 3 }}
